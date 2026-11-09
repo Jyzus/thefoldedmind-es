@@ -1,544 +1,1425 @@
-/* İngilizce içerik: tanılar (data/tanilar.js ile aynı kimlikler). Ad, kısaltma, özet ve mercek metinleri (devre, bulgular, belirtiler,
-   tedavi). content.js'ten önce yüklenir; Türkçe verinin üzerine yazar. Bulgu grupları ve maddeleri sırayla, belirti ve tedavi kartları
-   kimlikle eşlenir. Kitap alıntıları (Kitapta) data/en/divan.js'teki çevirinin parçalarıdır (kullanıcı 2026-10-10). */
+/* Textos de diagnósticos en español (traducción de data/tanilar.js) */
 (function () {
   'use strict';
   const EN = {
-    dehb: { name: 'Attention-Deficit/Hyperactivity Disorder', short: 'ADHD',
-      kitapta: [{}, {}, { snippet: 'the chronic low tonic dopamine hypothesis in ADHD (Chapter 7)' }],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Attention, impulse control and reward circuits; frontostriatal and frontoparietal networks, dopamine and noradrenaline.',
-      mercek: {
-        devre: {
-          title: 'Frontostriatal loop and catecholamines',
-          text: 'The DLPFC and anterior cingulate steer attention and behavior through a loop that runs via the caudate and putamen to the thalamus and back to the cortex. Dopamine from the ventral tegmental area tunes the striatum and prefrontal cortex; noradrenaline from the locus coeruleus tunes the prefrontal cortex. ADHD medications strengthen both systems.',
-          modes: {
-            tipik: { name: 'Typical development', text: 'During a task, dopamine and noradrenaline signals reach prefrontal and striatal targets steadily; the loop sustains attention and holds back unneeded responses.' },
-            dehb: { name: 'ADHD model', text: 'Dopamine and noradrenaline signals are weak and fluctuating, and the frontostriatal loop does not engage enough during tasks. In a meta-analysis of 55 fMRI studies, children with ADHD showed under-activation of executive (frontoparietal) and ventral attention systems and over-activation of the default mode network.' }
+  "dehb": {
+    "name": "Trastorno por déficit de atención e hiperactividad",
+    "short": "TDAH",
+    "kitapta": [
+      {},
+      {},
+      {
+        "snippet": "la hipótesis del déficit crónico de dopamina tónica en el TDAH (capítulo 7)"
+      }
+    ],
+    "summary": "Circuitos de atención, control de impulsos y recompensa; redes frontoestriatales y frontoparietales, dopamina y noradrenalina.",
+    "mercek": {
+      "devre": {
+        "title": "Bucle frontoestriatal y catecolaminas",
+        "text": "La CPFDL (corteza prefrontal dorsolateral) y la corteza cingulada anterior (CCA) orientan la atención y la conducta mediante un bucle que atraviesa el caudado y el putamen hasta el tálamo y vuelve a la corteza. La dopamina del área tegmental ventral (ATV) modula el estriado y la corteza prefrontal; la noradrenalina del locus coeruleus modula la corteza prefrontal. Los medicamentos para el TDAH refuerzan ambos sistemas.",
+        "modes": {
+          "tipik": {
+            "name": "Desarrollo típico",
+            "text": "Durante una tarea, las señales de dopamina y noradrenalina alcanzan de forma estable sus dianas prefrontales y estriatales; el bucle sostiene la atención y frena las respuestas innecesarias."
           },
-          src: 'Loop: Alexander et al., 1986. Functional imaging: Cortese et al., 2012 (American Journal of Psychiatry, 55 studies). Dopamine: Volkow et al., 2009. The model is a theory.'
+          "dehb": {
+            "name": "Modelo del TDAH",
+            "text": "Las señales de dopamina y noradrenalina son débiles y fluctuantes, y el bucle frontoestriatal no se activa lo suficiente durante las tareas. En un metaanálisis de 55 estudios de fMRI, los niños con TDAH mostraron hipoactivación de los sistemas ejecutivos (frontoparietal) y de atención ventral, e hiperactivación de la red neuronal por defecto (RND)."
+          }
         },
-        bulgular: {
-          text: 'Color shows the direction and size of a finding: cool = smaller, thinner or less active; warm = larger or more active. Differences are group averages and small; imaging cannot diagnose ADHD in an individual child.',
-          gruplar: [
-            { name: 'Structure (ENIGMA)', text: 'ENIGMA-ADHD (1,713 with ADHD, 1,529 controls): accumbens, amygdala, caudate, hippocampus and putamen are smaller. Differences are clear under age 15 and not significant in adults; medication did not change the results.',
-              items: [{ dtxt: 'd = −0.19', txt: 'Amygdala smaller (largest difference).' }, { dtxt: 'd = −0.15', txt: 'Nucleus accumbens smaller.' },
-                { dtxt: 'd = −0.14', txt: 'Putamen smaller.' }, { dtxt: 'd = −0.11', txt: 'Caudate smaller.' }, { dtxt: 'd = −0.11', txt: 'Hippocampus smaller.' }],
-              src: 'Hoogman et al., 2017 (Lancet Psychiatry).' },
-            { name: 'Maturation', text: 'The cortex matures in the usual order (back to front) but on average about 3 years later, most of all in frontal regions; the motor cortex matures slightly earlier (446 children, 824 scans). Here color shows the direction of the delay, not an effect size. The finding supports seeing ADHD as a delay in maturation.',
-              items: [{ dtxt: 'delayed', txt: 'Dorsolateral prefrontal cortex: peak thickness comes late.' }, { dtxt: 'delayed', txt: 'Medial prefrontal cortex: matures late.' },
-                { dtxt: 'slightly early', txt: 'Motor cortex: matures slightly early.' }],
-              src: 'Shaw et al., 2007 (PNAS).' },
-            { name: 'Function (fMRI)', text: 'During tasks, children with ADHD under-activate the frontoparietal system that carries executive function and the ventral attention system, and over-activate the default mode network that carries self-directed thought.',
-              items: [{ dtxt: 'under-active', txt: 'Front node of the frontoparietal system.' }, { dtxt: 'under-active', txt: 'Back node of the frontoparietal system.' },
-                { dtxt: 'over-active', txt: 'Posterior node of the default mode network.' }],
-              src: 'Cortese et al., 2012 (meta-analysis of 55 fMRI studies).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'denetim', name: 'Attention and inhibition', sub: 'Distractibility, impulsivity, poor planning', devre: 'Dorsal frontostriatal pathway (cognitive control)',
-            text: 'The DLPFC and inferior frontal gyrus sustain attention and stop an ongoing response via the dorsal caudate. In some children with ADHD the difficulty lies mainly in this pathway.' },
-          { id: 'odul', name: 'Reward and waiting', sub: 'Wanting reward now, avoiding delay', devre: 'Ventral frontostriatal pathway (reward)',
-            text: 'The OFC and nucleus accumbens value rewards, fed by dopamine. The value of a delayed reward drops quickly, so the child picks a small reward now over a larger one later.' },
-          { id: 'zaman', name: 'Timing', sub: 'Estimating time, rhythm, sequencing', devre: 'Frontocerebellar pathway (timing)',
-            text: 'The prefrontal cortex connects to the cerebellum through the pons, and the dentate nucleus connects back to the prefrontal cortex through the thalamus. Cerebellar output crosses to the opposite thalamus; the drawing is schematic.' },
-          { id: 'dalgalanma', name: 'Attention lapses', sub: 'Mind-wandering, drifting off during tasks', devre: 'Default mode network (interference hypothesis)',
-            text: 'The default mode network, which should quiet down during a task, is not suppressed enough and pulls attention away from the task. This is a hypothesis; over-activation of the DMN during tasks has been found.' }
-        ],
-        belirtilerSrc: 'Three pathways: Sonuga-Barke et al., 2010; de Zeeuw et al., 2012 (149 participants; 80% of those with ADHD who had a deficit had it in only one domain). Default mode interference: Sonuga-Barke and Castellanos, 2007 (hypothesis); Cortese et al., 2012.',
-        tedavi: [
-          { id: 'mph', name: 'Methylphenidate', sub: 'Blocks dopamine and noradrenaline transporters',
-            text: 'First-choice medication in the short term for children and adolescents; amphetamines in adults (network meta-analysis of 133 double-blind trials). Blocking the transporters raises dopamine and noradrenaline in the striatum and prefrontal cortex; amphetamines also increase release. Long-term data are limited.', src: 'Cortese et al., 2018 (Lancet Psychiatry).' },
-          { id: 'atx', name: 'Atomoxetine', sub: 'Selective noradrenaline reuptake inhibitor',
-            text: 'A non-stimulant option. It raises noradrenaline and dopamine in the prefrontal cortex. The effect builds over a few weeks.', src: 'Cortese et al., 2018.' },
-          { id: 'guanfasin', name: 'Guanfacine', sub: 'α2A adrenergic receptor agonist',
-            text: 'By stimulating α2A receptors in the prefrontal cortex it strengthens signalling in working-memory networks. The extended-release form is used alone or added to stimulants.', src: 'Cortese et al., 2018.' },
-          { id: 'davranis', name: 'Parent training and behavioral intervention', sub: 'First line in preschool children',
-            text: 'First line under age five. Small-to-moderate effects on symptoms and on oppositional problems, largest when rated by those closest to treatment (21 studies, more than 2,200 children). In theory, consistent and immediate reinforcement aims to offset the difficulty in the reward pathway.', src: 'NICE NG87; Groenman et al., 2022 (JAACAP).' },
-          { id: 'amfetamin', name: 'Amphetamines', sub: 'Stimulants; not used in Turkey',
-            text: 'In a network meta-analysis of 133 double-blind trials, this group is the suggested first choice in adults, while methylphenidate is suggested in children and adolescents. Besides blocking transporters, it increases dopamine and noradrenaline release. Not used in Turkey; approved in the US.',
-            src: 'Cortese et al., 2018 (Lancet Psychiatry).' }
-        ]
-      } },
-    osb: { name: 'Autism Spectrum Disorder', short: 'ASD',
-      kitapta: [{}, { snippet: 'studies of intranasal oxytocin in autism (Chapter 7)' }, { snippet: 'differences in interoception in autism (Chapters 2, 7)' }, { snippet: 'atypical amygdala responses to social stimuli in autism (Chapter 7)' }, { snippet: 'social signal processing in autism (Chapter 7)' }],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Social perception, theory of mind, sensory processing and interoception circuits; imaging differences are small and group-level.',
-      mercek: {
-        devre: {
-          title: 'Social perception network',
-          text: 'Face and eye information comes from the fusiform region of the inferior temporal cortex, biological motion and voice from the superior temporal sulcus; the amygdala weighs the importance of these social cues. The temporoparietal junction and medial PFC support understanding other minds (theory of mind); the insula carries bodily and emotional awareness.',
-          modes: {
-            tipik: { name: 'Typical development', text: 'From the first months the infant turns to faces and the eye region; social cues are processed in this network and over time become an understanding of others\' intentions.' },
-            osb: { name: 'Autism model', text: 'Social cues reach the network more weakly and differently: in infants later diagnosed with autism, looking at the eye region starts to decline between 2 and 6 months; many studies find different fusiform and amygdala responses to faces. Findings vary greatly between individuals; this drawing is a possible scheme, not a single "broken circuit".' }
+        "src": "Loop: Alexander et al., 1986. Functional imaging: Cortese et al., 2012 (American Journal of Psychiatry, 55 studies). Dopamine: Volkow et al., 2009. The model is a theory."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección y el tamaño de un hallazgo: frío = más pequeño, más fino o menos activo; cálido = más grande o más activo. Las diferencias son promedios grupales y pequeñas; la imagen no puede diagnosticar el TDAH en un niño individual.",
+        "gruplar": [
+          {
+            "name": "Estructura (ENIGMA)",
+            "text": "ENIGMA-ADHD (1,713 con TDAH, 1,529 controles): el accumbens, la amígdala, el caudado, el hipocampo y el putamen son más pequeños. Las diferencias son claras por debajo de los 15 años y no significativas en adultos; la medicación no modificó los resultados.",
+            "items": [
+              {
+                "dtxt": "d = −0.19",
+                "txt": "Amígdala más pequeña (mayor diferencia)."
+              },
+              {
+                "dtxt": "d = −0.15",
+                "txt": "Núcleo accumbens más pequeño."
+              },
+              {
+                "dtxt": "d = −0.14",
+                "txt": "Putamen más pequeño."
+              },
+              {
+                "dtxt": "d = −0.11",
+                "txt": "Caudado más pequeño."
+              },
+              {
+                "dtxt": "d = −0.11",
+                "txt": "Hipocampo más pequeño."
+              }
+            ],
+            "src": "Hoogman et al., 2017 (Lancet Psychiatry)."
           },
-          src: 'Looking at the eyes: Jones and Klin, 2013 (Nature). The model is schematic; autism is not a single circuit disorder.'
-        },
-        bulgular: {
-          text: 'Color shows the direction of a finding: cool = smaller or thinner, warm = thicker. Differences are small and group-level; imaging cannot diagnose an individual.',
-          gruplar: [
-            { name: 'Structure (ENIGMA)', text: 'ENIGMA-ASD (1,571 autistic, 1,651 controls, ages 2–64): pallidum, putamen, amygdala and accumbens are smaller; frontal cortex is thicker and temporal cortex thinner. Cortical differences peak around adolescence. The study\'s ranges are given instead of region-by-region effect sizes; color intensity is approximate. In infants with an autistic sibling, cortical surface area also expands rapidly at 6–12 months (15 infants later diagnosed).',
-              items: [{ dtxt: 'd ≈ −0.1 to −0.16', txt: 'Pallidum smaller.' }, { dtxt: 'd ≈ −0.1 to −0.16', txt: 'Putamen smaller.' }, { dtxt: 'd ≈ −0.1 to −0.16', txt: 'Amygdala smaller.' },
-                { dtxt: 'd ≈ −0.1 to −0.16', txt: 'Accumbens smaller.' }, { dtxt: 'd ≈ 0.2', txt: 'Frontal cortex thicker.' }, { dtxt: 'd ≈ −0.2', txt: 'Temporal cortex thinner.' }],
-              src: 'van Rooij et al., 2018 (American Journal of Psychiatry); Hazlett et al., 2017 (Nature).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'sosyal', name: 'Social communication and theory of mind', sub: 'Reciprocity, understanding intentions and feelings', devre: 'Theory-of-mind network',
-            text: 'The superior temporal sulcus, temporoparietal junction and medial PFC let us understand another person\'s perspective and intentions.' },
-          { id: 'yuz', name: 'Faces and eye contact', sub: 'Looking at the eyes, reading facial expressions', devre: 'Face-processing pathway',
-            text: 'The fusiform region processes faces and the amygdala the importance of an expression. In infants later diagnosed with autism, time spent looking at the eyes declines early.' },
-          { id: 'yinelenen', name: 'Repetitive behaviors and insistence on sameness', sub: 'Restricted interests, attachment to routines', devre: 'Corticostriatal loops',
-            text: 'Habit and flexibility circuits; ENIGMA found basal ganglia volume differences. The circuit basis of these symptoms is not yet clear.' },
-          { id: 'duyusal', name: 'Sensory differences and inner body sense', sub: 'Over- or under-sensitivity, interoception', devre: 'Insula and sensory cortex',
-            text: 'The sensory cortex carries information from the outside world and the insula from inside the body into emotional awareness. The book describes differences in interoception in autism.' },
-          { id: 'dil', name: 'Language', sub: 'Delayed speech and differences in use', devre: 'Language network',
-            text: 'The superior temporal gyrus perceives speech and the inferior frontal gyrus (Broca) produces it; the connection between them carries language. Language level in autism varies greatly between individuals.' }
-        ],
-        belirtilerSrc: 'Social perception: Allison et al., 2000; theory of mind: Saxe and Kanwisher, 2003. Faces and gaze: Dalton et al., 2005; Jones and Klin, 2013. Structure: van Rooij et al., 2018. Speech: Hickok and Poeppel, 2007. Symptom-to-circuit matching is a theoretical framework; findings in autism vary greatly between individuals.',
-        tedavi: [
-          { id: 'ndbi', name: 'Early developmental-behavioral intervention', sub: 'In natural settings, within play and daily routines',
-            text: 'Naturalistic developmental behavioral interventions (NDBI) and developmental interventions have the strongest evidence for social communication (130 samples, ages 0–8). They target joint attention and social interest; early intensive behavioral intervention is promising but needs better studies.', src: 'Sandbank et al., 2020 (Psychological Bulletin).' },
-          { id: 'antipsikotik', name: 'Risperidone and aripiprazole', sub: 'For co-occurring irritability and aggression',
-            text: 'They target co-occurring irritability and aggression, not core symptoms; FDA-approved (risperidone from age 5, aripiprazole ages 6–17). They act on dopamine and serotonin receptors; weight gain and metabolic side effects are monitored. No medication is approved for core symptoms.', src: 'FDA approvals (2006, 2009).' },
-          { id: 'oksitosin', name: 'Intranasal oxytocin (research)', sub: 'Social bonding hormone',
-            text: 'In 290 children, 24 weeks of intranasal oxytocin did not improve social functioning compared with placebo. The book describes the oxytocin pathway and oxytocin studies in autism.', src: 'Sikich et al., 2021 (NEJM).' },
-          { id: 'melatonin', name: 'Prolonged-release melatonin', sub: 'Insomnia',
-            text: 'In 125 children with insomnia (most with autism, ages 2–17) whose sleep did not improve with behavioral intervention, total sleep rose about 57 minutes over 13 weeks (placebo 9), and sleep latency shortened. No brain pathway is drawn on this card.',
-            src: 'Gringras et al., 2017 (JAACAP).' },
-          { id: 'osbdehb', name: 'Co-occurring hyperactivity: methylphenidate', sub: 'Smaller response',
-            text: 'In a crossover trial of 72 children aged 5–14 with hyperactivity, it reduced hyperactivity, but the response was smaller than in typically developing children with ADHD; 18% stopped because of side effects, and social withdrawal rose at the high dose.',
-            src: 'RUPP Autism Network, 2005 (Archives of General Psychiatry).' }
-        ]
-      } },
-    okb: { name: 'Obsessive-Compulsive Disorder', short: 'OCD',
-      kitapta: [{ snippet: 'mistuning in OCD (Chapters 2 and 12)' }, { snippet: 'overactivity of the error-detection loop in OCD (Chapter 2)' }, { snippet: 'Compulsions becoming automatic and the change in caudate metabolism with treatment (Chapter 2)' }, { snippet: 'The basal ganglia are one of the answers to the book’s question “why is a pattern so stubborn?” — when a behavior (a compulsion, a defense, a relational pattern) is repeated often enough, it moves out of the conscious/flexible PFC circuit into the automatic, fast basal ganglia circuit; a mechanism that makes treatment harder, but also shows that a new, healthy habit can be built the same way.' }],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Loops through the orbitofrontal cortex, cingulate cortex, striatum and thalamus that "get stuck".',
-      mercek: {
-        devre: {
-          title: 'Cortico-striato-thalamo-cortical loop',
-          text: 'The orbitofrontal cortex (OFC) and anterior cingulate cortex (ACC) drive the caudate. Two pathways leave the caudate: the direct pathway releases the brake on the thalamus ("go on"), the indirect pathway tightens it via the GPe and subthalamic nucleus (STN) ("stop"). The thalamus re-excites the OFC and ACC and closes the loop.',
-          modes: {
-            saglikli: { name: 'Healthy', text: 'The two pathways are balanced: the "something is wrong" signal fades once the task is done or the danger has passed. The loop responds to a trigger, then settles.' },
-            okb: { name: 'OCD model', text: 'The direct pathway dominates and the indirect one is weak: the brake on the thalamus loosens, the thalamus drives the cortex more and the loop feeds itself. The error signal does not fade; a compulsion brings brief relief and the loop starts again. Orange pulse: structures found to be more active at rest and on symptom provocation.' }
+          {
+            "name": "Maduración",
+            "text": "La corteza madura en el orden habitual (de atrás hacia delante), pero en promedio unos 3 años más tarde, sobre todo en las regiones frontales; la corteza motora madura algo antes (446 niños, 824 escaneos). Aquí el color muestra la dirección del retraso, no un tamaño del efecto. El hallazgo apoya la visión del TDAH como un retraso en la maduración.",
+            "items": [
+              {
+                "dtxt": "delayed",
+                "txt": "Corteza prefrontal dorsolateral: el pico de grosor llega tarde."
+              },
+              {
+                "dtxt": "delayed",
+                "txt": "Corteza prefrontal medial: madura tarde."
+              },
+              {
+                "dtxt": "slightly early",
+                "txt": "Corteza motora: madura algo antes."
+              }
+            ],
+            "src": "Shaw et al., 2007 (PNAS)."
           },
-          src: 'Loop: Alexander et al., 1986. OCD model: Saxena and Rauch, 2000. PET: Baxter et al., 1987 (14 patients; increased glucose use in the left orbital gyrus and both caudate nuclei). The model is a theory; not every patient fits it.'
-        },
-        bulgular: {
-          text: 'Regions are colored by the direction and size of a finding: warm = larger, thicker or more active; cool = smaller or thinner. Differences are group averages and small (d below 0.2 counts as small); imaging cannot diagnose OCD in an individual.',
-          gruplar: [
-            { name: 'Children and adolescents', text: 'ENIGMA-OCD: findings in children and adolescents differ from adults, suggesting the disorder affects the developing brain at different stages.',
-              items: [{ dtxt: '+0.38', txt: 'Thalamus larger (in unmedicated children and adolescents, by about 3%).' }, { dtxt: '−0.10 to −0.33', txt: 'Inferior parietal cortex thinner.' },
-                { dtxt: '−0.10 to −0.33', txt: 'Superior parietal cortex thinner.' }],
-              src: 'Subcortical: Boedhoe et al., 2017 (1,830 patients, 1,759 controls). Cortex: Boedhoe et al., 2018 (1,905 patients, 1,760 controls). For the parietal findings the range of all cortical effects in the study is given; color intensity is approximate.' },
-            { name: 'Adults', text: 'In adults the pallidum and hippocampus stand out; differences are larger in medicated patients (pallidum +0.29, hippocampus −0.29). This does not show that medication causes them: medicated patients may have more severe illness.',
-              items: [{ dtxt: '+0.16', txt: 'Pallidum larger (by about 3%).' }, { dtxt: '−0.13', txt: 'Hippocampus smaller (by about 3%).' }, { dtxt: '−0.10 to −0.33', txt: 'Inferior parietal cortex thinner.' }],
-              src: 'Boedhoe et al., 2017; 2018 (ENIGMA-OCD). For the parietal finding the study\'s effect range is given.' },
-            { name: 'Function (PET)', text: 'Function more than structure: resting glucose use is increased in the OFC and caudate. After successful treatment (SSRI or CBT) caudate and OFC activity decrease.',
-              items: [{ dtxt: 'increased', txt: 'Orbitofrontal cortex: increased glucose use (left orbital gyrus in the first study).' }, { dtxt: 'increased', txt: 'Caudate: increased glucose use on both sides; decreases with treatment.' }],
-              src: 'Baxter et al., 1987 (FDG-PET, 14 patients). Decrease with treatment: Baxter et al., 1992; van der Straten et al., 2017 (meta-analysis).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'korku', name: 'Fear and anxiety', sub: 'Fear-based obsessions, fear that does not fade', devre: 'Fronto-limbic circuit',
-            text: 'The ventromedial PFC regulates fear learning and extinction and brakes the amygdala. Fear extinction is weak in OCD; exposure therapy works through this circuit. Rings show inhibitory (braking) effects.' },
-          { id: 'eksik', name: 'Incompleteness and habit', sub: '"Not just right" feeling, automatic compulsions', devre: 'Sensorimotor circuit',
-            text: 'The supplementary motor area (SMA) and posterior putamen run cue-triggered habits and sensorimotor integration. Behavior repeated because of a "not just right" feeling settles into this automatic circuit over time.' },
-          { id: 'dur', name: 'Difficulty stopping', sub: 'Not being able to halt an ongoing behavior', devre: 'Ventral cognitive circuit',
-            text: 'The inferior frontal gyrus (ventrolateral PFC, especially on the right) and ventral caudate provide response inhibition. The "stop" command is also sent by a fast route from the IFG directly to the STN (hyperdirect pathway). Differences in this circuit have been reported in OCD during inhibition tasks.' },
-          { id: 'esneklik', name: 'Planning and flexibility', sub: 'Mental flexibility, working memory', devre: 'Dorsal cognitive circuit',
-            text: 'The dorsolateral PFC and dorsal caudate support planning, working memory and top-down regulation of emotion. Under-activity of this circuit is considered together with over-activity of the fronto-limbic circuit in fear-based obsessions.' },
-          { id: 'odul', name: 'Reward and relief', sub: 'Brief relief from a compulsion, motivation', devre: 'Ventral affective circuit',
-            text: 'The OFC and nucleus accumbens process reward and motivation, fed by dopamine from the ventral tegmental area. The relief a compulsion brings reinforces the behavior.' }
-        ],
-        belirtilerSrc: 'Five circuits: van den Heuvel et al., 2016; Shephard et al., 2021 (Molecular Psychiatry). Symptom-to-circuit matching is a theoretical framework; tasks usually engage several circuits at once.',
-        tedavi: [
-          { id: 'ssri', name: 'SSRIs and clomipramine', sub: 'Inhibit serotonin reuptake',
-            text: 'First-line medication. OCD needs higher doses and longer trials (8–12 weeks) than depression. FDA-approved in children: sertraline (from age 6), fluoxetine (7), fluvoxamine (8), clomipramine (10). In the Turkish product information (KÜB), clomipramine is indicated at ages 10–17 only for OCD. After successful treatment caudate and OFC activity decrease.', src: 'POTS, 2004 (JAMA); van der Straten et al., 2017 (meta-analysis).' },
-          { id: 'erp', name: 'Exposure and response prevention', sub: 'Cognitive behavioral therapy (CBT)',
-            text: 'First line in children and adolescents; highest remission when combined with medication (POTS: combined 53.6%, CBT alone 39.3%, placebo 3.6%). It uses fear-extinction learning: the ventromedial PFC brakes the amygdala. In the atlas this regulation is drawn with the book\'s "fronto-limbic maturation pathway". Caudate metabolism decreases in responders.', src: 'POTS, 2004; Baxter et al., 1992.' },
-          { id: 'dbs-vcvs', name: 'Deep brain stimulation: VC/VS', sub: 'Ventral capsule and ventral striatum',
-            text: 'For severe treatment-resistant OCD in adults. The lead runs along the anterior limb of the internal capsule with its tip contacts in the ventral striatum (around the accumbens). FDA humanitarian device exemption 2009. In a meta-analysis covering all DBS targets (31 studies, 116 patients; mostly striatal targets) symptoms fell by 45% on average and 60% responded. Not used in children.', src: 'Alonso et al., 2015 (meta-analysis). The lead path is schematic.' },
-          { id: 'dbs-stn', name: 'Deep brain stimulation: STN', sub: 'Anteromedial subthalamic nucleus',
-            text: 'The emotional-cognitive part in front of and medial to the motor target used in Parkinson\'s disease. In a 16-patient double-blind crossover trial mean Y-BOCS was 19 with stimulation on and 28 with sham stimulation; serious adverse events also occurred. Not used in children.', src: 'Mallet et al., 2008 (NEJM). The lead path is schematic.' },
-          { id: 'dtms', name: 'Deep TMS (H7 coil)', sub: 'Medial prefrontal cortex and anterior cingulate',
-            text: 'Magnetic stimulation through the skull; the H7 coil reaches deeper, to the anterior cingulate. Symptoms are provoked before each session. In 99 adults the response rate was 38.1% at the end of treatment (sham 11.1%) and 45.2% a month later (sham 17.8%). FDA 2018. Not used in children.', src: 'Carmi et al., 2019 (American Journal of Psychiatry). Coil and field are schematic.' },
-          { id: 'apgucl', name: 'Antipsychotic augmentation', sub: 'No response to SSRI and CBT',
-            text: 'In an adult meta-analysis, aripiprazole was effective in the short term and risperidone had a small effect; quetiapine and olanzapine did not differ from placebo. The authors advise cautious use and review at 4 weeks. Long-term risks are kept in mind.',
-            src: 'Veale et al., 2014 (BMC Psychiatry).' }
+          {
+            "name": "Función (fMRI)",
+            "text": "Durante las tareas, los niños con TDAH hipoactivan el sistema frontoparietal que sustenta la función ejecutiva y el sistema de atención ventral, e hiperactivan la red neuronal por defecto que sustenta el pensamiento autodirigido.",
+            "items": [
+              {
+                "dtxt": "under-active",
+                "txt": "Nodo anterior del sistema frontoparietal."
+              },
+              {
+                "dtxt": "under-active",
+                "txt": "Nodo posterior del sistema frontoparietal."
+              },
+              {
+                "dtxt": "over-active",
+                "txt": "Nodo posterior de la red neuronal por defecto."
+              }
+            ],
+            "src": "Cortese et al., 2012 (meta-analysis of 55 fMRI studies)."
+          }
         ]
-      } },
-    depresyon: { name: 'Depression', short: 'Depression',
-      kitapta: [{}, {}, {}, {}, { snippet: 'the extinguishing of SEEKING and anhedonia in depression (Chapter 8)' }, {}],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Reward, stress response and emotion regulation circuits; irritability and anhedonia can come first in adolescence.',
-      mercek: {
-        devre: {
-          title: 'Balance of reward and emotion regulation',
-          text: 'The dopamine pathway from the ventral tegmental area to the accumbens and medial prefrontal cortex carries reward and motivation. The anterior cingulate (especially its subgenual part) and amygdala carry negative emotion, which the DLPFC regulates from above. The lateral habenula brakes the dopamine nuclei with a "the expected reward did not come" signal; the amygdala drives the stress axis via the hypothalamus.',
-          modes: {
-            saglikli: { name: 'Healthy', text: 'The reward signal feeds motivation; when negative emotion arises the prefrontal cortex regulates it and the stress response fades.' },
-            depresyon: { name: 'Depression model', text: 'The reward signal weakens (anhedonia); the anterior cingulate and amygdala are more active and the DLPFC\'s top-down regulation is weak (limbic-cortical dysregulation model). The habenula brakes the dopamine nuclei more, and the stress axis runs chronically.' }
+      },
+      "belirtiler": [
+        {
+          "id": "denetim",
+          "name": "Atención e inhibición",
+          "sub": "Distraibilidad, impulsividad, mala planificación",
+          "devre": "Vía frontoestriatal dorsal (control cognitivo)",
+          "text": "La CPFDL y el giro frontal inferior (GFI) sostienen la atención y detienen una respuesta en curso a través del caudado dorsal. En algunos niños con TDAH la dificultad reside principalmente en esta vía."
+        },
+        {
+          "id": "odul",
+          "name": "Recompensa y espera",
+          "sub": "Querer la recompensa ahora, evitar la demora",
+          "devre": "Vía frontoestriatal ventral (recompensa)",
+          "text": "La corteza orbitofrontal (OFC) y el núcleo accumbens valoran las recompensas, alimentados por la dopamina. El valor de una recompensa demorada cae rápidamente, de modo que el niño elige una recompensa pequeña ahora antes que una mayor después."
+        },
+        {
+          "id": "zaman",
+          "name": "Cronometraje",
+          "sub": "Estimar el tiempo, el ritmo, la secuenciación",
+          "devre": "Vía frontocerebelosa (cronometraje)",
+          "text": "La corteza prefrontal conecta con el cerebelo a través del puente, y el núcleo dentado conecta de vuelta con la corteza prefrontal a través del tálamo. La salida cerebelosa cruza al tálamo contralateral; el dibujo es esquemático."
+        },
+        {
+          "id": "dalgalanma",
+          "name": "Lapsos de atención",
+          "sub": "Divagación mental, desconexión durante las tareas",
+          "devre": "Red neuronal por defecto (hipótesis de interferencia)",
+          "text": "La red neuronal por defecto, que debería silenciarse durante una tarea, no se suprime lo suficiente y desvía la atención de la tarea. Es una hipótesis; se ha encontrado hiperactivación de la RND durante las tareas."
+        }
+      ],
+      "belirtilerSrc": "Tres vías: Sonuga-Barke et al., 2010; de Zeeuw et al., 2012 (149 participantes; el 80% de quienes tenían TDAH y algún déficit lo presentaban en un solo dominio). Interferencia de la red por defecto: Sonuga-Barke y Castellanos, 2007 (hipótesis); Cortese et al., 2012.",
+      "tedavi": [
+        {
+          "id": "mph",
+          "name": "Metilfenidato",
+          "sub": "Bloquea los transportadores de dopamina y noradrenalina",
+          "text": "Fármaco de primera elección a corto plazo en niños y adolescentes; anfetaminas en adultos (metaanálisis en red de 133 ensayos doble ciego). El bloqueo de los transportadores eleva la dopamina y la noradrenalina en el estriado y la corteza prefrontal; las anfetaminas también aumentan la liberación. Los datos a largo plazo son limitados.",
+          "src": "Cortese et al., 2018 (Lancet Psychiatry)."
+        },
+        {
+          "id": "atx",
+          "name": "Atomoxetina",
+          "sub": "Inhibidor selectivo de la recaptación de noradrenalina",
+          "text": "Una opción no estimulante. Eleva la noradrenalina y la dopamina en la corteza prefrontal. El efecto se desarrolla a lo largo de unas semanas.",
+          "src": "Cortese et al., 2018."
+        },
+        {
+          "id": "guanfasin",
+          "name": "Guanfacina",
+          "sub": "Agonista de los receptores adrenérgicos α2A",
+          "text": "Al estimular los receptores α2A de la corteza prefrontal refuerza la señalización en las redes de memoria de trabajo. La forma de liberación prolongada se usa sola o añadida a los estimulantes.",
+          "src": "Cortese et al., 2018."
+        },
+        {
+          "id": "davranis",
+          "name": "Entrenamiento parental e intervención conductual",
+          "sub": "Primera línea en niños preescolares",
+          "text": "Primera línea por debajo de los cinco años. Efectos pequeños a moderados sobre los síntomas y sobre los problemas de oposición, mayores cuando los evalúan quienes están más cerca del tratamiento (21 estudios, más de 2,200 niños). En teoría, el refuerzo consistente e inmediato pretende compensar la dificultad de la vía de recompensa.",
+          "src": "NICE NG87; Groenman et al., 2022 (JAACAP)."
+        },
+        {
+          "id": "amfetamin",
+          "name": "Anfetaminas",
+          "sub": "Estimulantes; no se usan en Turquía",
+          "text": "En un metaanálisis en red de 133 ensayos doble ciego, este grupo es la primera elección sugerida en adultos, mientras que en niños y adolescentes se sugiere el metilfenidato. Además de bloquear los transportadores, aumenta la liberación de dopamina y noradrenalina. No se usa en Turquía; aprobado en EE. UU.",
+          "src": "Cortese et al., 2018 (Lancet Psychiatry)."
+        }
+      ]
+    }
+  },
+  "osb": {
+    "name": "Trastorno del espectro autista",
+    "short": "TEA",
+    "kitapta": [
+      {},
+      {
+        "snippet": "estudios de oxitocina intranasal en el autismo (capítulo 7)"
+      },
+      {
+        "snippet": "diferencias en la interocepción en el autismo (capítulos 2 y 7)"
+      },
+      {
+        "snippet": "respuestas atípicas de la amígdala a los estímulos sociales en el autismo (capítulo 7)"
+      },
+      {
+        "snippet": "procesamiento de señales sociales en el autismo (capítulo 7)"
+      }
+    ],
+    "summary": "Circuitos de percepción social, teoría de la mente, procesamiento sensorial e interocepción; las diferencias en imagen son pequeñas y a nivel grupal.",
+    "mercek": {
+      "devre": {
+        "title": "Red de percepción social",
+        "text": "La información de caras y ojos procede de la región fusiforme de la corteza temporal inferior, y el movimiento biológico y la voz del surco temporal superior; la amígdala pondera la importancia de estas señales sociales. La unión temporoparietal y la corteza prefrontal medial sustentan la comprensión de otras mentes (teoría de la mente); la ínsula porta la conciencia corporal y emocional.",
+        "modes": {
+          "tipik": {
+            "name": "Desarrollo típico",
+            "text": "Desde los primeros meses el bebé se gira hacia las caras y la región de los ojos; las señales sociales se procesan en esta red y con el tiempo se convierten en comprensión de las intenciones de los demás."
           },
-          src: 'Limbic-cortical model: Mayberg, 1997. Habenula: Hikosaka, 2010. The model is a theory; depression spans several circuit patterns.'
+          "osb": {
+            "name": "Modelo del autismo",
+            "text": "Las señales sociales llegan a la red de forma más débil y diferente: en bebés diagnosticados después de autismo, la mirada a la región de los ojos empieza a declinar entre los 2 y los 6 meses; muchos estudios encuentran respuestas distintas del fusiforme y la amígdala ante las caras. Los hallazgos varían mucho entre individuos; este dibujo es un esquema posible, no un único «circuito roto»."
+          }
         },
-        bulgular: {
-          text: 'Color shows the direction and size of a finding: cool = smaller or thinner, warm = larger. Differences are group averages and small; imaging cannot diagnose an individual.',
-          gruplar: [
-            { name: 'Hippocampus', text: 'ENIGMA-MDD (1,728 patients, 7,199 controls): the hippocampus is smaller. The difference is clear in recurrent depression and in depression starting before age 21; first-episode patients do not differ from controls.',
-              items: [{ dtxt: 'd = −0.14', txt: 'Hippocampus smaller (1.2%); −0.17 in recurrent, −0.20 in early-onset depression.' }],
-              src: 'Schmaal et al., 2016 (Molecular Psychiatry).' },
-            { name: 'Adults (cortex)', text: 'ENIGMA-MDD (2,148 patients, 7,957 controls): in adults the orbitofrontal, anterior and posterior cingulate, insular and temporal cortices are thinner; thinning is seen in adult-onset cases. Effect sizes are small; color intensity is approximate.',
-              items: [{ dtxt: 'thinner', txt: 'Orbitofrontal cortex thinner.' }, { dtxt: 'thinner', txt: 'Anterior cingulate thinner.' }, { dtxt: 'thinner', txt: 'Posterior cingulate thinner.' },
-                { dtxt: 'thinner', txt: 'Insula thinner.' }, { dtxt: 'thinner', txt: 'Temporal cortex thinner.' }],
-              src: 'Schmaal et al., 2017 (Molecular Psychiatry).' },
-            { name: 'Adolescents (cortex)', text: 'In adolescents there is no difference in cortical thickness; total surface area is smaller, most in frontal and sensorimotor regions and in adolescents with recurrent episodes. The effect in the developing brain differs from adults.',
-              items: [{ dtxt: 'smaller surface area', txt: 'Frontal cortex surface area smaller.' }, { dtxt: 'smaller surface area', txt: 'Motor cortex surface area smaller.' },
-                { dtxt: 'smaller surface area', txt: 'Sensory cortex surface area smaller.' }],
-              src: 'Schmaal et al., 2017.' }
-          ]
-        },
-        belirtiler: [
-          { id: 'anhedoni', name: 'Loss of pleasure', sub: 'Loss of interest and drive', devre: 'Reward circuit',
-            text: 'In the reward circuit formed by the VTA, nucleus accumbens and prefrontal cortex, responses to reward are reduced. The book describes this circuit as the SEEKING system.' },
-          { id: 'ruminasyon', name: 'Rumination', sub: 'Repetitive, self-focused thinking', devre: 'Default mode network',
-            text: 'The medial prefrontal cortex and posterior cingulate carry self-directed thought; in depression connectivity in this network is increased and negative thoughts keep circling.' },
-          { id: 'olumsuz', name: 'Negative emotion and stress', sub: 'Low mood, threat sensitivity, sleep and appetite', devre: 'Negative affect circuit and stress axis',
-            text: 'The amygdala and anterior cingulate respond more strongly to negative stimuli; the amygdala drives the stress axis (cortisol) through the hypothalamus.' },
-          { id: 'denetim', name: 'Concentration and decision-making', sub: 'Difficulty focusing and concentrating', devre: 'Cognitive control circuit',
-            text: 'The DLPFC and dorsal anterior cingulate run attention and decisions; under-activity of this circuit has been linked to poor concentration and, in some patients, to treatment response.' }
-        ],
-        belirtilerSrc: 'Circuits: Williams, 2016 (Lancet Psychiatry; a circuit taxonomy for depression and anxiety). Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'ssri', name: 'SSRIs (fluoxetine, escitalopram)', sub: 'Inhibit serotonin reuptake',
-            text: 'Added to psychotherapy in moderate and severe depression. FDA-approved in children and adolescents: fluoxetine (from age 8), escitalopram (from 12). Under age 25 there is a suicidal-thinking warning and close monitoring is needed. Response at 12 weeks in adolescents: fluoxetine + CBT 71.0%, fluoxetine alone 60.6%, placebo 34.8%.', src: 'TADS, 2004 (JAMA).' },
-          { id: 'bdt', name: 'Cognitive behavioral therapy', sub: 'Thought and behavior patterns',
-            text: 'First line in mild depression and combined with medication in moderate to severe depression. It targets negative thoughts and behavioral withdrawal and is thought to work through prefrontal regulation pathways (drawn in the atlas with the book\'s fronto-limbic pathway). In adolescents CBT alone reached 43.2% at 12 weeks; by week 36 both CBT alone and fluoxetine alone reached 81%.', src: 'TADS, 2004.' },
-          { id: 'rtms', name: 'Repetitive TMS (left DLPFC)', sub: 'Magnetic stimulation through the skull',
-            text: 'Used in treatment-resistant adult depression. In 2024 it received FDA clearance for ages 15–21 as an add-on to antidepressants (based on the company\'s real-world data, not a randomized trial). The coil sits over the left DLPFC; the effect spreads to the connected anterior cingulate network.', src: 'FDA, 2024 (NeuroStar). The left DLPFC target is anticorrelated with the subgenual cingulate: Fox et al., 2012. Coil, field and pathway are schematic.' },
-          { id: 'dbs', name: 'Deep brain stimulation (subgenual cingulate)', sub: 'Research stage',
-            text: 'In the first study 4 of 6 patients improved markedly; a later multicenter randomized trial did not beat sham stimulation in its early phase. Research use only, in adults. Not used in children.', src: 'Mayberg et al., 2005 (Neuron); Holtzheimer et al., 2017 (Lancet Psychiatry). The lead path is schematic.' },
-          { id: 'ekt', name: 'Electroconvulsive therapy (ECT)', sub: 'Severe or resistant depression',
-            text: 'In a meta-analysis of adult studies it is superior to antidepressant drugs. In adolescents the evidence is a practice parameter based on case reports and small studies; symptom and cognitive assessment are recommended before and after, and preadolescent children are outside the parameter. In an MRI study of 281 patients, hippocampal volume rises about 0.28% per session, but this does not explain improvement. No brain pathway is drawn on this card.',
-            src: 'UK ECT Review Group, 2003 (Lancet); Ghaziuddin et al., 2004 (JAACAP); Oltedal et al., 2018 (Biological Psychiatry).' },
-          { id: 'ketamin', name: 'Ketamine and esketamine', sub: 'Fast-acting, resistant depression',
-            text: 'In adult resistant depression, intranasal esketamine added to an oral antidepressant showed a rapid, dose-related effect (67 patients); the 2019 FDA approval is for adults and it is given at certified sites. In a crossover trial of 17 adolescents, a single intravenous dose of ketamine beat midazolam at 24 hours, with more blood pressure rise and dissociative symptoms; long-term safety data are lacking. It is thought to act through the glutamate system.',
-            src: 'Daly et al., 2018 (JAMA Psychiatry); Dwyer et al., 2021 (American Journal of Psychiatry); FDA, 2019.' },
-          { id: 'kat', name: 'Interpersonal psychotherapy', sub: 'Adolescent depression',
-            text: 'In a school-based clinic trial of 63 adolescents, 12 sessions of interpersonal psychotherapy reduced symptoms more and improved functioning more than usual care. No brain pathway is drawn on this card.',
-            src: 'Mufson et al., 2004 (Archives of General Psychiatry).' },
-          { id: 'obur', name: 'Other antidepressants', sub: 'Bupropion, SNRIs, mirtazapine',
-            text: 'In a network meta-analysis of 21 antidepressants across 522 trials in adults, all beat placebo. The picture differs in children and adolescents: in a network meta-analysis, fluoxetine was the only drug significantly better than placebo. The suicidal-thoughts warning applies under age 25.',
-            src: 'Cipriani et al., 2018; Cipriani et al., 2016 (Lancet).' }
+        "src": "Looking at the eyes: Jones and Klin, 2013 (Nature). The model is schematic; autism is not a single circuit disorder."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección de un hallazgo: frío = más pequeño o más fino, cálido = más grueso. Las diferencias son pequeñas y a nivel grupal; la imagen no puede diagnosticar a un individuo.",
+        "gruplar": [
+          {
+            "name": "Estructura (ENIGMA)",
+            "text": "ENIGMA-ASD (1,571 autistas, 1,651 controles, de 2 a 64 años): el globo pálido, el putamen, la amígdala y el accumbens son más pequeños; la corteza frontal es más gruesa y la temporal más fina. Las diferencias corticales alcanzan su máximo en torno a la adolescencia. Se dan los rangos del estudio en lugar de tamaños del efecto región por región; la intensidad del color es aproximada. En bebés con un hermano autista, la superficie cortical también se expande rápidamente entre los 6 y los 12 meses (15 bebés diagnosticados después).",
+            "items": [
+              {
+                "dtxt": "d ≈ −0.1 to −0.16",
+                "txt": "Globo pálido más pequeño."
+              },
+              {
+                "dtxt": "d ≈ −0.1 to −0.16",
+                "txt": "Putamen más pequeño."
+              },
+              {
+                "dtxt": "d ≈ −0.1 to −0.16",
+                "txt": "Amígdala más pequeña."
+              },
+              {
+                "dtxt": "d ≈ −0.1 to −0.16",
+                "txt": "Accumbens más pequeño."
+              },
+              {
+                "dtxt": "d ≈ 0.2",
+                "txt": "Corteza frontal más gruesa."
+              },
+              {
+                "dtxt": "d ≈ −0.2",
+                "txt": "Corteza temporal más fina."
+              }
+            ],
+            "src": "van Rooij et al., 2018 (American Journal of Psychiatry); Hazlett et al., 2017 (Nature)."
+          }
         ]
-      } },
-    yab: { name: 'Generalized Anxiety Disorder', short: 'GAD',
-      kitapta: [{}, { snippet: 'Generalized anxiety and the “feeling that something bad will happen” (the description of PANIC in Chapter 3) may be better explained by a BNST-dominant pattern.' }, {}, {}, {}],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Threat perception (amygdala), sustained anxiety about uncertain threat (BNST), bodily sensation (insula) and prefrontal regulation.',
-      mercek: {
-        devre: {
-          title: 'Threat and regulation loop',
-          text: 'The amygdala responds to near and clear threat, the BNST to uncertain and distant threat; both prepare the body through the hypothalamus (stress axis) and the PAG (defense). The ventromedial and ventrolateral prefrontal cortex brake the amygdala; the insula carries bodily sensations of anxiety; the locus coeruleus raises arousal.',
-          modes: {
-            saglikli: { name: 'Healthy', text: 'The threat signal matches the real danger; the prefrontal cortex brakes the amygdala and the stress response fades once the danger has passed.' },
-            yab: { name: 'GAD model', text: 'The threat signal is strong and the prefrontal brake weak: in children and adolescents with GAD the right amygdala responds more to angry faces and the ventrolateral PFC\'s counter-regulation is weak. The BNST carries sustained anxiety about uncertain threat; the loop feeds the sense that "something bad will happen".' }
+      },
+      "belirtiler": [
+        {
+          "id": "sosyal",
+          "name": "Comunicación social y teoría de la mente",
+          "sub": "Reciprocidad, comprensión de intenciones y sentimientos",
+          "devre": "Red de la teoría de la mente",
+          "text": "El surco temporal superior, la unión temporoparietal y la corteza prefrontal medial nos permiten comprender la perspectiva y las intenciones de otra persona."
+        },
+        {
+          "id": "yuz",
+          "name": "Caras y contacto visual",
+          "sub": "Mirar a los ojos, leer expresiones faciales",
+          "devre": "Vía de procesamiento de caras",
+          "text": "La región fusiforme procesa las caras y la amígdala la importancia de una expresión. En bebés diagnosticados después de autismo, el tiempo dedicado a mirar a los ojos declina temprano."
+        },
+        {
+          "id": "yinelenen",
+          "name": "Conductas repetitivas e insistencia en la invariancia",
+          "sub": "Intereses restringidos, apego a las rutinas",
+          "devre": "Bucles corticostriatales",
+          "text": "Circuitos de hábito y flexibilidad; ENIGMA encontró diferencias de volumen en los ganglios basales. La base circuital de estos síntomas aún no está clara."
+        },
+        {
+          "id": "duyusal",
+          "name": "Diferencias sensoriales y sentido corporal interno",
+          "sub": "Hipersensibilidad o hiposensibilidad, interocepción",
+          "devre": "Ínsula y corteza sensorial",
+          "text": "La corteza sensorial lleva la información del mundo exterior y la ínsula la del interior del cuerpo hacia la conciencia emocional. El libro describe diferencias en la interocepción en el autismo."
+        },
+        {
+          "id": "dil",
+          "name": "Lenguaje",
+          "sub": "Retraso del habla y diferencias de uso",
+          "devre": "Red del lenguaje",
+          "text": "El giro temporal superior percibe el habla y el giro frontal inferior (Broca) la produce; la conexión entre ambos transporta el lenguaje. El nivel de lenguaje en el autismo varía mucho entre individuos."
+        }
+      ],
+      "belirtilerSrc": "Percepción social: Allison et al., 2000; teoría de la mente: Saxe y Kanwisher, 2003. Caras y mirada: Dalton et al., 2005; Jones y Klin, 2013. Estructura: van Rooij et al., 2018. Habla: Hickok y Poeppel, 2007. La correspondencia síntoma-circuito es un marco teórico; los hallazgos en el autismo varían mucho entre individuos.",
+      "tedavi": [
+        {
+          "id": "ndbi",
+          "name": "Intervención temprana del desarrollo y conductual",
+          "sub": "En entornos naturales, dentro del juego y las rutinas diarias",
+          "text": "Las intervenciones conductuales del desarrollo naturalistas (NDBI) y las intervenciones del desarrollo tienen la evidencia más sólida para la comunicación social (130 muestras, de 0 a 8 años). Se dirigen a la atención conjunta y el interés social; la intervención conductual intensiva temprana es prometedora pero necesita mejores estudios.",
+          "src": "Sandbank et al., 2020 (Psychological Bulletin)."
+        },
+        {
+          "id": "antipsikotik",
+          "name": "Risperidona y aripiprazol",
+          "sub": "Para la irritabilidad y la agresividad comórbidas",
+          "text": "Se dirigen a la irritabilidad y la agresividad comórbidas, no a los síntomas nucleares; aprobados por la FDA (risperidona desde los 5 años, aripiprazol de 6 a 17 años). Actúan sobre los receptores de dopamina y serotonina; se vigilan el aumento de peso y los efectos metabólicos. Ningún fármaco está aprobado para los síntomas nucleares.",
+          "src": "FDA approvals (2006, 2009)."
+        },
+        {
+          "id": "oksitosin",
+          "name": "Oxitocina intranasal (investigación)",
+          "sub": "Hormona del vínculo social",
+          "text": "En 290 niños, 24 semanas de oxitocina intranasal no mejoraron el funcionamiento social en comparación con el placebo. El libro describe la vía de la oxitocina y los estudios de oxitocina en el autismo.",
+          "src": "Sikich et al., 2021 (NEJM)."
+        },
+        {
+          "id": "melatonin",
+          "name": "Melatonina de liberación prolongada",
+          "sub": "Insomnio",
+          "text": "En 125 niños con insomnio (la mayoría con autismo, de 2 a 17 años) cuyo sueño no mejoró con intervención conductual, el sueño total aumentó unos 57 minutos en 13 semanas (placebo 9), y la latencia del sueño se acortó. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Gringras et al., 2017 (JAACAP)."
+        },
+        {
+          "id": "osbdehb",
+          "name": "Hiperactividad comórbida: metilfenidato",
+          "sub": "Respuesta menor",
+          "text": "En un ensayo cruzado de 72 niños de 5 a 14 años con hiperactividad, redujo la hiperactividad, pero la respuesta fue menor que en niños con desarrollo típico y TDAH; el 18% lo abandonó por efectos secundarios, y el retraimiento social aumentó con la dosis alta.",
+          "src": "RUPP Autism Network, 2005 (Archives of General Psychiatry)."
+        }
+      ]
+    }
+  },
+  "okb": {
+    "name": "Trastorno obsesivo-compulsivo",
+    "short": "TOC",
+    "kitapta": [
+      {
+        "snippet": "desintonía en el TOC (capítulos 2 y 12)"
+      },
+      {
+        "snippet": "hiperactividad del bucle de detección de errores en el TOC (capítulo 2)"
+      },
+      {
+        "snippet": "compulsiones que se vuelven automáticas y el cambio del metabolismo del caudado con el tratamiento (capítulo 2)"
+      },
+      {
+        "snippet": "Los ganglios basales son una de las respuestas a la pregunta del libro «¿por qué un patrón se vuelve tan obstinado?»: cuando una conducta (una compulsión, una defensa, un patrón relacional) se repite lo suficiente, sale del circuito consciente y flexible de la CPF y pasa al circuito automático y rápido de los ganglios basales; un mecanismo que dificulta el tratamiento, pero que también muestra que un hábito nuevo y saludable puede construirse de la misma manera."
+      }
+    ],
+    "summary": "Bucles a través de la corteza orbitofrontal, la corteza cingulada, el estriado y el tálamo que «se atascan».",
+    "mercek": {
+      "devre": {
+        "title": "Bucle corticoestriatotalamocortical",
+        "text": "La corteza orbitofrontal (OFC) y la corteza cingulada anterior (CCA) impulsan el caudado. Dos vías salen del caudado: la vía directa libera el freno sobre el tálamo («sigue»), la vía indirecta lo aprieta a través del GPe y el núcleo subtalámico (NST) («detente»). El tálamo reexcita la OFC y la CCA y cierra el bucle.",
+        "modes": {
+          "saglikli": {
+            "name": "Saludable",
+            "text": "Las dos vías están equilibradas: la señal de «algo va mal» se desvanece cuando la tarea termina o el peligro ha pasado. El bucle responde a un desencadenante y luego se estabiliza."
           },
-          src: 'Child and adolescent GAD: Monk et al., 2008. BNST and sustained anxiety: Davis et al., 2010; Grupe and Nitschke, 2013. The model is a theory.'
+          "okb": {
+            "name": "Modelo del TOC",
+            "text": "La vía directa domina y la indirecta es débil: el freno sobre el tálamo se afloja, el tálamo impulsa más la corteza y el bucle se retroalimenta. La señal de error no se desvanece; una compulsión aporta un alivio breve y el bucle vuelve a empezar. Pulso naranja: estructuras que se han encontrado más activas en reposo y ante la provocación de síntomas."
+          }
         },
-        bulgular: {
-          text: 'Color shows the direction of a finding: warm = over-active, cool = under-active or weak connection. Structural differences in GAD are small; findings lie more in function and connectivity.',
-          gruplar: [
-            { name: 'Function (children and adolescents)', text: 'Youth with GAD show a stronger right amygdala response to angry faces shown too briefly (17 ms) to be noticed, and this response tracks anxiety severity; the right ventrolateral PFC connection that balances the amygdala in healthy youth tends to be weaker in GAD.',
-              items: [{ dtxt: 'over-active', txt: 'Right amygdala response larger.' }, { dtxt: 'weak regulation', txt: 'Ventrolateral PFC (inferior frontal gyrus) counter-regulation weak.' }],
-              src: 'Monk et al., 2008 (Archives of General Psychiatry).' },
-            { name: 'Structure (ENIGMA)', text: 'In ENIGMA-Anxiety\'s 28-site GAD study (ages 5–90) structural brain differences were small. GAD most likely rests on function and connectivity more than structure; the region appears gray.',
-              items: [{ dtxt: 'no clear difference', txt: 'Structural differences are small.' }],
-              src: 'Harrewijn et al., 2021 (Translational Psychiatry).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'endise', name: 'Worry', sub: 'Uncontrollable, future-directed repetitive thought', devre: 'Default mode network',
-            text: 'The medial prefrontal cortex and posterior cingulate carry self- and future-directed thought; in GAD this network underlies worry-related repetitive thinking.' },
-          { id: 'tehdit', name: 'Threat sensitivity', sub: 'Perceiving the uncertain as dangerous', devre: 'Negative affect circuit',
-            text: 'The amygdala and anterior cingulate respond strongly to threat cues; when prefrontal regulation stays weak, threat perception spreads.' },
-          { id: 'belirsizlik', name: 'Intolerance of uncertainty', sub: 'The "what if something bad happens" feeling', devre: 'BNST and insula (sustained anxiety)',
-            text: 'Uncertain and unpredictable threat engages the BNST and insula; the response lasts until the threat becomes clear. The book describes the BNST\'s link to the sense that "something bad will happen".' },
-          { id: 'beden', name: 'Bodily tension and arousal', sub: 'Muscle tension, restlessness, poor sleep', devre: 'Arousal and stress axis',
-            text: 'The locus coeruleus drives arousal with noradrenaline and the hypothalamus runs the stress axis (cortisol); both are strengthened by signals from the amygdala.' }
-        ],
-        belirtilerSrc: 'Circuits: Williams, 2016 (Lancet Psychiatry); uncertainty and sustained anxiety: Grupe and Nitschke, 2013. Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'bdt', name: 'CBT with exposure', sub: 'First line; with parent involvement',
-            text: 'Breaks the anxiety loop that avoidance feeds; it uses fear extinction and prefrontal regulation (drawn in the atlas with the book\'s fronto-limbic pathway). Breaking the parent\'s cycle of reassurance and accommodating avoidance is part of treatment. In children and adolescents, marked improvement at 12 weeks with CBT alone was 59.7%.', src: 'CAMS: Walkup et al., 2008 (NEJM).' },
-          { id: 'ssri', name: 'SSRIs and SNRIs', sub: 'Inhibit serotonin (and noradrenaline) reuptake',
-            text: 'SSRIs (sertraline, fluoxetine, fluvoxamine) are effective; the FDA-approved medication for GAD in children and adolescents is duloxetine (ages 7–17, an SNRI). In 488 children aged 7–17, marked improvement at 12 weeks: sertraline + CBT 80.7%, sertraline alone 54.9%, placebo about 24%. The suicidal-thinking warning and close monitoring apply.', src: 'CAMS: Walkup et al., 2008.' }
-        ]
-      } },
-    tssb: { name: 'Post-Traumatic Stress Disorder', short: 'PTSD',
-      kitapta: [{}, {}, { snippet: 'chronic stress leading to a loss of contextualization (the “everywhere is dangerous” feeling in PTSD; Chapters 10 and 18)' }, { snippet: 'post-traumatic hippocampus-amygdala imbalance (Chapter 18)' }, { snippet: 'Contextual generalization in PTSD (Chapter 18)' }, { snippet: 'post-traumatic dissociation and the window of tolerance (Chapter 18)' }],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Fear learning and extinction circuit: an overactive amygdala, with weak ventromedial PFC braking and weak contextual input from the hippocampus.',
-      mercek: {
-        devre: {
-          title: 'Fear learning and extinction circuit',
-          text: 'The amygdala appraises threat and triggers the stress response and defense (flight, fight, freeze) through the hypothalamus and PAG; the locus coeruleus raises arousal. The hippocampus carries context ("is this place safe?"); the ventromedial PFC recalls learned extinction and brakes the amygdala.',
-          modes: {
-            saglikli: { name: 'Healthy', text: 'Once the danger has passed, the hippocampus recognizes the safe context and the ventromedial PFC brakes the amygdala; fear is extinguished and the body calms down.' },
-            tssb: { name: 'PTSD model', text: 'The amygdala overreacts to threat cues; braking by the ventromedial PFC and contextual input from the hippocampus are weak. Even when extinction is learned it is not recalled, and fear generalizes to everything that recalls the trauma ("everywhere is dangerous"). Arousal and the stress axis stay switched on.' }
+        "src": "Loop: Alexander et al., 1986. OCD model: Saxena and Rauch, 2000. PET: Baxter et al., 1987 (14 patients; increased glucose use in the left orbital gyrus and both caudate nuclei). The model is a theory; not every patient fits it."
+      },
+      "bulgular": {
+        "text": "Las regiones se colorean según la dirección y el tamaño de un hallazgo: cálido = más grande, más grueso o más activo; frío = más pequeño o más fino. Las diferencias son promedios grupales y pequeñas (d por debajo de 0.2 se considera pequeño); la imagen no puede diagnosticar el TOC en un individuo.",
+        "gruplar": [
+          {
+            "name": "Niños y adolescentes",
+            "text": "ENIGMA-OCD: los hallazgos en niños y adolescentes difieren de los de adultos, lo que sugiere que el trastorno afecta al cerebro en desarrollo en etapas distintas.",
+            "items": [
+              {
+                "dtxt": "+0.38",
+                "txt": "Tálamo más grande (en niños y adolescentes sin medicación, en torno al 3%)."
+              },
+              {
+                "dtxt": "−0.10 to −0.33",
+                "txt": "Corteza parietal inferior más fina."
+              },
+              {
+                "dtxt": "−0.10 to −0.33",
+                "txt": "Corteza parietal superior más fina."
+              }
+            ],
+            "src": "Subcortical: Boedhoe et al., 2017 (1,830 patients, 1,759 controls). Cortex: Boedhoe et al., 2018 (1,905 patients, 1,760 controls). For the parietal findings the range of all cortical effects in the study is given; color intensity is approximate."
           },
-          src: 'Fear learning and extinction is a classic neurocircuit model; hippocampus: Logue et al., 2018. The model is a theory.'
-        },
-        bulgular: {
-          text: 'Color shows the direction and size of a finding: cool = smaller. Differences are group averages and small; imaging cannot diagnose an individual.',
-          gruplar: [
-            { name: 'Structure (ENIGMA-PGC)', text: 'ENIGMA-PGC (1,868 people, 794 with PTSD, 16 cohorts): in current PTSD the hippocampus is smaller than in trauma-exposed people without PTSD. The amygdala difference is not significant after correction for multiple comparisons.',
-              items: [{ dtxt: 'd = −0.17', txt: 'Hippocampus smaller.' }, { dtxt: 'd = −0.11', txt: 'Amygdala smaller (not significant after correction).' }],
-              src: 'Logue et al., 2018 (Biological Psychiatry).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'yeniden', name: 'Re-experiencing', sub: 'Intrusive memories, nightmares, traumatic play', devre: 'Amygdala-hippocampus memory circuit',
-            text: 'The trauma memory is stored together with its emotional charge; when the hippocampus cannot process its context and time well enough, the memory is relived as if it were "happening now". The book describes this pathway as "contextual generalization in PTSD".' },
-          { id: 'uyarilma', name: 'Hyperarousal', sub: 'Startle, hypervigilance, poor sleep', devre: 'Arousal and stress axis',
-            text: 'The locus coeruleus (noradrenaline) and the hypothalamus (stress axis, cortisol) keep the body constantly on alert; both are strengthened by signals from the amygdala.' },
-          { id: 'kacinma', name: 'Avoidance and unextinguished fear', sub: 'Staying away from reminders', devre: 'Fronto-limbic extinction circuit',
-            text: 'The ventromedial PFC brakes the amygdala by recalling learned extinction; in PTSD this brake is weak. Avoidance maintains fear because it leaves no chance for extinction learning.' },
-          { id: 'dissosiyasyon', name: 'Dissociation and freezing', sub: 'Detachment, numbing, freezing', devre: 'PAG and vagal defense',
-            text: 'When escape is impossible, the PAG triggers freezing and shutdown; the book explains dissociation through the PAG and the polyvagal hierarchy. In the dissociative subtype, the prefrontal cortex is proposed to over-suppress limbic responses.' }
-        ],
-        belirtilerSrc: 'Context: Liberzon and Abelson, 2016. Extinction: Milad et al., 2009 (16 patients). Stress response: Ulrich-Lai and Herman, 2009. Dissociative subtype: Lanius et al., 2010. Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'tobdt', name: 'Trauma-focused CBT', sub: 'First line in children and adolescents',
-            text: 'Effective regardless of age, sex and trauma type (individual participant data meta-analysis). The trauma narrative and graded exposure use fear extinction (ventromedial PFC → amygdala) and rebuild a sense of safe context. The atlas draws the book\'s fronto-limbic pathway.',
-            src: 'The Lancet Child & Adolescent Health, 2023 (individual participant data meta-analysis).' },
-          { id: 'ssri', name: 'SSRIs', sub: 'Not first choice in children',
-            text: 'In 131 children and adolescents, 10 weeks of sertraline did not beat placebo. SSRIs are effective in adults; in children they can be used for co-occurring depression and anxiety.',
-            src: 'Robb et al., 2010.' },
-          { id: 'emdr', name: 'EMDR', sub: 'Eye movement desensitization',
-            text: 'In a network meta-analysis of 32 trials in children and young people it is effective, though less so than individual trauma-focused CBT; the evidence is of moderate to low quality. No brain pathway is drawn on this card.',
-            src: 'Mavranezouli et al., 2020 (Journal of Child Psychology and Psychiatry).' },
-          { id: 'pe', name: 'Prolonged exposure', sub: 'Adolescent version',
-            text: 'In 61 girls aged 13–18 with PTSD related to sexual abuse it beat supportive counseling, and the difference lasted 12 months; community clinic counselors delivered it. It uses fear extinction (the book\'s fronto-limbic pathway in the atlas).',
-            src: 'Foa et al., 2013 (JAMA).' }
-        ]
-      } },
-    bipolar: { name: 'Bipolar Disorder', short: 'Bipolar',
-      summary: 'Emotion regulation (amygdala, ventrolateral PFC) and reward circuits; swings between mania and depressive episodes.',
-      mercek: {
-        devre: {
-          title: 'Emotion regulation and reward balance',
-          text: 'The amygdala carries the intensity of an emotional stimulus; the ventrolateral PFC (inferior frontal gyrus) and OFC regulate it. The dopamine pathway from the VTA to the accumbens feeds reward and motivation. In bipolar disorder, the balance between these two systems shifts in both directions across episodes.',
-          modes: {
-            saglikli: { name: 'Balanced', text: 'The reward signal feeds motivation and the prefrontal cortex regulates emotional responses; mood rises and falls with events, then returns to balance.' },
-            depresif: { name: 'Depressive episode', text: 'The reward pathway weakens (anhedonia, loss of energy) and negative emotion increases. In bipolar depression, antidepressants are not used alone.' },
-            mani: { name: 'Mania model', text: 'The reward pathway overworks: motivation, energy and risk-taking rise and the need for sleep falls. The amygdala is more reactive and braking by the ventrolateral PFC and OFC is weak. Increased reward sensitivity in mania is a theory.' }
+          {
+            "name": "Adultos",
+            "text": "En adultos destacan el globo pálido y el hipocampo; las diferencias son mayores en pacientes medicados (globo pálido +0.29, hipocampo −0.29). Esto no demuestra que la medicación las cause: los pacientes medicados pueden tener una enfermedad más grave.",
+            "items": [
+              {
+                "dtxt": "+0.16",
+                "txt": "Globo pálido más grande (en torno al 3%)."
+              },
+              {
+                "dtxt": "−0.13",
+                "txt": "Hipocampo más pequeño (en torno al 3%)."
+              },
+              {
+                "dtxt": "−0.10 to −0.33",
+                "txt": "Corteza parietal inferior más fina."
+              }
+            ],
+            "src": "Boedhoe et al., 2017; 2018 (ENIGMA-OCD). For the parietal finding the study's effect range is given."
           },
-          src: 'In ENIGMA, the largest cortical thinning is in the left pars opercularis (inferior frontal gyrus; Hibar et al., 2018). The reward sensitivity model is theoretical.'
-        },
-        bulgular: {
-          text: 'Color shows the direction and size of a finding: cool = smaller or thinner. Differences are group averages and small; imaging cannot diagnose an individual.',
-          gruplar: [
-            { name: 'Subcortical (ENIGMA)', text: 'ENIGMA-BD (1,710 patients, 2,594 controls): hippocampus and thalamus smaller, lateral ventricles larger. Lithium users had larger thalamus (exploratory).',
-              items: [{ dtxt: 'd = −0.23', txt: 'Hippocampus smaller.' }, { dtxt: 'd = −0.15', txt: 'Thalamus smaller.' }],
-              src: 'Hibar et al., 2016 (Molecular Psychiatry).' },
-            { name: 'Cortex (ENIGMA)', text: 'ENIGMA-BD (1,837 patients, 2,582 controls): frontal, temporal and parietal cortex thinner; thinning increases with illness duration. Lithium, antiepileptics and antipsychotics are associated with cortical measures.',
-              items: [{ dtxt: 'd = −0.29', txt: 'Left pars opercularis (inferior frontal gyrus) thinner.' }, { dtxt: 'd = −0.29', txt: 'Left fusiform gyrus thinner.' },
-                { dtxt: 'd = −0.28', txt: 'Left rostral middle frontal cortex thinner.' }],
-              src: 'Hibar et al., 2018 (Molecular Psychiatry).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'mani', name: 'Mania: increased energy and risk-taking', sub: 'Less need for sleep, speeding up, risky behavior', devre: 'Reward circuit',
-            text: 'Reward anticipation and motivation rise; increased sensitivity of the reward circuit has been proposed. The book lists mania among the clinical correlates of the SEEKING system.' },
-          { id: 'duygu', name: 'Mood swings and irritability', sub: 'Intense, rapidly changing emotion', devre: 'Emotion regulation circuit',
-            text: 'The amygdala responds strongly to emotional stimuli; when braking by the ventrolateral PFC and OFC stays weak, emotion rises quickly.' },
-          { id: 'depresif', name: 'Depressive episode', sub: 'Low mood, loss of energy', devre: 'Reward and negative-emotion circuits',
-            text: 'In bipolar depression the reward response decreases and negative emotion increases. The first episode is often depressive, so family history matters in adolescent depression.' }
-        ],
-        belirtilerSrc: 'Emotion and reward circuits: Phillips and Swartz, 2014. Behavioral approach system: Urošević et al., 2008. Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'lityum', name: 'Lithium', sub: 'Mood stabilizer',
-            text: 'FDA-approved in 2018 for acute mania and maintenance in ages 7–17 (including a placebo-controlled trial of 81 children). Blood levels, kidney and thyroid need monitoring. In ENIGMA, lithium users had larger thalamic volume (exploratory). The Turkish product information (KÜB) says it should not be used under age 12. Because the mechanism is not known for certain, no brain pathway or regional highlight is drawn on this card.',
-            src: 'FDA, 2018; Hibar et al., 2016.' },
-          { id: 'antipsikotik', name: 'Second-generation antipsychotics', sub: 'Acute mania',
-            text: 'Approved for acute mania in adolescents (e.g., aripiprazole, risperidone, quetiapine); they block D2 receptors and dampen excess dopamine signaling in the reward pathway. Weight and metabolic side effects are monitored.',
-            src: 'FDA approvals.' },
-          { id: 'psikoegitim', name: 'Psychoeducation and family-focused therapy', sub: 'Preventing episodes',
-            text: 'In a randomized trial of 58 adolescents, family-focused therapy brought faster recovery from depressive symptoms and fewer weeks in depressive episodes; time to recurrence and mania did not differ. No brain pathway is drawn on this card.',
-            src: 'Miklowitz et al., 2008 (Archives of General Psychiatry).' },
-          { id: 'lamotrijin', name: 'Lamotrigine', sub: 'Adjunctive maintenance',
-            text: 'In a randomized withdrawal trial at ages 10–17 the primary analysis was not significant; a benefit appeared at ages 13–17 but not at 10–12. Skin reactions are monitored. No brain pathway is drawn on this card.',
-            src: 'Findling et al., 2015 (JAACAP).' },
-          { id: 'valproat', name: 'Valproate', sub: 'Weak evidence, high pregnancy risk',
-            text: 'In 150 youths aged 10–17, extended-release divalproex did not reduce mania more than placebo over 4 weeks. Risk of malformations and developmental problems in pregnancy is high: in Europe it is contraindicated in girls and women able to have children unless a pregnancy prevention programme is followed, and it is not used in pregnancy for bipolar disorder. No brain pathway is drawn on this card.',
-            src: 'Wagner et al., 2009 (JAACAP); EMA, 2018.' }
+          {
+            "name": "Función (PET)",
+            "text": "Más la función que la estructura: el consumo de glucosa en reposo está aumentado en la OFC y el caudado. Tras un tratamiento exitoso (ISRS o TCC) disminuye la actividad del caudado y la OFC.",
+            "items": [
+              {
+                "dtxt": "increased",
+                "txt": "Corteza orbitofrontal: mayor consumo de glucosa (giro orbital izquierdo en el primer estudio)."
+              },
+              {
+                "dtxt": "increased",
+                "txt": "Caudado: mayor consumo de glucosa en ambos lados; disminuye con el tratamiento."
+              }
+            ],
+            "src": "Baxter et al., 1987 (FDG-PET, 14 patients). Decrease with treatment: Baxter et al., 1992; van der Straten et al., 2017 (meta-analysis)."
+          }
         ]
-      } },
-    sizofreni: { name: 'Schizophrenia', short: 'Schizophrenia',
-      kitapta: [{}, { snippet: 'the indirect or direct target of most drugs used in psychiatry (stimulants, antipsychotics, even some antidepressants)' }],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Increased striatal dopamine, the hippocampus and prefrontal cortex; positive, negative and cognitive symptoms.',
-      mercek: {
-        devre: {
-          title: 'Dopamine pathways and the hippocampus',
-          text: 'Dopamine pathways run from the VTA to the accumbens and associative striatum (mesolimbic) and to the prefrontal cortex (mesocortical); the substantia nigra supplies the dorsal striatum. The hippocampus tunes the activity of VTA dopamine neurons through the accumbens and ventral pallidum.',
-          modes: {
-            saglikli: { name: 'Healthy', text: 'Dopamine signals salience only for important and unexpected events; the prefrontal cortex runs working memory and planning with enough dopamine.' },
-            psikoz: { name: 'Psychosis model', text: 'Striatal dopamine synthesis and release are increased (meta-analysis of 44 studies, d = 0.79): neutral stimuli acquire excessive salience, and delusions and hallucinations grow from this experience. Hippocampal overactivity is proposed to drive dopamine neurons; dopamine reaching the prefrontal cortex is reduced (negative and cognitive symptoms).' }
+      },
+      "belirtiler": [
+        {
+          "id": "korku",
+          "name": "Miedo y ansiedad",
+          "sub": "Obsesiones basadas en el miedo, miedo que no se desvanece",
+          "devre": "Circuito frontolímbico",
+          "text": "La corteza prefrontal ventromedial regula el aprendizaje y la extinción del miedo y frena la amígdala. La extinción del miedo es débil en el TOC; la terapia de exposición actúa a través de este circuito. Los anillos muestran efectos inhibidores (de frenado)."
+        },
+        {
+          "id": "eksik",
+          "name": "Incompletitud y hábito",
+          "sub": "Sensación de «no estar bien del todo», compulsiones automáticas",
+          "devre": "Circuito sensoriomotor",
+          "text": "El área motora suplementaria (AMS) y el putamen posterior ejecutan hábitos desencadenados por señales e integración sensoriomotora. La conducta repetida por una sensación de «no estar bien del todo» se asienta con el tiempo en este circuito automático."
+        },
+        {
+          "id": "dur",
+          "name": "Dificultad para detenerse",
+          "sub": "No poder detener una conducta en curso",
+          "devre": "Circuito cognitivo ventral",
+          "text": "El giro frontal inferior (corteza prefrontal ventrolateral, sobre todo en el lado derecho) y el caudado ventral proporcionan la inhibición de la respuesta. La orden de «detente» también se envía por una vía rápida desde el GFI directamente al NST (vía hiperdirecta). Se han descrito diferencias en este circuito en el TOC durante tareas de inhibición."
+        },
+        {
+          "id": "esneklik",
+          "name": "Planificación y flexibilidad",
+          "sub": "Flexibilidad mental, memoria de trabajo",
+          "devre": "Circuito cognitivo dorsal",
+          "text": "La corteza prefrontal dorsolateral y el caudado dorsal sustentan la planificación, la memoria de trabajo y la regulación emocional de arriba abajo. La hipoactividad de este circuito se considera junto con la hiperactividad del circuito frontolímbico en las obsesiones basadas en el miedo."
+        },
+        {
+          "id": "odul",
+          "name": "Recompensa y alivio",
+          "sub": "Alivio breve tras una compulsión, motivación",
+          "devre": "Circuito afectivo ventral",
+          "text": "La OFC y el núcleo accumbens procesan la recompensa y la motivación, alimentados por la dopamina del área tegmental ventral. El alivio que aporta una compulsión refuerza la conducta."
+        }
+      ],
+      "belirtilerSrc": "Cinco circuitos: van den Heuvel et al., 2016; Shephard et al., 2021 (Molecular Psychiatry). La correspondencia síntoma-circuito es un marco teórico; las tareas suelen implicar varios circuitos a la vez.",
+      "tedavi": [
+        {
+          "id": "ssri",
+          "name": "ISRS y clomipramina",
+          "sub": "Inhiben la recaptación de serotonina",
+          "text": "Fármaco de primera línea. El TOC necesita dosis más altas y ensayos más largos (8–12 semanas) que la depresión. Aprobados por la FDA en niños: sertralina (desde los 6 años), fluoxetina (7), fluvoxamina (8), clomipramina (10). En la información del producto turca (KÜB), la clomipramina está indicada entre los 10 y los 17 años solo para el TOC. Tras un tratamiento exitoso disminuye la actividad del caudado y la OFC.",
+          "src": "POTS, 2004 (JAMA); van der Straten et al., 2017 (meta-analysis)."
+        },
+        {
+          "id": "erp",
+          "name": "Exposición y prevención de respuesta",
+          "sub": "Terapia cognitivo-conductual (TCC)",
+          "text": "Primera línea en niños y adolescentes; mayor remisión cuando se combina con medicación (POTS: combinado 53.6%, TCC sola 39.3%, placebo 3.6%). Utiliza el aprendizaje de extinción del miedo: la corteza prefrontal ventromedial frena la amígdala. En el atlas esta regulación se dibuja con la «vía de maduración frontolímbica» del libro. El metabolismo del caudado disminuye en los respondedores.",
+          "src": "POTS, 2004; Baxter et al., 1992."
+        },
+        {
+          "id": "dbs-vcvs",
+          "name": "Estimulación cerebral profunda: VC/VS",
+          "sub": "Cápsula ventral y estriado ventral",
+          "text": "Para el TOC grave y resistente al tratamiento en adultos. El electrodo recorre el brazo anterior de la cápsula interna con sus contactos distales en el estriado ventral (alrededor del accumbens). Exención de dispositivo humanitario de la FDA en 2009. En un metaanálisis que abarca todas las dianas de ECP (31 estudios, 116 pacientes; en su mayoría dianas estriatales) los síntomas cayeron un 45% de media y el 60% respondió. No se usa en niños.",
+          "src": "Alonso et al., 2015 (meta-analysis). The lead path is schematic."
+        },
+        {
+          "id": "dbs-stn",
+          "name": "Estimulación cerebral profunda: NST",
+          "sub": "Núcleo subtalámico anteromedial",
+          "text": "La parte emocional-cognitiva situada por delante y medial a la diana motora usada en la enfermedad de Parkinson. En un ensayo cruzado doble ciego de 16 pacientes la media de la Y-BOCS fue 19 con estimulación activa y 28 con estimulación simulada; también se produjeron acontecimientos adversos graves. No se usa en niños.",
+          "src": "Mallet et al., 2008 (NEJM). The lead path is schematic."
+        },
+        {
+          "id": "dtms",
+          "name": "EMT profunda (bobina H7)",
+          "sub": "Corteza prefrontal medial y cingulada anterior",
+          "text": "Estimulación magnética a través del cráneo; la bobina H7 llega más profundo, hasta la cingulada anterior. Los síntomas se provocan antes de cada sesión. En 99 adultos la tasa de respuesta fue del 38.1% al final del tratamiento (simulación 11.1%) y del 45.2% un mes después (simulación 17.8%). FDA 2018. No se usa en niños.",
+          "src": "Carmi et al., 2019 (American Journal of Psychiatry). Coil and field are schematic."
+        },
+        {
+          "id": "apgucl",
+          "name": "Potenciación con antipsicóticos",
+          "sub": "Sin respuesta a ISRS y TCC",
+          "text": "En un metaanálisis en adultos, el aripiprazol fue eficaz a corto plazo y la risperidona tuvo un efecto pequeño; la quetiapina y la olanzapina no difirieron del placebo. Los autores aconsejan un uso prudente y una revisión a las 4 semanas. Se tienen en cuenta los riesgos a largo plazo.",
+          "src": "Veale et al., 2014 (BMC Psychiatry)."
+        }
+      ]
+    }
+  },
+  "depresyon": {
+    "name": "Depresión",
+    "short": "Depresión",
+    "kitapta": [
+      {},
+      {},
+      {},
+      {},
+      {
+        "snippet": "la extinción del SEEKING y la anhedonia en la depresión (capítulo 8)"
+      },
+      {}
+    ],
+    "summary": "Circuitos de recompensa, respuesta al estrés y regulación emocional; la irritabilidad y la anhedonia pueden aparecer primero en la adolescencia.",
+    "mercek": {
+      "devre": {
+        "title": "Equilibrio entre recompensa y regulación emocional",
+        "text": "La vía dopaminérgica del área tegmental ventral al accumbens y la corteza prefrontal medial transporta la recompensa y la motivación. La cingulada anterior (especialmente su parte subgenual) y la amígdala transportan la emoción negativa, que la CPFDL regula desde arriba. La habénula lateral frena los núcleos dopaminérgicos con una señal de «la recompensa esperada no llegó»; la amígdala impulsa el eje del estrés a través del hipotálamo.",
+        "modes": {
+          "saglikli": {
+            "name": "Saludable",
+            "text": "La señal de recompensa alimenta la motivación; cuando surge una emoción negativa, la corteza prefrontal la regula y la respuesta al estrés se desvanece."
           },
-          src: 'Dopamine: Howes et al., 2012; aberrant salience: Kapur, 2003. The hippocampus-dopamine model is theoretical.'
+          "depresyon": {
+            "name": "Modelo de la depresión",
+            "text": "La señal de recompensa se debilita (anhedonia); la cingulada anterior y la amígdala están más activas y la regulación de arriba abajo de la CPFDL es débil (modelo de desregulación límbico-cortical). La habénula frena más los núcleos dopaminérgicos y el eje del estrés funciona de forma crónica."
+          }
         },
-        bulgular: {
-          text: 'Color shows the direction and size of a finding: warm = larger or more, cool = smaller. Differences are group averages; imaging cannot diagnose an individual.',
-          gruplar: [
-            { name: 'Subcortical (ENIGMA)', text: 'ENIGMA-SZ (2,028 patients, 2,540 controls): hippocampus, amygdala, thalamus and accumbens smaller; pallidum and lateral ventricles larger. The hippocampal difference is related to the proportion of unmedicated patients.',
-              items: [{ dtxt: 'd = −0.46', txt: 'Hippocampus smaller (largest difference).' }, { dtxt: 'd = −0.31', txt: 'Amygdala smaller.' },
-                { dtxt: 'd = −0.31', txt: 'Thalamus smaller.' }, { dtxt: 'd = −0.25', txt: 'Accumbens smaller.' }, { dtxt: 'd = +0.21', txt: 'Pallidum larger.' }],
-              src: 'van Erp et al., 2016 (Molecular Psychiatry).' },
-            { name: 'Dopamine (PET)', text: 'In a meta-analysis of 44 studies, presynaptic striatal dopamine function (synthesis and release) was clearly increased; the dopamine transporter was unchanged, and the small D2/3 receptor increase was not seen in unmedicated patients.',
-              items: [{ dtxt: 'd = 0.79', txt: 'Presynaptic striatal dopamine function increased (most in the associative striatum).' }],
-              src: 'Howes et al., 2012 (Archives of General Psychiatry).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'olumlu', name: 'Hallucinations and delusions', sub: 'Positive symptoms', devre: 'Mesolimbic dopamine and aberrant salience',
-            text: 'Dysregulated dopamine release lends salience to neutral stimuli; delusions are seen as an attempt to explain this experience. The superior temporal gyrus is also active in auditory hallucinations. For SEEKING, the book mentions "excessive attribution of meaning in psychosis".' },
-          { id: 'olumsuz', name: 'Negative symptoms', sub: 'Reduced motivation and affect, social withdrawal', devre: 'Mesocortical pathway and reward',
-            text: 'Reduced dopamine reaching the prefrontal cortex and changes in the reward circuit are linked to loss of motivation and affect; antipsychotics help little with these symptoms.' },
-          { id: 'bilissel', name: 'Cognitive difficulties', sub: 'Working memory, attention, planning', devre: 'Dorsolateral prefrontal circuit',
-            text: 'Working memory and planning rely on the DLPFC\'s loop with the striatum and thalamus; cognitive difficulties clearly limit everyday functioning.' }
-        ],
-        belirtilerSrc: 'Dopamine: Howes et al., 2012; Kapur, 2003; prefrontal dopamine: Slifstein et al., 2015 (20 patients). Hallucinations: Jardri et al., 2011. Cognition and functioning: Green, 1996. Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'antipsikotik', name: 'Antipsychotics', sub: 'D2 receptor blockade',
-            text: 'Their common action is D2 receptor blockade; they reduce positive symptoms and have limited effect on negative and cognitive symptoms. Many second-generation antipsychotics are approved for adolescents; weight and metabolic side effects are monitored. The book describes the mesolimbic pathway as the target of antipsychotics.',
-            src: 'Howes et al., 2012.' },
-          { id: 'klozapin', name: 'Clozapine', sub: 'Treatment-resistant cases',
-            text: 'The most effective option in treatment-resistant early-onset schizophrenia: in a double-blind trial of 39 adolescents, response was 66% with clozapine and 33% with olanzapine. Blood counts (neutropenia) and seizures are monitored. The Turkish product information (KÜB) says it should not be used under age 16.',
-            src: 'Kumra et al., 2008 (Biological Psychiatry).' },
-          { id: 'psikososyal', name: 'Family intervention and psychosocial support', sub: 'Reducing relapse',
-            text: 'Family intervention reduces relapse in people with schizophrenia; in the 2024 update this short-term evidence has low certainty, and hospital admission showed little or no difference within a month. Most data come from adults. No brain pathway is drawn on this card.',
-            src: 'Pharoah et al., 2010; Chien et al., 2024 (Cochrane).' },
-          { id: 'lai', name: 'Long-acting injectable antipsychotics', sub: 'Relapse prevention',
-            text: 'In a meta-analysis of 137 studies, the risk of hospitalization or relapse is lower than with oral antipsychotics (RR 0.88 in randomized trials). The quality of observational studies limits interpretation.',
-            src: 'Kishimoto et al., 2021 (Lancet Psychiatry).' },
-          { id: 'bdtp', name: 'CBT for psychosis', sub: 'Added support for symptoms',
-            text: 'In a meta-analysis of 34 studies the effect is small (overall symptoms −0.33; positive −0.25; negative −0.13) and shrinks further when sources of bias, especially masking, are controlled for. No brain pathway is drawn on this card.',
-            src: 'Jauhar et al., 2014 (British Journal of Psychiatry).' },
-          { id: 'erken', name: 'Early intervention services', sub: 'First episode and early-phase psychosis',
-            text: 'In 10 randomized trials (2,176 patients), early intervention reduces treatment discontinuation and hospitalization compared with usual care; the advantage appears up to 24 months, except for general and depressive symptom severity at 18–24 months. No brain pathway is drawn on this card.',
-            src: 'Correll et al., 2018 (JAMA Psychiatry).' },
-          { id: 'ksanomelin', name: 'Xanomeline-trospium', sub: 'Muscarinic M1 and M4 target',
-            text: 'It targets M1 and M4 muscarinic receptors without blocking D2 receptors; the FDA approved it in 2024 for adults only. In a 5-week trial the PANSS score fell 8.4 points more than with placebo.',
-            src: 'Kaul et al., 2024 (JAMA Psychiatry); FDA, 2024.' }
-        ]
-      } },
-    borderline: { name: 'Borderline Personality Disorder', short: 'Borderline',
-      summary: 'Emotion regulation circuit: an overactive amygdala and an underactive DLPFC in response to negative emotion; mentalizing and social pain.',
-      mercek: {
-        devre: {
-          title: 'Emotion regulation circuit',
-          text: 'The amygdala and insula carry the intensity of emotional stimuli and the anterior cingulate carries emotional pain; the DLPFC, OFC and medial PFC regulate this response from above. The temporoparietal junction and medial PFC support understanding one\'s own and others\' minds (mentalizing).',
-          modes: {
-            saglikli: { name: 'Healthy', text: 'When an emotional stimulus rises, the prefrontal cortex regulates it; the capacity to understand oneself and others holds up under stress.' },
-            bpd: { name: 'Borderline model', text: 'In response to negative emotional stimuli, the left amygdala overreacts and the DLPFC underreacts (a strong accelerator and a weak brake on emotion); emotion rises quickly and fades slowly. Mentalizing collapses under intense emotion.' }
+        "src": "Limbic-cortical model: Mayberg, 1997. Habenula: Hikosaka, 2010. The model is a theory; depression spans several circuit patterns."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección y el tamaño de un hallazgo: frío = más pequeño o más fino, cálido = más grande. Las diferencias son promedios grupales y pequeñas; la imagen no puede diagnosticar a un individuo.",
+        "gruplar": [
+          {
+            "name": "Hipocampo",
+            "text": "ENIGMA-MDD (1,728 pacientes, 7,199 controles): el hipocampo es más pequeño. La diferencia es clara en la depresión recurrente y en la que comienza antes de los 21 años; los pacientes en el primer episodio no difieren de los controles.",
+            "items": [
+              {
+                "dtxt": "d = −0.14",
+                "txt": "Hipocampo más pequeño (1.2%); −0.17 en la depresión recurrente, −0.20 en la de inicio temprano."
+              }
+            ],
+            "src": "Schmaal et al., 2016 (Molecular Psychiatry)."
           },
-          src: 'Schulze et al., 2016 (multimodal meta-analysis; findings inconsistent across studies). The mentalizing model is theoretical.'
-        },
-        bulgular: {
-          text: 'Color shows the direction of a finding: warm = more active, cool = less active. Findings are inconsistent across studies; imaging cannot diagnose an individual.',
-          gruplar: [
-            { name: 'Function (meta-analysis)', text: '19 functional studies (281 patients, 293 controls): to negative emotional stimuli, the left amygdala and posterior cingulate are more active and the DLPFC on both sides is less active. Gray matter volume of the left amygdala is also smaller; amygdala hyperactivity is clearest in unmedicated samples.',
-              items: [{ dtxt: 'more active', txt: 'Left amygdala overreacts; gray matter volume smaller.' }, { dtxt: 'more active', txt: 'Posterior cingulate more active.' },
-                { dtxt: 'less active', txt: 'Dorsolateral PFC response blunted.' }],
-              src: 'Schulze et al., 2016 (Biological Psychiatry).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'duygu', name: 'Emotional instability', sub: 'Intense, rapidly changing emotion', devre: 'Emotion regulation circuit',
-            text: 'The amygdala and insula carry intense emotion; when braking by the DLPFC stays weak, emotion rises quickly and fades slowly.' },
-          { id: 'terk', name: 'Fear of abandonment and relationships', sub: 'Sensitivity to rejection', devre: 'Social pain circuit',
-            text: 'Social exclusion activates the anterior cingulate and anterior insula in healthy volunteers; whether this is the same network as physical pain is debated. The book describes social pain and separation through the PANIC/GRIEF system.' },
-          { id: 'durtu', name: 'Impulsivity and self-harm', sub: 'Sudden, risky behavior', devre: 'Orbitofrontal impulse control',
-            text: 'The OFC weighs rewards and consequences and brakes impulses; when it stays weak, intense emotion turns into sudden action.' },
-          { id: 'kimlik', name: 'Identity and mentalizing', sub: 'Understanding oneself and others', devre: 'Mentalizing network',
-            text: 'The temporoparietal junction and medial PFC support understanding one\'s own and others\' mental states; mentalization-based treatment targets this capacity.' }
-        ],
-        belirtilerSrc: 'Emotion: Schulze et al., 2016. Social exclusion: Eisenberger et al., 2003; Cacioppo et al., 2013. Mentalizing: Fonagy and Luyten, 2009. Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'dbt', name: 'Dialectical behavior therapy (DBT-A)', sub: 'For adolescents',
-            text: 'In 12–18-year-olds with repeated self-harm, a clear reduction in suicidal ideation and depression; the advantage in self-harm frequency lasted through 3-year follow-up. It teaches emotion regulation and distress tolerance skills and is thought to target prefrontal regulation pathways. Medication is not recommended for borderline disorder itself.',
-            src: 'Mehlum et al., 2014; 2019. NICE CG78.' },
-          { id: 'mbt', name: 'Mentalization-based treatment (MBT)', sub: 'Strengthening mentalizing',
-            text: 'Strengthens understanding of one\'s own and others\' minds, especially under emotional intensity; after DBT it is the most studied treatment in adults, and studies in adolescents are ongoing.',
-            src: 'Stoffers-Winterling et al., 2012; Storebø et al., 2020 (Cochrane).' },
-          { id: 'ilacyeri', name: 'The place of medication', sub: 'No medication for the disorder itself',
-            text: 'Cochrane 2022: no medication seems effective in specifically treating borderline pathology, and adverse event reporting is poor. Medication decisions for co-occurring conditions are assessed separately by the physician. No brain pathway is drawn on this card.',
-            src: 'Stoffers-Winterling et al., 2022 (Cochrane).' },
-          { id: 'sema', name: 'Schema therapy', sub: 'Adult trial',
-            text: 'In a 3-year randomized trial of 88 patients, both treatments improved symptoms and quality of life; schema therapy outperformed transference-focused psychotherapy with less dropout. The trial is in adults. No brain pathway is drawn on this card.',
-            src: 'Giesen-Bloo et al., 2006 (Archives of General Psychiatry).' }
-        ]
-      } },
-    tik: { name: 'Tic Disorders and Tourette Syndrome', short: 'Tics',
-      kitapta: [{ snippet: 'tics and premonitory urges (Chapter 9)' }, {}],  // kitap alıntıları: data/en/divan.js'teki çeviride aranır (sırayla eşlenir)
-      summary: 'Sensorimotor cortico-striato-thalamo-cortical loop; the premonitory urge before tics is linked to the insula and supplementary motor area.',
-      mercek: {
-        devre: {
-          title: 'Sensorimotor loop and premonitory urge',
-          text: 'The supplementary motor area and motor cortex connect to the putamen, the putamen to the thalamus via the GPi, and the thalamus back to the cortex; this loop selects movement programs and runs habits. The substantia nigra tunes the loop with dopamine. The insula carries the uncomfortable urge that precedes a tic (premonitory urge); this pathway is drawn under Symptoms → Premonitory urge.',
-          modes: {
-            tipik: { name: 'Typical', text: 'The loop selects the intended movement and holds back the others; the urge signal is weak and movements are purposeful.' },
-            tik: { name: 'Tic model', text: 'The loop\'s brakes are not selective enough: unwanted movement programs are released from time to time. The insula and anterior cingulate carry the premonitory urge (Symptoms); the tic briefly relieves the urge and reinforces the loop. That dopamine blockers reduce tics points to a role for dopamine.' }
+          {
+            "name": "Adultos (corteza)",
+            "text": "ENIGMA-MDD (2,148 pacientes, 7,957 controles): en adultos las cortezas orbitofrontal, cingulada anterior y posterior, insular y temporal son más finas; el adelgazamiento se observa en casos de inicio en la edad adulta. Los tamaños del efecto son pequeños; la intensidad del color es aproximada.",
+            "items": [
+              {
+                "dtxt": "thinner",
+                "txt": "Corteza orbitofrontal más fina."
+              },
+              {
+                "dtxt": "thinner",
+                "txt": "Cingulada anterior más fina."
+              },
+              {
+                "dtxt": "thinner",
+                "txt": "Cingulada posterior más fina."
+              },
+              {
+                "dtxt": "thinner",
+                "txt": "Ínsula más fina."
+              },
+              {
+                "dtxt": "thinner",
+                "txt": "Corteza temporal más fina."
+              }
+            ],
+            "src": "Schmaal et al., 2017 (Molecular Psychiatry)."
           },
-          src: 'Sensorimotor loop: Alexander et al., 1986. Premonitory urge: Bohlhalter et al., 2006 (10 adults). The model is a theory.'
-        },
-        bulgular: {
-          text: 'Color shows the direction of a finding. Studies are small; imaging gives no diagnosis or prognosis for an individual.',
-          gruplar: [
-            { name: 'Structure', text: 'Children (under 14) with a smaller caudate on MRI had more severe tic and OCD symptoms about 7.5 years later (43 children). Caudate volume was not related to severity at the time of the scan.',
-              items: [{ dtxt: 'inverse link', txt: 'Smaller caudate, more severe symptoms in early adulthood.' }],
-              src: 'Bloch et al., 2005 (Neurology).' },
-            { name: 'Function (before tics)', text: 'Just before a tic, the anterior cingulate, insula and supplementary motor area become active; during the tic, the sensorimotor cortex and cerebellum (10 adults, event-related fMRI).',
-              items: [{ dtxt: 'before tic', txt: 'Insula: linked to the premonitory urge.' }, { dtxt: 'before tic', txt: 'Anterior cingulate: active before the tic.' },
-                { dtxt: 'before tic', txt: 'Supplementary motor area: active before the tic.' }, { dtxt: 'during tic', txt: 'Motor cortex: active during the tic.' }],
-              src: 'Bohlhalter et al., 2006 (Brain).' }
-          ]
-        },
-        belirtiler: [
-          { id: 'motor', name: 'Motor and vocal tics', sub: 'Blinking, head jerks, throat clearing', devre: 'Sensorimotor loop',
-            text: 'The loop through the supplementary motor area, putamen, GPi and thalamus selects movement programs; when its brakes fall short, unwanted programs appear as tics.' },
-          { id: 'durtu', name: 'Premonitory urge', sub: 'Uncomfortable sensation before a tic', devre: 'Insula and anterior cingulate',
-            text: 'The insula and anterior cingulate carry a sensation of discomfort from inside the body; the tic relieves it for a short while. The book discusses "tics and premonitory urges" under the basal ganglia.' },
-          { id: 'bastirma', name: 'Suppressing tics', sub: 'Holding them back for a while', devre: 'Prefrontal inhibition',
-            text: 'Tics can be suppressed for a short time; activity in the basal ganglia and thalamus changes during suppression, and a pathway runs from the inferior frontal cortex to the subthalamic nucleus. CBIT uses this capacity with a competing response.' },
-          { id: 'eslik', name: 'ADHD and OCD comorbidity', sub: 'Conditions that often co-occur', devre: 'Adjacent cortico-striatal loops',
-            text: 'ADHD and OCD are common in tic disorders; these conditions share adjacent loops of the same cortico-striatal system.' }
-        ],
-        belirtilerSrc: 'Pre-tic network: Bohlhalter et al., 2006. Suppression: Peterson et al., 1998; inferior frontal-subthalamic pathway: Aron et al., 2007. Co-occurring conditions: Hirschtritt et al., 2015. Symptom-to-circuit matching is a theoretical framework.',
-        tedavi: [
-          { id: 'cbit', name: 'Comprehensive Behavioral Intervention for Tics (CBIT)', sub: 'First line',
-            text: 'In 126 children (ages 9–17), clear improvement with CBIT was 52.5% versus about 18.5% with supportive therapy; the effect is similar to that in medication trials. Tic awareness and competing-response training, with parent involvement.',
-            src: 'Piacentini et al., 2010 (JAMA).' },
-          { id: 'aripiprazol', name: 'Aripiprazole and antipsychotics', sub: 'Modulate dopamine signaling',
-            text: 'Aripiprazole is FDA-approved for Tourette syndrome in ages 6–18; it reduces tics by modulating dopamine signaling. Weight and metabolic side effects are monitored.',
-            src: 'FDA label.' },
-          { id: 'alfa2', name: 'Guanfacine and clonidine', sub: 'α2 agonists',
-            text: 'In a meta-analysis of randomized trials the effect on tics was smaller than that of antipsychotics; it was medium to large in trials of people with both tics and ADHD, and small and non-significant in trials excluding ADHD.',
-            src: 'Weisman et al., 2013 (Neuroscience and Biobehavioral Reviews).' },
-          { id: 'dbs', name: 'Deep brain stimulation (thalamus)', sub: 'Severe, resistant adult cases',
-            text: 'The centromedian-parafascicular complex of the thalamus or the GPi is targeted; in an international registry, tic severity fell at one year, while about a third of patients reported an adverse event; surgical technique and inclusion criteria varied. Not used in children.',
-            src: 'Martinez-Ramirez et al., 2018 (JAMA Neurology). The electrode path is schematic.' }
+          {
+            "name": "Adolescentes (corteza)",
+            "text": "En adolescentes no hay diferencia en el grosor cortical; la superficie total es menor, sobre todo en regiones frontales y sensoriomotoras y en adolescentes con episodios recurrentes. El efecto en el cerebro en desarrollo difiere del de los adultos.",
+            "items": [
+              {
+                "dtxt": "smaller surface area",
+                "txt": "Superficie de la corteza frontal menor."
+              },
+              {
+                "dtxt": "smaller surface area",
+                "txt": "Superficie de la corteza motora menor."
+              },
+              {
+                "dtxt": "smaller surface area",
+                "txt": "Superficie de la corteza sensorial menor."
+              }
+            ],
+            "src": "Schmaal et al., 2017."
+          }
         ]
-      } }
+      },
+      "belirtiler": [
+        {
+          "id": "anhedoni",
+          "name": "Pérdida de placer",
+          "sub": "Pérdida de interés y de impulso",
+          "devre": "Circuito de recompensa",
+          "text": "En el circuito de recompensa formado por el ATV, el núcleo accumbens y la corteza prefrontal, las respuestas a la recompensa están reducidas. El libro describe este circuito como el sistema SEEKING."
+        },
+        {
+          "id": "ruminasyon",
+          "name": "Rumia",
+          "sub": "Pensamiento repetitivo y autocentrado",
+          "devre": "Red neuronal por defecto",
+          "text": "La corteza prefrontal medial y la cingulada posterior sustentan el pensamiento autodirigido; en la depresión la conectividad de esta red está aumentada y los pensamientos negativos siguen girando."
+        },
+        {
+          "id": "olumsuz",
+          "name": "Emoción negativa y estrés",
+          "sub": "Estado de ánimo bajo, sensibilidad a la amenaza, sueño y apetito",
+          "devre": "Circuito del afecto negativo y eje del estrés",
+          "text": "La amígdala y la cingulada anterior responden con más fuerza a los estímulos negativos; la amígdala impulsa el eje del estrés (cortisol) a través del hipotálamo."
+        },
+        {
+          "id": "denetim",
+          "name": "Concentración y toma de decisiones",
+          "sub": "Dificultad para focalizar y concentrarse",
+          "devre": "Circuito de control cognitivo",
+          "text": "La CPFDL y la cingulada anterior dorsal gestionan la atención y las decisiones; la hipoactividad de este circuito se ha relacionado con la mala concentración y, en algunos pacientes, con la respuesta al tratamiento."
+        }
+      ],
+      "belirtilerSrc": "Circuitos: Williams, 2016 (Lancet Psychiatry; una taxonomía de circuitos para la depresión y la ansiedad). La correspondencia síntoma-circuito es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "ssri",
+          "name": "ISRS (fluoxetina, escitalopram)",
+          "sub": "Inhiben la recaptación de serotonina",
+          "text": "Se añaden a la psicoterapia en la depresión moderada y grave. Aprobados por la FDA en niños y adolescentes: fluoxetina (desde los 8 años), escitalopram (desde los 12). Por debajo de los 25 años existe una advertencia de ideación suicida y se necesita una vigilancia estrecha. Respuesta a las 12 semanas en adolescentes: fluoxetina + TCC 71.0%, fluoxetina sola 60.6%, placebo 34.8%.",
+          "src": "TADS, 2004 (JAMA)."
+        },
+        {
+          "id": "bdt",
+          "name": "Terapia cognitivo-conductual",
+          "sub": "Patrones de pensamiento y conducta",
+          "text": "Primera línea en la depresión leve y combinada con medicación en la moderada y grave. Se dirige a los pensamientos negativos y al retraimiento conductual y se piensa que actúa a través de vías de regulación prefrontal (dibujadas en el atlas con la vía frontolímbica del libro). En adolescentes la TCC sola alcanzó el 43.2% a las 12 semanas; en la semana 36 tanto la TCC sola como la fluoxetina sola alcanzaron el 81%.",
+          "src": "TADS, 2004."
+        },
+        {
+          "id": "rtms",
+          "name": "EMTr repetitiva (CPFDL izquierda)",
+          "sub": "Estimulación magnética a través del cráneo",
+          "text": "Se usa en la depresión resistente al tratamiento en adultos. En 2024 recibió la autorización de la FDA para los 15–21 años como complemento a los antidepresivos (basada en datos del mundo real de la empresa, no en un ensayo aleatorizado). La bobina se coloca sobre la CPFDL izquierda; el efecto se propaga a la red de la cingulada anterior conectada.",
+          "src": "FDA, 2024 (NeuroStar). The left DLPFC target is anticorrelated with the subgenual cingulate: Fox et al., 2012. Coil, field and pathway are schematic."
+        },
+        {
+          "id": "dbs",
+          "name": "Estimulación cerebral profunda (cingulada subgenual)",
+          "sub": "Fase de investigación",
+          "text": "En el primer estudio 4 de 6 pacientes mejoraron notablemente; un ensayo aleatorizado multicéntrico posterior no superó a la estimulación simulada en su fase inicial. Solo para uso en investigación, en adultos. No se usa en niños.",
+          "src": "Mayberg et al., 2005 (Neuron); Holtzheimer et al., 2017 (Lancet Psychiatry). The lead path is schematic."
+        },
+        {
+          "id": "ekt",
+          "name": "Terapia electroconvulsiva (TEC)",
+          "sub": "Depresión grave o resistente",
+          "text": "En un metaanálisis de estudios en adultos es superior a los fármacos antidepresivos. En adolescentes la evidencia es un parámetro de práctica basado en informes de casos y estudios pequeños; se recomienda la evaluación de síntomas y cognitiva antes y después, y los niños prepúberes quedan fuera del parámetro. En un estudio de RM de 281 pacientes, el volumen del hipocampo aumenta alrededor de un 0.28% por sesión, pero esto no explica la mejoría. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "UK ECT Review Group, 2003 (Lancet); Ghaziuddin et al., 2004 (JAACAP); Oltedal et al., 2018 (Biological Psychiatry)."
+        },
+        {
+          "id": "ketamin",
+          "name": "Ketamina y esketamina",
+          "sub": "Depresión resistente de acción rápida",
+          "text": "En la depresión resistente en adultos, la esketamina intranasal añadida a un antidepresivo oral mostró un efecto rápido y dependiente de la dosis (67 pacientes); la aprobación de la FDA en 2019 es para adultos y se administra en centros certificados. En un ensayo cruzado de 17 adolescentes, una dosis intravenosa única de ketamina superó al midazolam a las 24 horas, con más aumento de la presión arterial y síntomas disociativos; faltan datos de seguridad a largo plazo. Se piensa que actúa a través del sistema glutamatérgico.",
+          "src": "Daly et al., 2018 (JAMA Psychiatry); Dwyer et al., 2021 (American Journal of Psychiatry); FDA, 2019."
+        },
+        {
+          "id": "kat",
+          "name": "Psicoterapia interpersonal",
+          "sub": "Depresión en adolescentes",
+          "text": "En un ensayo en una clínica escolar con 63 adolescentes, 12 sesiones de psicoterapia interpersonal redujeron más los síntomas y mejoraron más el funcionamiento que la atención habitual. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Mufson et al., 2004 (Archives of General Psychiatry)."
+        },
+        {
+          "id": "obur",
+          "name": "Otros antidepresivos",
+          "sub": "Bupropión, IRSN, mirtazapina",
+          "text": "En un metaanálisis en red de 21 antidepresivos en 522 ensayos en adultos, todos superaron al placebo. El panorama difiere en niños y adolescentes: en un metaanálisis en red, la fluoxetina fue el único fármaco significativamente mejor que el placebo. La advertencia sobre la ideación suicida se aplica por debajo de los 25 años.",
+          "src": "Cipriani et al., 2018; Cipriani et al., 2016 (Lancet)."
+        }
+      ]
+    }
+  },
+  "yab": {
+    "name": "Trastorno de ansiedad generalizada",
+    "short": "TAG",
+    "kitapta": [
+      {},
+      {
+        "snippet": "La ansiedad generalizada y la «sensación de que algo malo va a pasar» (la descripción de PANIC en el capítulo 3) pueden explicarse mejor por un patrón dominado por el BNST."
+      },
+      {},
+      {},
+      {}
+    ],
+    "summary": "Percepción de la amenaza (amígdala), ansiedad sostenida ante una amenaza incierta (BNST), sensación corporal (ínsula) y regulación prefrontal.",
+    "mercek": {
+      "devre": {
+        "title": "Bucle de amenaza y regulación",
+        "text": "La amígdala responde a la amenaza cercana y clara, el BNST a la amenaza incierta y distante; ambos preparan el cuerpo a través del hipotálamo (eje del estrés) y la PAG (defensa). La corteza prefrontal ventromedial y ventrolateral frenan la amígdala; la ínsula porta las sensaciones corporales de la ansiedad; el locus coeruleus eleva la activación.",
+        "modes": {
+          "saglikli": {
+            "name": "Saludable",
+            "text": "La señal de amenaza coincide con el peligro real; la corteza prefrontal frena la amígdala y la respuesta al estrés se desvanece una vez que el peligro ha pasado."
+          },
+          "yab": {
+            "name": "Modelo del TAG",
+            "text": "La señal de amenaza es fuerte y el freno prefrontal débil: en niños y adolescentes con TAG la amígdala derecha responde más a las caras de enfado y la contrarregulación de la corteza prefrontal ventrolateral es débil. El BNST sostiene la ansiedad ante una amenaza incierta; el bucle alimenta la sensación de que «algo malo va a pasar»."
+          }
+        },
+        "src": "Child and adolescent GAD: Monk et al., 2008. BNST and sustained anxiety: Davis et al., 2010; Grupe and Nitschke, 2013. The model is a theory."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección de un hallazgo: cálido = hiperactivo, frío = hipoactivo o conexión débil. Las diferencias estructurales en el TAG son pequeñas; los hallazgos residen más en la función y la conectividad.",
+        "gruplar": [
+          {
+            "name": "Función (niños y adolescentes)",
+            "text": "Los jóvenes con TAG muestran una respuesta más fuerte de la amígdala derecha ante caras de enfado presentadas demasiado brevemente (17 ms) para ser percibidas, y esta respuesta se correlaciona con la gravedad de la ansiedad; la conexión de la corteza prefrontal ventrolateral derecha que equilibra la amígdala en jóvenes sanos tiende a ser más débil en el TAG.",
+            "items": [
+              {
+                "dtxt": "over-active",
+                "txt": "Respuesta de la amígdala derecha mayor."
+              },
+              {
+                "dtxt": "weak regulation",
+                "txt": "Contrarregulación de la corteza prefrontal ventrolateral (giro frontal inferior) débil."
+              }
+            ],
+            "src": "Monk et al., 2008 (Archives of General Psychiatry)."
+          },
+          {
+            "name": "Estructura (ENIGMA)",
+            "text": "En el estudio de TAG de 28 centros de ENIGMA-Anxiety (de 5 a 90 años) las diferencias estructurales cerebrales fueron pequeñas. El TAG probablemente se apoya más en la función y la conectividad que en la estructura; la región aparece en gris.",
+            "items": [
+              {
+                "dtxt": "no clear difference",
+                "txt": "Las diferencias estructurales son pequeñas."
+              }
+            ],
+            "src": "Harrewijn et al., 2021 (Translational Psychiatry)."
+          }
+        ]
+      },
+      "belirtiler": [
+        {
+          "id": "endise",
+          "name": "Preocupación",
+          "sub": "Pensamiento repetitivo incontrolable orientado al futuro",
+          "devre": "Red neuronal por defecto",
+          "text": "La corteza prefrontal medial y la cingulada posterior sustentan el pensamiento autodirigido y orientado al futuro; en el TAG esta red subyace al pensamiento repetitivo relacionado con la preocupación."
+        },
+        {
+          "id": "tehdit",
+          "name": "Sensibilidad a la amenaza",
+          "sub": "Percibir lo incierto como peligroso",
+          "devre": "Circuito del afecto negativo",
+          "text": "La amígdala y la cingulada anterior responden con fuerza a las señales de amenaza; cuando la regulación prefrontal sigue siendo débil, la percepción de amenaza se extiende."
+        },
+        {
+          "id": "belirsizlik",
+          "name": "Intolerancia a la incertidumbre",
+          "sub": "La sensación de «¿y si pasa algo malo?»",
+          "devre": "BNST e ínsula (ansiedad sostenida)",
+          "text": "La amenaza incierta e impredecible activa el BNST y la ínsula; la respuesta dura hasta que la amenaza se vuelve clara. El libro describe el vínculo del BNST con la sensación de que «algo malo va a pasar»."
+        },
+        {
+          "id": "beden",
+          "name": "Tensión corporal y activación",
+          "sub": "Tensión muscular, inquietud, mal sueño",
+          "devre": "Activación y eje del estrés",
+          "text": "El locus coeruleus impulsa la activación con noradrenalina y el hipotálamo gestiona el eje del estrés (cortisol); ambos se refuerzan con las señales de la amígdala."
+        }
+      ],
+      "belirtilerSrc": "Circuitos: Williams, 2016 (Lancet Psychiatry); incertidumbre y ansiedad sostenida: Grupe y Nitschke, 2013. La correspondencia síntoma-circuito es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "bdt",
+          "name": "TCC con exposición",
+          "sub": "Primera línea; con implicación de los padres",
+          "text": "Rompe el bucle de ansiedad que alimenta la evitación; utiliza la extinción del miedo y la regulación prefrontal (dibujadas en el atlas con la vía frontolímbica del libro). Romper el ciclo de reaseguración y acomodación a la evitación de los padres forma parte del tratamiento. En niños y adolescentes, la mejoría marcada a las 12 semanas con TCC sola fue del 59.7%.",
+          "src": "CAMS: Walkup et al., 2008 (NEJM)."
+        },
+        {
+          "id": "ssri",
+          "name": "ISRS e IRSN",
+          "sub": "Inhiben la recaptación de serotonina (y noradrenalina)",
+          "text": "Los ISRS (sertralina, fluoxetina, fluvoxamina) son eficaces; el fármaco aprobado por la FDA para el TAG en niños y adolescentes es la duloxetina (de 7 a 17 años, un IRSN). En 488 niños de 7 a 17 años, mejoría marcada a las 12 semanas: sertralina + TCC 80.7%, sertralina sola 54.9%, placebo alrededor del 24%. Se aplican la advertencia sobre la ideación suicida y la vigilancia estrecha.",
+          "src": "CAMS: Walkup et al., 2008."
+        }
+      ]
+    }
+  },
+  "tssb": {
+    "name": "Trastorno de estrés postraumático",
+    "short": "TEPT",
+    "kitapta": [
+      {},
+      {},
+      {
+        "snippet": "estrés crónico que conduce a una pérdida de contextualización (la sensación de «todo es peligroso» en el TEPT; capítulos 10 y 18)"
+      },
+      {
+        "snippet": "desequilibrio postraumático entre hipocampo y amígdala (capítulo 18)"
+      },
+      {
+        "snippet": "Generalización contextual en el TEPT (capítulo 18)"
+      },
+      {
+        "snippet": "disociación postraumática y la ventana de tolerancia (capítulo 18)"
+      }
+    ],
+    "summary": "Circuito de aprendizaje y extinción del miedo: una amígdala hiperactiva, con un freno débil de la corteza prefrontal ventromedial y una entrada contextual débil procedente del hipocampo.",
+    "mercek": {
+      "devre": {
+        "title": "Circuito de aprendizaje y extinción del miedo",
+        "text": "La amígdala evalúa la amenaza y desencadena la respuesta al estrés y la defensa (huida, lucha, congelación) a través del hipotálamo y la PAG; el locus coeruleus eleva la activación. El hipocampo aporta el contexto («¿es seguro este lugar?»); la corteza prefrontal ventromedial recupera la extinción aprendida y frena la amígdala.",
+        "modes": {
+          "saglikli": {
+            "name": "Saludable",
+            "text": "Una vez que el peligro ha pasado, el hipocampo reconoce el contexto seguro y la corteza prefrontal ventromedial frena la amígdala; el miedo se extingue y el cuerpo se calma."
+          },
+          "tssb": {
+            "name": "Modelo de TEPT",
+            "text": "La amígdala reacciona de forma excesiva a las señales de amenaza; el freno de la corteza prefrontal ventromedial y la entrada contextual del hipocampo son débiles. Incluso cuando la extinción se ha aprendido, no se recupera, y el miedo se generaliza a todo lo que recuerda al trauma («todo es peligroso»). La activación y el eje del estrés permanecen encendidos."
+          }
+        },
+        "src": "Fear learning and extinction is a classic neurocircuit model; hippocampus: Logue et al., 2018. The model is a theory."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección y el tamaño de un hallazgo: frío = menor. Las diferencias son promedios de grupo y pequeñas; las imágenes no permiten diagnosticar a una persona.",
+        "gruplar": [
+          {
+            "name": "Estructura (ENIGMA-PGC)",
+            "text": "ENIGMA-PGC (1,868 personas, 794 con TEPT, 16 cohortes): en el TEPT actual el hipocampo es menor que en las personas expuestas a trauma sin TEPT. La diferencia de la amígdala no es significativa tras la corrección por comparaciones múltiples.",
+            "items": [
+              {
+                "dtxt": "d = −0.17",
+                "txt": "Hipocampo menor."
+              },
+              {
+                "dtxt": "d = −0.11",
+                "txt": "Amígdala menor (no significativo tras la corrección)."
+              }
+            ],
+            "src": "Logue et al., 2018 (Biological Psychiatry)."
+          }
+        ]
+      },
+      "belirtiler": [
+        {
+          "id": "yeniden",
+          "name": "Reexperimentación",
+          "sub": "Recuerdos intrusivos, pesadillas, juego traumático",
+          "devre": "Circuito de memoria amígdala-hipocampo",
+          "text": "El recuerdo del trauma se almacena junto con su carga emocional; cuando el hipocampo no procesa con suficiente precisión su contexto y su ubicación temporal, el recuerdo se revive como si estuviera «ocurriendo ahora». El libro describe esta vía como «generalización contextual en el TEPT»."
+        },
+        {
+          "id": "uyarilma",
+          "name": "Hiperactivación",
+          "sub": "Sobresalto, hipervigilancia, sueño deficiente",
+          "devre": "Eje de activación y estrés",
+          "text": "El locus coeruleus (noradrenalina) y el hipotálamo (eje del estrés, cortisol) mantienen el cuerpo en alerta constante; ambos se refuerzan con las señales procedentes de la amígdala."
+        },
+        {
+          "id": "kacinma",
+          "name": "Evitación y miedo no extinguido",
+          "sub": "Alejarse de los recordatorios",
+          "devre": "Circuito frontolímbico de extinción",
+          "text": "La corteza prefrontal ventromedial frena la amígdala al recuperar la extinción aprendida; en el TEPT este freno es débil. La evitación mantiene el miedo porque no deja ninguna oportunidad para el aprendizaje de extinción."
+        },
+        {
+          "id": "dissosiyasyon",
+          "name": "Disociación y congelación",
+          "sub": "Desapego, embotamiento, congelación",
+          "devre": "PAG y defensa vagal",
+          "text": "Cuando la huida es imposible, la PAG desencadena la congelación y la desconexión; el libro explica la disociación a través de la PAG y de la jerarquía polivagal. En el subtipo disociativo se propone que la corteza prefrontal suprime en exceso las respuestas límbicas."
+        }
+      ],
+      "belirtilerSrc": "Contexto: Liberzon y Abelson, 2016. Extinción: Milad et al., 2009 (16 pacientes). Respuesta al estrés: Ulrich-Lai y Herman, 2009. Subtipo disociativo: Lanius et al., 2010. La correspondencia entre síntomas y circuitos es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "tobdt",
+          "name": "TCC centrada en el trauma",
+          "sub": "Primera línea en niños y adolescentes",
+          "text": "Eficaz independientemente de la edad, el sexo y el tipo de trauma (metaanálisis de datos individuales de los participantes). La narrativa del trauma y la exposición graduada utilizan la extinción del miedo (corteza prefrontal ventromedial → amígdala) y reconstruyen una sensación de contexto seguro. El atlas dibuja la vía frontolímbica del libro.",
+          "src": "The Lancet Child & Adolescent Health, 2023 (individual participant data meta-analysis)."
+        },
+        {
+          "id": "ssri",
+          "name": "ISRS",
+          "sub": "No es la primera elección en niños",
+          "text": "En 131 niños y adolescentes, 10 semanas de sertralina no superaron al placebo. Los ISRS son eficaces en adultos; en niños pueden utilizarse para la depresión y la ansiedad concurrentes.",
+          "src": "Robb et al., 2010."
+        },
+        {
+          "id": "emdr",
+          "name": "EMDR",
+          "sub": "Desensibilización por movimientos oculares",
+          "text": "En un metaanálisis en red de 32 ensayos en niños y jóvenes es eficaz, aunque menos que la TCC individual centrada en el trauma; la evidencia es de calidad moderada a baja. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Mavranezouli et al., 2020 (Journal of Child Psychology and Psychiatry)."
+        },
+        {
+          "id": "pe",
+          "name": "Exposición prolongada",
+          "sub": "Versión para adolescentes",
+          "text": "En 61 chicas de 13 a 18 años con TEPT relacionado con abuso sexual superó al asesoramiento de apoyo, y la diferencia se mantuvo durante 12 meses; lo aplicaron orientadores de clínicas comunitarias. Utiliza la extinción del miedo (la vía frontolímbica del libro en el atlas).",
+          "src": "Foa et al., 2013 (JAMA)."
+        }
+      ]
+    }
+  },
+  "bipolar": {
+    "name": "Trastorno bipolar",
+    "short": "Bipolar",
+    "summary": "Regulación emocional (amígdala, corteza prefrontal ventrolateral) y circuitos de recompensa; oscilaciones entre la manía y los episodios depresivos.",
+    "mercek": {
+      "devre": {
+        "title": "Regulación emocional y equilibrio de la recompensa",
+        "text": "La amígdala aporta la intensidad de un estímulo emocional; la corteza prefrontal ventrolateral (giro frontal inferior) y la OFC (corteza orbitofrontal) la regulan. La vía dopaminérgica que va del VTA (área tegmental ventral) al accumbens alimenta la recompensa y la motivación. En el trastorno bipolar, el equilibrio entre estos dos sistemas se desplaza en ambas direcciones a lo largo de los episodios.",
+        "modes": {
+          "saglikli": {
+            "name": "Equilibrado",
+            "text": "La señal de recompensa alimenta la motivación y la corteza prefrontal regula las respuestas emocionales; el ánimo sube y baja con los acontecimientos y después vuelve al equilibrio."
+          },
+          "depresif": {
+            "name": "Episodio depresivo",
+            "text": "La vía de la recompensa se debilita (anhedonia, pérdida de energía) y aumenta la emoción negativa. En la depresión bipolar los antidepresivos no se utilizan en monoterapia."
+          },
+          "mani": {
+            "name": "Modelo de manía",
+            "text": "La vía de la recompensa trabaja en exceso: aumentan la motivación, la energía y la asunción de riesgos, y disminuye la necesidad de dormir. La amígdala es más reactiva y el freno de la corteza prefrontal ventrolateral y de la OFC es débil. El aumento de la sensibilidad a la recompensa en la manía es una teoría."
+          }
+        },
+        "src": "In ENIGMA, the largest cortical thinning is in the left pars opercularis (inferior frontal gyrus; Hibar et al., 2018). The reward sensitivity model is theoretical."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección y el tamaño de un hallazgo: frío = menor o más delgado. Las diferencias son promedios de grupo y pequeñas; las imágenes no permiten diagnosticar a una persona.",
+        "gruplar": [
+          {
+            "name": "Subcortical (ENIGMA)",
+            "text": "ENIGMA-BD (1,710 pacientes, 2,594 controles): hipocampo y tálamo menores, ventrículos laterales mayores. Los usuarios de litio tenían un tálamo mayor (exploratorio).",
+            "items": [
+              {
+                "dtxt": "d = −0.23",
+                "txt": "Hipocampo menor."
+              },
+              {
+                "dtxt": "d = −0.15",
+                "txt": "Tálamo menor."
+              }
+            ],
+            "src": "Hibar et al., 2016 (Molecular Psychiatry)."
+          },
+          {
+            "name": "Corteza (ENIGMA)",
+            "text": "ENIGMA-BD (1,837 pacientes, 2,582 controles): corteza frontal, temporal y parietal más delgada; el adelgazamiento aumenta con la duración de la enfermedad. El litio, los antiepilépticos y los antipsicóticos se asocian con las medidas corticales.",
+            "items": [
+              {
+                "dtxt": "d = −0.29",
+                "txt": "Pars opercularis izquierda (giro frontal inferior) más delgada."
+              },
+              {
+                "dtxt": "d = −0.29",
+                "txt": "Giro fusiforme izquierdo más delgado."
+              },
+              {
+                "dtxt": "d = −0.28",
+                "txt": "Corteza frontal media rostral izquierda más delgada."
+              }
+            ],
+            "src": "Hibar et al., 2018 (Molecular Psychiatry)."
+          }
+        ]
+      },
+      "belirtiler": [
+        {
+          "id": "mani",
+          "name": "Manía: aumento de la energía y de la asunción de riesgos",
+          "sub": "Menor necesidad de dormir, aceleración, conductas de riesgo",
+          "devre": "Circuito de recompensa",
+          "text": "Aumentan la anticipación de la recompensa y la motivación; se ha propuesto una mayor sensibilidad del circuito de recompensa. El libro incluye la manía entre los correlatos clínicos del sistema SEEKING."
+        },
+        {
+          "id": "duygu",
+          "name": "Cambios de ánimo e irritabilidad",
+          "sub": "Emoción intensa y de cambio rápido",
+          "devre": "Circuito de regulación emocional",
+          "text": "La amígdala responde con fuerza a los estímulos emocionales; cuando el freno de la corteza prefrontal ventrolateral y de la OFC sigue siendo débil, la emoción se eleva rápidamente."
+        },
+        {
+          "id": "depresif",
+          "name": "Episodio depresivo",
+          "sub": "Ánimo bajo, pérdida de energía",
+          "devre": "Circuitos de recompensa y de emoción negativa",
+          "text": "En la depresión bipolar disminuye la respuesta de recompensa y aumenta la emoción negativa. El primer episodio suele ser depresivo, por lo que los antecedentes familiares importan en la depresión adolescente."
+        }
+      ],
+      "belirtilerSrc": "Emoción y recompensa: Phillips y Swartz, 2014. Sistema de aproximación conductual: Urošević et al., 2008. La correspondencia entre síntomas y circuitos es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "lityum",
+          "name": "Litio",
+          "sub": "Estabilizador del ánimo",
+          "text": "Aprobado por la FDA en 2018 para la manía aguda y el mantenimiento en edades de 7 a 17 años (incluido un ensayo controlado con placebo de 81 niños). Es necesario monitorizar los niveles sanguíneos, la función renal y la función tiroidea. En ENIGMA, los usuarios de litio presentaban un mayor volumen talámico (exploratorio). La información de producto turca (KÜB) indica que no debe utilizarse en menores de 12 años. Dado que el mecanismo no se conoce con certeza, en esta tarjeta no se dibuja ninguna vía cerebral ni ningún resaltado regional.",
+          "src": "FDA, 2018; Hibar et al., 2016."
+        },
+        {
+          "id": "antipsikotik",
+          "name": "Antipsicóticos de segunda generación",
+          "sub": "Manía aguda",
+          "text": "Aprobados para la manía aguda en adolescentes (p. ej., aripiprazol, risperidona, quetiapina); bloquean los receptores D2 y atenúan la señalización dopaminérgica excesiva en la vía de la recompensa. Se monitorizan el peso y los efectos metabólicos.",
+          "src": "FDA approvals."
+        },
+        {
+          "id": "psikoegitim",
+          "name": "Psicoeducación y terapia centrada en la familia",
+          "sub": "Prevención de episodios",
+          "text": "En un ensayo aleatorizado de 58 adolescentes, la terapia centrada en la familia produjo una recuperación más rápida de los síntomas depresivos y menos semanas en episodios depresivos; el tiempo hasta la recurrencia y la manía no difirieron. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Miklowitz et al., 2008 (Archives of General Psychiatry)."
+        },
+        {
+          "id": "lamotrijin",
+          "name": "Lamotrigina",
+          "sub": "Mantenimiento adyuvante",
+          "text": "En un ensayo aleatorizado de retirada en edades de 10 a 17 años, el análisis principal no fue significativo; apareció un beneficio entre los 13 y los 17 años, pero no entre los 10 y los 12. Se monitorizan las reacciones cutáneas. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Findling et al., 2015 (JAACAP)."
+        },
+        {
+          "id": "valproat",
+          "name": "Valproato",
+          "sub": "Evidencia débil, alto riesgo en el embarazo",
+          "text": "En 150 jóvenes de 10 a 17 años, el divalproex de liberación prolongada no redujo la manía más que el placebo a lo largo de 4 semanas. El riesgo de malformaciones y de problemas del desarrollo en el embarazo es alto: en Europa está contraindicado en niñas y mujeres con capacidad de gestación, salvo que se siga un programa de prevención del embarazo, y no se utiliza en el embarazo para el trastorno bipolar. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Wagner et al., 2009 (JAACAP); EMA, 2018."
+        }
+      ]
+    }
+  },
+  "sizofreni": {
+    "name": "Esquizofrenia",
+    "short": "Esquizofrenia",
+    "kitapta": [
+      {},
+      {
+        "snippet": "la diana indirecta o directa de la mayoría de los fármacos utilizados en psiquiatría (estimulantes, antipsicóticos, incluso algunos antidepresivos)"
+      }
+    ],
+    "summary": "Aumento de la dopamina estriatal, el hipocampo y la corteza prefrontal; síntomas positivos, negativos y cognitivos.",
+    "mercek": {
+      "devre": {
+        "title": "Vías dopaminérgicas y el hipocampo",
+        "text": "Las vías dopaminérgicas van del VTA (área tegmental ventral) al accumbens y al estriado asociativo (mesolímbica) y a la corteza prefrontal (mesocortical); la sustancia negra inerva el estriado dorsal. El hipocampo modula la actividad de las neuronas dopaminérgicas del VTA a través del accumbens y del pálido ventral.",
+        "modes": {
+          "saglikli": {
+            "name": "Saludable",
+            "text": "La dopamina señala la saliencia solo ante acontecimientos importantes e inesperados; la corteza prefrontal ejecuta la memoria de trabajo y la planificación con suficiente dopamina."
+          },
+          "psikoz": {
+            "name": "Modelo de psicosis",
+            "text": "La síntesis y la liberación de dopamina en el estriado están aumentadas (metaanálisis de 44 estudios, d = 0.79): los estímulos neutros adquieren una saliencia excesiva, y de esta experiencia surgen los delirios y las alucinaciones. Se propone que la hiperactividad del hipocampo impulsa a las neuronas dopaminérgicas; la dopamina que llega a la corteza prefrontal está reducida (síntomas negativos y cognitivos)."
+          }
+        },
+        "src": "Dopamine: Howes et al., 2012; aberrant salience: Kapur, 2003. The hippocampus-dopamine model is theoretical."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección y el tamaño de un hallazgo: cálido = mayor o más, frío = menor. Las diferencias son promedios de grupo; las imágenes no permiten diagnosticar a una persona.",
+        "gruplar": [
+          {
+            "name": "Subcortical (ENIGMA)",
+            "text": "ENIGMA-SZ (2,028 pacientes, 2,540 controles): hipocampo, amígdala, tálamo y accumbens menores; pálido y ventrículos laterales mayores. La diferencia del hipocampo se relaciona con la proporción de pacientes sin medicación.",
+            "items": [
+              {
+                "dtxt": "d = −0.46",
+                "txt": "Hipocampo menor (la mayor diferencia)."
+              },
+              {
+                "dtxt": "d = −0.31",
+                "txt": "Amígdala menor."
+              },
+              {
+                "dtxt": "d = −0.31",
+                "txt": "Tálamo menor."
+              },
+              {
+                "dtxt": "d = −0.25",
+                "txt": "Accumbens menor."
+              },
+              {
+                "dtxt": "d = +0.21",
+                "txt": "Pálido mayor."
+              }
+            ],
+            "src": "van Erp et al., 2016 (Molecular Psychiatry)."
+          },
+          {
+            "name": "Dopamina (PET)",
+            "text": "En un metaanálisis de 44 estudios, la función dopaminérgica presináptica del estriado (síntesis y liberación) estaba claramente aumentada; el transportador de dopamina no estaba alterado, y el pequeño aumento de los receptores D2/3 no se observó en pacientes sin medicación.",
+            "items": [
+              {
+                "dtxt": "d = 0.79",
+                "txt": "Función dopaminérgica presináptica del estriado aumentada (más en el estriado asociativo)."
+              }
+            ],
+            "src": "Howes et al., 2012 (Archives of General Psychiatry)."
+          }
+        ]
+      },
+      "belirtiler": [
+        {
+          "id": "olumlu",
+          "name": "Alucinaciones y delirios",
+          "sub": "Síntomas positivos",
+          "devre": "Dopamina mesolímbica y saliencia aberrante",
+          "text": "La liberación desregulada de dopamina confiere saliencia a estímulos neutros; los delirios se consideran un intento de explicar esta experiencia. El giro temporal superior también está activo en las alucinaciones auditivas. En relación con SEEKING, el libro menciona la «atribución excesiva de significado en la psicosis»."
+        },
+        {
+          "id": "olumsuz",
+          "name": "Síntomas negativos",
+          "sub": "Reducción de la motivación y del afecto, retraimiento social",
+          "devre": "Vía mesocortical y recompensa",
+          "text": "La reducción de la dopamina que llega a la corteza prefrontal y los cambios en el circuito de recompensa se relacionan con la pérdida de motivación y de afecto; los antipsicóticos ayudan poco con estos síntomas."
+        },
+        {
+          "id": "bilissel",
+          "name": "Dificultades cognitivas",
+          "sub": "Memoria de trabajo, atención, planificación",
+          "devre": "Circuito prefrontal dorsolateral",
+          "text": "La memoria de trabajo y la planificación dependen del bucle del CPFDL (corteza prefrontal dorsolateral) con el estriado y el tálamo; las dificultades cognitivas limitan claramente el funcionamiento cotidiano."
+        }
+      ],
+      "belirtilerSrc": "Dopamina: Howes et al., 2012; Kapur, 2003; dopamina prefrontal: Slifstein et al., 2015 (20 pacientes). Alucinaciones: Jardri et al., 2011. Cognición y funcionamiento: Green, 1996. La correspondencia entre síntomas y circuitos es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "antipsikotik",
+          "name": "Antipsicóticos",
+          "sub": "Bloqueo de los receptores D2",
+          "text": "Su acción común es el bloqueo de los receptores D2; reducen los síntomas positivos y tienen un efecto limitado sobre los síntomas negativos y cognitivos. Muchos antipsicóticos de segunda generación están aprobados para adolescentes; se monitorizan el peso y los efectos metabólicos. El libro describe la vía mesolímbica como la diana de los antipsicóticos.",
+          "src": "Howes et al., 2012."
+        },
+        {
+          "id": "klozapin",
+          "name": "Clozapina",
+          "sub": "Casos resistentes al tratamiento",
+          "text": "La opción más eficaz en la esquizofrenia de inicio temprano resistente al tratamiento: en un ensayo doble ciego de 39 adolescentes, la respuesta fue del 66 % con clozapina y del 33 % con olanzapina. Se monitorizan el hemograma (neutropenia) y las convulsiones. La información de producto turca (KÜB) indica que no debe utilizarse en menores de 16 años.",
+          "src": "Kumra et al., 2008 (Biological Psychiatry)."
+        },
+        {
+          "id": "psikososyal",
+          "name": "Intervención familiar y apoyo psicosocial",
+          "sub": "Reducción de las recaídas",
+          "text": "La intervención familiar reduce las recaídas en las personas con esquizofrenia; en la actualización de 2024 esta evidencia a corto plazo tiene una certeza baja, y el ingreso hospitalario mostró poca o ninguna diferencia en el plazo de un mes. La mayoría de los datos proceden de adultos. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Pharoah et al., 2010; Chien et al., 2024 (Cochrane)."
+        },
+        {
+          "id": "lai",
+          "name": "Antipsicóticos inyectables de acción prolongada",
+          "sub": "Prevención de recaídas",
+          "text": "En un metaanálisis de 137 estudios, el riesgo de hospitalización o de recaída es menor que con antipsicóticos orales (RR 0.88 en los ensayos aleatorizados). La calidad de los estudios observacionales limita la interpretación.",
+          "src": "Kishimoto et al., 2021 (Lancet Psychiatry)."
+        },
+        {
+          "id": "bdtp",
+          "name": "TCC para la psicosis",
+          "sub": "Apoyo añadido para los síntomas",
+          "text": "En un metaanálisis de 34 estudios el efecto es pequeño (síntomas globales −0.33; positivos −0.25; negativos −0.13) y se reduce aún más cuando se controlan las fuentes de sesgo, especialmente el enmascaramiento. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Jauhar et al., 2014 (British Journal of Psychiatry)."
+        },
+        {
+          "id": "erken",
+          "name": "Servicios de intervención temprana",
+          "sub": "Primer episodio y psicosis en fase temprana",
+          "text": "En 10 ensayos aleatorizados (2,176 pacientes), la intervención temprana reduce la interrupción del tratamiento y la hospitalización en comparación con la atención habitual; la ventaja aparece hasta los 24 meses, excepto en la gravedad de los síntomas generales y depresivos a los 18–24 meses. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Correll et al., 2018 (JAMA Psychiatry)."
+        },
+        {
+          "id": "ksanomelin",
+          "name": "Xanomelina-trospio",
+          "sub": "Diana muscarínica M1 y M4",
+          "text": "Actúa sobre los receptores muscarínicos M1 y M4 sin bloquear los receptores D2; la FDA lo aprobó en 2024 solo para adultos. En un ensayo de 5 semanas la puntuación PANSS descendió 8.4 puntos más que con placebo.",
+          "src": "Kaul et al., 2024 (JAMA Psychiatry); FDA, 2024."
+        }
+      ]
+    }
+  },
+  "borderline": {
+    "name": "Trastorno límite de la personalidad",
+    "short": "Límite",
+    "summary": "Circuito de regulación emocional: una amígdala hiperactiva y un CPFDL (corteza prefrontal dorsolateral) hipoactivo en respuesta a la emoción negativa; mentalización y dolor social.",
+    "mercek": {
+      "devre": {
+        "title": "Circuito de regulación emocional",
+        "text": "La amígdala y la ínsula aportan la intensidad de los estímulos emocionales, y la corteza cingulada anterior (CCA) aporta el dolor emocional; el CPFDL, la OFC (corteza orbitofrontal) y la corteza prefrontal medial regulan esta respuesta desde arriba. La unión temporoparietal y la corteza prefrontal medial sostienen la comprensión de la propia mente y de la de los demás (mentalización).",
+        "modes": {
+          "saglikli": {
+            "name": "Saludable",
+            "text": "Cuando se eleva un estímulo emocional, la corteza prefrontal lo regula; la capacidad de comprenderse a uno mismo y a los demás se mantiene bajo estrés."
+          },
+          "bpd": {
+            "name": "Modelo límite",
+            "text": "En respuesta a estímulos emocionales negativos, la amígdala izquierda reacciona en exceso y el CPFDL reacciona de menos (un acelerador fuerte y un freno débil de la emoción); la emoción se eleva rápidamente y se desvanece despacio. La mentalización se derrumba bajo una emoción intensa."
+          }
+        },
+        "src": "Schulze et al., 2016 (multimodal meta-analysis; findings inconsistent across studies). The mentalizing model is theoretical."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección de un hallazgo: cálido = más activo, frío = menos activo. Los hallazgos son inconsistentes entre los estudios; las imágenes no permiten diagnosticar a una persona.",
+        "gruplar": [
+          {
+            "name": "Función (metaanálisis)",
+            "text": "19 estudios funcionales (281 pacientes, 293 controles): ante estímulos emocionales negativos, la amígdala izquierda y la cingulada posterior están más activas, y el CPFDL de ambos lados está menos activo. El volumen de sustancia gris de la amígdala izquierda también es menor; la hiperactividad de la amígdala es más clara en las muestras sin medicación.",
+            "items": [
+              {
+                "dtxt": "more active",
+                "txt": "La amígdala izquierda reacciona en exceso; el volumen de sustancia gris es menor."
+              },
+              {
+                "dtxt": "more active",
+                "txt": "Cingulada posterior más activa."
+              },
+              {
+                "dtxt": "less active",
+                "txt": "Respuesta del CPFDL (corteza prefrontal dorsolateral) atenuada."
+              }
+            ],
+            "src": "Schulze et al., 2016 (Biological Psychiatry)."
+          }
+        ]
+      },
+      "belirtiler": [
+        {
+          "id": "duygu",
+          "name": "Inestabilidad emocional",
+          "sub": "Emoción intensa y de cambio rápido",
+          "devre": "Circuito de regulación emocional",
+          "text": "La amígdala y la ínsula aportan una emoción intensa; cuando el freno del CPFDL sigue siendo débil, la emoción se eleva rápidamente y se desvanece despacio."
+        },
+        {
+          "id": "terk",
+          "name": "Miedo al abandono y relaciones interpersonales",
+          "sub": "Sensibilidad al rechazo",
+          "devre": "Circuito del dolor social",
+          "text": "La exclusión social activa la corteza cingulada anterior (CCA) y la ínsula anterior en voluntarios sanos; se debate si se trata de la misma red que el dolor físico. El libro describe el dolor social y la separación a través del sistema PANIC/GRIEF."
+        },
+        {
+          "id": "durtu",
+          "name": "Impulsividad y autolesiones",
+          "sub": "Conductas repentinas de riesgo",
+          "devre": "Control de impulsos orbitofrontal",
+          "text": "La OFC (corteza orbitofrontal) sopesa las recompensas y las consecuencias y frena los impulsos; cuando sigue siendo débil, una emoción intensa se convierte en una acción repentina."
+        },
+        {
+          "id": "kimlik",
+          "name": "Identidad y mentalización",
+          "sub": "Comprenderse a uno mismo y a los demás",
+          "devre": "Red de mentalización",
+          "text": "La unión temporoparietal y la corteza prefrontal medial sostienen la comprensión de los estados mentales propios y ajenos; el tratamiento basado en la mentalización se dirige a esta capacidad."
+        }
+      ],
+      "belirtilerSrc": "Emoción: Schulze et al., 2016. Exclusión social: Eisenberger et al., 2003; Cacioppo et al., 2013. Mentalización: Fonagy y Luyten, 2009. La correspondencia entre síntomas y circuitos es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "dbt",
+          "name": "Terapia dialéctica conductual (DBT-A)",
+          "sub": "Para adolescentes",
+          "text": "En jóvenes de 12 a 18 años con autolesiones repetidas, una reducción clara de la ideación suicida y de la depresión; la ventaja en la frecuencia de autolesiones se mantuvo hasta el seguimiento de 3 años. Enseña habilidades de regulación emocional y de tolerancia al malestar, y se considera que actúa sobre las vías de regulación prefrontal. No se recomienda medicación para el trastorno límite en sí.",
+          "src": "Mehlum et al., 2014; 2019. NICE CG78."
+        },
+        {
+          "id": "mbt",
+          "name": "Tratamiento basado en la mentalización (MBT)",
+          "sub": "Refuerzo de la mentalización",
+          "text": "Refuerza la comprensión de la mente propia y de la ajena, especialmente bajo intensidad emocional; después de la DBT es el tratamiento más estudiado en adultos, y los estudios en adolescentes están en curso.",
+          "src": "Stoffers-Winterling et al., 2012; Storebø et al., 2020 (Cochrane)."
+        },
+        {
+          "id": "ilacyeri",
+          "name": "El lugar de la medicación",
+          "sub": "Ninguna medicación para el trastorno en sí",
+          "text": "Cochrane 2022: ningún medicamento parece eficaz para tratar específicamente la patología límite, y el registro de acontecimientos adversos es deficiente. Las decisiones de medicación para las condiciones concurrentes las valora el médico por separado. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Stoffers-Winterling et al., 2022 (Cochrane)."
+        },
+        {
+          "id": "sema",
+          "name": "Terapia de esquemas",
+          "sub": "Ensayo en adultos",
+          "text": "En un ensayo aleatorizado de 3 años con 88 pacientes, ambos tratamientos mejoraron los síntomas y la calidad de vida; la terapia de esquemas superó a la psicoterapia centrada en la transferencia, con menos abandonos. El ensayo es en adultos. En esta tarjeta no se dibuja ninguna vía cerebral.",
+          "src": "Giesen-Bloo et al., 2006 (Archives of General Psychiatry)."
+        }
+      ]
+    }
+  },
+  "tik": {
+    "name": "Trastornos de tics y síndrome de Tourette",
+    "short": "Tics",
+    "kitapta": [
+      {
+        "snippet": "tics y urgencias premonitorias (capítulo 9)"
+      },
+      {}
+    ],
+    "summary": "Bucle sensitivomotor corticoestriatotalamocortical; la urgencia premonitoria previa a los tics se relaciona con la ínsula y el área motora suplementaria.",
+    "mercek": {
+      "devre": {
+        "title": "Bucle sensitivomotor y urgencia premonitoria",
+        "text": "El área motora suplementaria y la corteza motora se conectan con el putamen, el putamen con el tálamo a través del GPi, y el tálamo de nuevo con la corteza; este bucle selecciona programas motores y ejecuta hábitos. La sustancia negra modula el bucle con dopamina. La ínsula aporta la urgencia desagradable que precede al tic (urgencia premonitoria); esta vía se dibuja en Síntomas → Urgencia premonitoria.",
+        "modes": {
+          "tipik": {
+            "name": "Típico",
+            "text": "El bucle selecciona el movimiento pretendido y retiene los demás; la señal de urgencia es débil y los movimientos son propositivos."
+          },
+          "tik": {
+            "name": "Modelo de tic",
+            "text": "Los frenos del bucle no son lo bastante selectivos: los programas motores no deseados se liberan de vez en cuando. La ínsula y la corteza cingulada anterior (CCA) aportan la urgencia premonitoria (Síntomas); el tic alivia brevemente la urgencia y refuerza el bucle. Que los bloqueantes de dopamina reduzcan los tics apunta a un papel de la dopamina."
+          }
+        },
+        "src": "Sensorimotor loop: Alexander et al., 1986. Premonitory urge: Bohlhalter et al., 2006 (10 adults). The model is a theory."
+      },
+      "bulgular": {
+        "text": "El color muestra la dirección de un hallazgo. Los estudios son pequeños; las imágenes no aportan diagnóstico ni pronóstico para una persona.",
+        "gruplar": [
+          {
+            "name": "Estructura",
+            "text": "Los niños (menores de 14 años) con un caudado menor en RM tenían síntomas de tics y de TOC más graves unos 7.5 años después (43 niños). El volumen del caudado no se relacionó con la gravedad en el momento de la exploración.",
+            "items": [
+              {
+                "dtxt": "inverse link",
+                "txt": "Caudado menor, síntomas más graves al inicio de la edad adulta."
+              }
+            ],
+            "src": "Bloch et al., 2005 (Neurology)."
+          },
+          {
+            "name": "Función (antes de los tics)",
+            "text": "Justo antes de un tic se activan la corteza cingulada anterior, la ínsula y el área motora suplementaria; durante el tic, la corteza sensitivomotora y el cerebelo (10 adultos, fMRI de eventos).",
+            "items": [
+              {
+                "dtxt": "before tic",
+                "txt": "Ínsula: relacionada con la urgencia premonitoria."
+              },
+              {
+                "dtxt": "before tic",
+                "txt": "Corteza cingulada anterior: activa antes del tic."
+              },
+              {
+                "dtxt": "before tic",
+                "txt": "Área motora suplementaria: activa antes del tic."
+              },
+              {
+                "dtxt": "during tic",
+                "txt": "Corteza motora: activa durante el tic."
+              }
+            ],
+            "src": "Bohlhalter et al., 2006 (Brain)."
+          }
+        ]
+      },
+      "belirtiler": [
+        {
+          "id": "motor",
+          "name": "Tics motores y vocales",
+          "sub": "Parpadeo, sacudidas de cabeza, carraspeo",
+          "devre": "Bucle sensitivomotor",
+          "text": "El bucle que atraviesa el área motora suplementaria, el putamen, el GPi y el tálamo selecciona programas motores; cuando sus frenos resultan insuficientes, los programas no deseados aparecen como tics."
+        },
+        {
+          "id": "durtu",
+          "name": "Urgencia premonitoria",
+          "sub": "Sensación desagradable antes del tic",
+          "devre": "Ínsula y corteza cingulada anterior",
+          "text": "La ínsula y la corteza cingulada anterior (CCA) aportan una sensación de malestar procedente del interior del cuerpo; el tic la alivia durante un breve periodo. El libro trata los «tics y urgencias premonitorias» en el apartado de los ganglios basales."
+        },
+        {
+          "id": "bastirma",
+          "name": "Supresión de los tics",
+          "sub": "Retenerlos durante un tiempo",
+          "devre": "Inhibición prefrontal",
+          "text": "Los tics pueden suprimirse durante un breve periodo; la actividad de los ganglios basales y del tálamo cambia durante la supresión, y una vía va de la corteza frontal inferior al núcleo subtalámico. La CBIT utiliza esta capacidad con una respuesta competitiva."
+        },
+        {
+          "id": "eslik",
+          "name": "Comorbilidad con TDAH y TOC",
+          "sub": "Condiciones que a menudo coexisten",
+          "devre": "Bucles corticostriatales adyacentes",
+          "text": "El TDAH y el TOC son frecuentes en los trastornos de tics; estas condiciones comparten bucles adyacentes del mismo sistema corticostriatal."
+        }
+      ],
+      "belirtilerSrc": "Red pretíc: Bohlhalter et al., 2006. Supresión: Peterson et al., 1998; vía frontal inferior-subtalámica: Aron et al., 2007. Condiciones concurrentes: Hirschtritt et al., 2015. La correspondencia entre síntomas y circuitos es un marco teórico.",
+      "tedavi": [
+        {
+          "id": "cbit",
+          "name": "Intervención conductual integral para los tics (CBIT)",
+          "sub": "Primera línea",
+          "text": "En 126 niños (de 9 a 17 años), la mejoría clara con CBIT fue del 52.5 % frente a alrededor del 18.5 % con terapia de apoyo; el efecto es similar al de los ensayos con medicación. Concienciación sobre los tics y entrenamiento en respuesta competitiva, con implicación de los padres.",
+          "src": "Piacentini et al., 2010 (JAMA)."
+        },
+        {
+          "id": "aripiprazol",
+          "name": "Aripiprazol y antipsicóticos",
+          "sub": "Modulan la señalización dopaminérgica",
+          "text": "El aripiprazol está aprobado por la FDA para el síndrome de Tourette en edades de 6 a 18 años; reduce los tics modulando la señalización dopaminérgica. Se monitorizan el peso y los efectos metabólicos.",
+          "src": "FDA label."
+        },
+        {
+          "id": "alfa2",
+          "name": "Guanfacina y clonidina",
+          "sub": "Agonistas α2",
+          "text": "En un metaanálisis de ensayos aleatorizados el efecto sobre los tics fue menor que el de los antipsicóticos; fue de magnitud media a grande en los ensayos con personas con tics y TDAH, y pequeño y no significativo en los ensayos que excluían el TDAH.",
+          "src": "Weisman et al., 2013 (Neuroscience and Biobehavioral Reviews)."
+        },
+        {
+          "id": "dbs",
+          "name": "Estimulación cerebral profunda (ECP) del tálamo",
+          "sub": "Casos adultos graves y resistentes",
+          "text": "Se dirige al complejo centromediano-parafascicular del tálamo o al GPi; en un registro internacional, la gravedad de los tics disminuyó al año, mientras que alrededor de un tercio de los pacientes notificó un acontecimiento adverso; la técnica quirúrgica y los criterios de inclusión variaron. No se utiliza en niños.",
+          "src": "Martinez-Ramirez et al., 2018 (JAMA Neurology). The electrode path is schematic."
+        }
+      ]
+    }
+  }
+};
 
-  };
-  // Türkçe veriye işle: düz alanlar yazılır; nesneler iç içe, diziler kimlikle (yoksa sırayla) eşlenir
   function merge(dst, src) {
     Object.keys(src).forEach((k) => {
       const v = src[k];
-      if (Array.isArray(v) && Array.isArray(dst[k])) {
-        v.forEach((x, i) => {
-          const t = x && x.id ? dst[k].find((y) => y && y.id === x.id) : dst[k][i];
-          if (t && typeof x === 'object') merge(t, x);
-        });
-      } else if (v && typeof v === 'object' && dst[k] && typeof dst[k] === 'object') merge(dst[k], v);
-      else dst[k] = v;
+      if (Array.isArray(v) && Array.isArray(dst[k]) && v.some((x) => x && typeof x === 'object')) {
+        v.forEach((x, i) => { const t = x.id ? dst[k].find((y) => y && y.id === x.id) : dst[k][i]; if (t) merge(t, x); });
+      } else if (v && typeof v === 'object' && !Array.isArray(v) && dst[k] && typeof dst[k] === 'object') merge(dst[k], v);
+      else dst[k] = Array.isArray(v) ? v.slice() : v;
     });
   }
   (window.TANILAR || []).forEach((d) => { if (EN[d.id]) merge(d, EN[d.id]); });

@@ -522,48 +522,6 @@
         ],
         links: ['Receptores de orexina 1 y 2: principalmente OX1 en el locus coeruleus, OX2 en el núcleo tuberomammilar; ambos en el raphe y VTA.']
       },
-        summary: 'The brain’s main excitatory signal: used by the projection neurons of the cortex, thalamus and hippocampus; the carrier of learning and memory, and the target of ketamine.',
-        anatomy: [
-          'Cortical pyramidal neurons, thalamic relay neurons, the hippocampus, the basolateral amygdala, the subthalamic nucleus and cerebellar granule cells use glutamate. Only 19% of the brain’s 86 billion neurons are in the cerebral cortex; most are cerebellar granule cells (Azevedo et al., 2009).',
-          'Corticostriatal pathway: prefrontal and motor cortex → caudate, putamen and accumbens; the input to the basal ganglia loops.',
-          'Thalamocortical pathway: thalamus (MD, VA, VL) → prefrontal and motor cortex; the cortex projects back to the thalamus.',
-          'Limbic inputs: hippocampus → accumbens (context), amygdala → mPFC (emotional value).',
-          'Subthalamic nucleus → GPi (the excitatory link of the indirect pathway); pons → cerebellum and dentate → thalamus (the cerebellar loop).',
-          'Long cortico-cortical pathways (e.g. the arcuate fasciculus: superior temporal → Broca) and the corticospinal tract (motor cortex → spinal cord). Only the main examples of these pathways are drawn in 3D.'
-        ],
-        functions: [
-          'Fast excitatory transmission: carrying information from sensation to movement (AMPA receptors).',
-          'Learning and memory: the NMDA receptor detects coincident activity; long-term potentiation (LTP) is the cellular model of memory (Bliss and Collingridge, 1993). [B]',
-          'Corticostriatal input carries action selection and habit; dopamine tunes the effect of this input.',
-          'Too much is toxic (excitotoxicity): it contributes to neuron death in stroke, trauma and prolonged seizures (Choi, 1988). [B]'
-        ],
-        development: [
-          'Early in development the GluN2B subunit dominates NMDA receptors; with maturation GluN2A increases and the synapse works faster (rat; Monyer et al., 1994). [B]',
-          'Synaptic pruning: dendritic spine density in the prefrontal cortex is two to three times the adult value in childhood, starts to fall at puberty, and pruning continues throughout the twenties (Petanjek et al., 2011). [B]'
-        ],
-        clinical: [
-          'Anti-NMDA receptor encephalitis: all of 100 patients presented with psychiatric symptoms or memory problems (Dalmau et al., 2008); children make up 40% of cases, and in 87.5% the first sign is a change in behavior or personality (Florance et al., 2009). Consider it when new-onset psychosis comes with seizures, involuntary movements or altered consciousness. [B]',
-          'Schizophrenia, the NMDA hypofunction hypothesis: in healthy volunteers ketamine produced a picture resembling the positive and negative symptoms of schizophrenia (Krystal et al., 1994). [B]',
-          'OCD: in treatment-naive children caudate glutamatergic metabolites (Glx) were high and fell with 12 weeks of paroxetine; the fall tracked symptom improvement (11 children; Rosenberg et al., 2000). [C]',
-          'Depression: in an MRS meta-analysis glutamate + glutamine (Glx) is low in the medial frontal cortex (Moriguchi et al., 2019). [A]',
-          'Fragile X syndrome: mavoglurant, an mGluR5 antagonist based on animal models, did not separate from placebo on the primary endpoint in adolescent and adult trials (Berry-Kravis et al., 2016). [B]'
-        ],
-        treatment: [
-          'Ketamine (NMDA antagonist): in treatment-resistant adult depression a single dose worked within 2 hours and the effect lasted a week (Zarate et al., 2006); esketamine nasal spray is FDA-approved for treatment-resistant adult depression (2019). [A]',
-          'In adolescents: a single ketamine dose beat an active placebo (midazolam) at 24 hours (17 adolescents; Dwyer et al., 2021); in adolescents at imminent suicide risk esketamine was better by a small margin at 24 hours, and suicidality severity fell in all groups (147 adolescents; Kosik-Gonzalez et al., 2026). Not approved for adolescents. [C]',
-          'A possible mechanism of the rapid effect: new synapse formation in the prefrontal cortex via the mTOR pathway (rat; Li et al., 2010). [C]',
-          'Add-on treatments targeting glutamate in OCD (memantine, N-acetylcysteine, riluzole) are under study; evidence is limited (Pittenger et al., 2011). [C]',
-          'Other drugs acting through glutamate: lamotrigine (reduces glutamate release), memantine (NMDA antagonist; Alzheimer’s disease), perampanel (AMPA antagonist; epilepsy).'
-        ],
-        links: [
-          'AMPA: carries the fast excitatory current; synaptic strength is set by the number of AMPA receptors.',
-          'NMDA: a coincidence detector; it needs glutamate plus glycine or D-serine, its magnesium block lifts only when the cell is depolarized, and calcium entry triggers plasticity. Ketamine, memantine and phencyclidine block the channel.',
-          'Kainate and metabotropic receptors (mGluR1–8): slower, modulatory effects.',
-          'Transporters: vesicular VGLUT1 (cortex, hippocampus) and VGLUT2 (thalamus, brainstem). Astrocytes (EAAT2) take up most released glutamate and return it to neurons as glutamine (Danbolt, 2001).'
-        ]
-      },
-      gaba: {
-        name: 'GABA Pathways', short: 'GABA',
       glu: {
         name: 'Vías de Glutamato', short: 'Glu',
         summary: 'La principal señal excitatoria del cerebro: utilizada por las neuronas de proyección de la corteza, tálamo y hipocampo; portadora del aprendizaje y la memoria, y el objetivo de la ketamina.',
@@ -606,6 +564,52 @@
           'Transportadores: VGLUT1 vesicular (corteza, hipocampo) y VGLUT2 (tálamo, tronco encefálico). Los astrocitos (EAAT2) absorben la mayoría del glutamato liberado y lo devuelven a las neuronas como glutamina (Danbolt, 2001).'
         ]
       },
+      gaba: {
+        name: 'Vías GABAérgicas', short: 'GABA',
+        summary: 'La principal señal de freno del cerebro: presente sobre todo en interneuronas locales; sus vías largas son las eferencias de los ganglios basales, cerebelo y amígdala; diana de benzodiacepinas y alcohol.',
+        anatomy: [
+          'La mayoría de las neuronas GABA son interneuronas locales: una minoría numérica en corteza e hipocampo pero muy diversas (células de parvalbúmina, somatostatina y VIP), regulan el momento en que disparan las neuronas excitatorias (Tremblay et al., 2016). Estos circuitos locales no se dibujan en 3D.',
+          'Ganglios basales: las neuronas de proyección del cuerpo estriado (neuronas espinosas medianas) son GABAérgicas. La vía directa va del estriado al GPi y SNr, la vía indirecta al GPe y luego al núcleo subtalámico; el GPi y el SNr frenan el tálamo de forma continua (Albin et al., 1989).',
+          'Bucle de recompensa: accumbens → pálido ventral → núcleo mediodorsal del tálamo.',
+          'Cerebelo: las células de Purkinje son la única salida de la corteza cerebelosa y frenan los núcleos profundos (dentado).',
+          'El núcleo central de la amígdala (eferencia GABAérgica) → hipotálamo, PAG y tronco del encéfalo. El núcleo preóptico ventrolateral (VLPO) del hipotálamo frena el LC, el rafe y el núcleo tuberomamilar durante el sueño. El núcleo reticular talámico y el VLPO no son estructuras separadas en el modelo.',
+          'Fibras GABA que llegan a la corteza y al hipocampo: las neuronas GABA del tabique medial y del prosencéfalo basal se dirigen selectivamente a las interneuronas inhibidoras locales (inhibición de la inhibición, marcapasos de ritmos) (Freund and Antal, 1988; Freund and Meskenaite, 1992). [B]'
+        ],
+        functions: [
+          'Mantiene el equilibrio entre excitación e inhibición; cuando la inhibición se queda corta, las redes se sobreexcitan y cae el umbral convulsivo.',
+          'Temporización y ritmo: las interneuronas de parvalbúmina de disparo rápido generan oscilaciones gamma (Cardin et al., 2009). [B]',
+          'Selección de acciones: la vía directa levanta el freno continuo de los ganglios basales sobre el tálamo (liberando el movimiento), la vía indirecta lo refuerza (Albin et al., 1989). [B]',
+          'Sueño: las neuronas del VLPO se encienden durante el sueño y frenan los sistemas de vigilia (Sherin et al., 1996; Saper et al., 2005). [B]',
+          'Inmovilidad (freezing): la vía inhibidora del núcleo central de la amígdala inicia la inmovilidad al liberar las salidas excitatorias del PAG del freno que las contenía (ratón; Tovote et al., 2016). [C]'
+        ],
+        development: [
+          'En fases tempranas del desarrollo el GABA es excitador: el cloruro intracelular es alto; cuando aparece más tarde el exportador de cloruro (KCC2), el GABA se vuelve inhibidor (Ben-Ari, 2002). [B]',
+          'Períodos críticos: la maduración de los circuitos inhibidores abre el período crítico sensorial; en ratones una benzodiacepina inició este período tempranamente (Fagiolini and Hensch, 2000; Hensch, 2005). [B]'
+        ],
+        clinical: [
+          'Epilepsia: una inhibición insuficiente prepara el terreno para las convulsiones; muchos fármacos anticomiciales refuerzan el sistema GABA.',
+          'Esquizofrenia: la síntesis de GABA está reducida en las interneuronas de parvalbúmina de la CPFDL; vinculada a déficits de memoria de trabajo y de ritmo gamma (Lewis et al., 2005). [B]',
+          'Autismo: el desequilibrio excitación-inhibición es un modelo teórico (Rubenstein and Merzenich, 2003). La bumetanida (un bloqueador de NKCC1), dirigida a reforzar el efecto inhibidor del GABA, no se diferenció del placebo en dos ensayos de fase 3 en edades de 2 a 17 años (Fuentes et al., 2023). [A]',
+          'Síndrome de Tourette: estudios post mortem hallaron menos interneuronas de parvalbúmina en caudado y putamen (Kalanithi et al., 2005; Kataoka et al., 2010). [C]',
+          'Depresión: en un metaanálisis de espectroscopia por RM (MRS), el GABA es bajo, más claramente en el cíngulo anterior (Godfrey et al., 2018). [A]',
+          'Benzodiacepinas y alcohol potencian el receptor GABA-A: juntos deprimen la respiración; el uso a largo plazo genera tolerancia y dependencia, y su retirada brusca entraña riesgo de convulsiones.'
+        ],
+        treatment: [
+          'Estado epiléptico: en niños las benzodiacepinas son de primera línea; lorazepam y diazepam intravenosos (nivel A), o sin acceso IV diazepam rectal o midazolam intramuscular, intranasal o bucal (nivel B) (Glauser et al., 2016). [A]',
+          'Para la ansiedad en niños y adolescentes la guía recomienda TCC e ISRS; las benzodiacepinas no figuran entre sus recomendaciones (Walter et al., 2020). [A]',
+          'Vigabatrina (inhibe la enzima que degrada el GABA): aprobada por la FDA para espasmos infantiles (2009); dosis más altas funcionan mejor, y la respuesta es más rápida en esclerosis tuberosa (Elterman et al., 2001). Se requiere monitorización oftalmológica por riesgo de pérdida permanente de campo visual. [A]',
+          'Neuroesteroides (GABA-A extrasináptico): brexanolona fue eficaz para depresión posparto en dos ensayos de fase 3 (Meltzer-Brody et al., 2018); brexanolona (2019) y zuranolona (2023) están aprobadas por la FDA en adultos. [A]',
+          'A pesar de sus nombres, la gabapentina y la pregabalina no se unen a los receptores GABA; se unen a la subunidad α2δ de los canales de calcio dependientes de voltaje.'
+        ],
+        links: [
+          'GABA-A: canal de cloruro, inhibición rápida. Las benzodiacepinas se unen entre las subunidades α y γ2; según la genética en ratones, α1 media sedación y amnesia, α2 y α3 alivio de la ansiedad (Rudolph and Knoflach, 2011). Alcohol, barbitúricos, neuroesteroides y anestésicos generales también potencian este receptor. [B]',
+          'GABA-A extrasináptico (con subunidad δ): inhibición continua (tónica); diana de neuroesteroides.',
+          'GABA-B: acoplado a proteínas G, inhibición lenta; diana del baclofeno.',
+          'Síntesis y eliminación: el GABA se produce a partir de glutamato por la GAD (GAD65, GAD67); GAT-1 lo recapta (el tiagabina lo bloquea), la GABA transaminasa lo degrada (la vigabatrina la inhibe).',
+          'Los transportadores de cloruro NKCC1 (hacia dentro) y KCC2 (hacia fuera) deciden si el GABA excita o inhibe; la bumetanida bloquea NKCC1.'
+        ]
+      }
+    };
     FD.NT.forEach((n) => put(n, NT[n.id]));
   }
 

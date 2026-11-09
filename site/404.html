@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Página no encontrada (404) · The Folded Mind</title>
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/logo/simge-180.png">
+<meta name="theme-color" content="#0c1018">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,400;1,500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="es/sayfa.css">
+<style>
+.not-found-wrap {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+.not-found-card {
+  max-width: 580px;
+  width: 100%;
+  padding: 48px 36px;
+  border-radius: 24px;
+}
+.err-code {
+  font: 600 4rem/1 var(--f-mono);
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+.err-title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.err-desc {
+  color: var(--fg-2);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.err-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="index.html" translate="no">The Folded <em>Mind</em></a>
+  <nav>
+    <a href="es/atlas.html"><span>Atlas</span></a>
+    <a href="es/kutuphane.html"><span>Biblioteca</span></a>
+    <a href="es/bulten.html"><span>Boletín</span></a>
+    <a href="es/hakkinda.html"><span>Acerca de</span></a>
+  </nav>
+  <a class="btn go small" href="es/atlas.html"><span>Ir al atlas</span> <span class="arr">→</span></a>
+</header>
+
+<main class="wrap sayfa not-found-wrap">
+  <div class="cam not-found-card">
+    <div class="err-code" translate="no">404</div>
+    <h1 class="err-title">Circuito no encontrado</h1>
+    <p class="err-desc">La página o estructura que buscas no existe o ha cambiado de ubicación. Puedes explorar el atlas 3D o consultar la biblioteca de neuroanatomía y trastornos.</p>
+    <div class="err-actions">
+      <a class="btn primary" href="index.html"><span>Ir al inicio</span> <span class="arr">→</span></a>
+      <a class="btn sig" href="es/atlas.html"><span>Abrir Atlas 3D</span></a>
+      <a class="btn ghost" href="es/kutuphane.html"><span>Biblioteca</span></a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

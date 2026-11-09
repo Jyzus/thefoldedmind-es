@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>The Folded Mind · Brain circuits behind the psyche</title>
-<meta name="description" content="Brain circuits behind the psyche: an interactive 3D atlas built on open MRI data, a referenced library and a weekly newsletter on neuropsychiatry. 104 structures, emotional systems, neurotransmitter pathways, brain networks and ten diagnoses.">
+<title>The Folded Mind · Circuitos cerebrales detrás de la psique</title>
+<meta name="description" content="Circuitos cerebrales detrás de la psique: un atlas 3D interactivo construido con datos de RM de acceso abierto, una biblioteca referenciada y un boletín semanal sobre neuropsiquiatría. 104 estructuras, sistemas emocionales, vías de neurotransmisores, redes cerebrales y diez diagnósticos.">
 <link rel="canonical" href="index.html">
+<link rel="preload" as="image" href="es/assets/tanitim/beyin.jpg" fetchpriority="high">
 <link rel="alternate" hreflang="es" href="index.html">
 <link rel="alternate" hreflang="x-default" href="index.html">
 <link rel="icon" href="favicon.ico" sizes="48x48">
@@ -16,13 +17,13 @@
 <meta name="theme-color" content="#0c1018">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Folded Mind">
-<meta property="og:title" content="The Folded Mind · Brain circuits behind the psyche">
-<meta property="og:description" content="Brain circuits behind the psyche: an interactive 3D atlas built on open MRI data, a referenced library and a weekly newsletter on neuropsychiatry. 104 structures, emotional systems, neurotransmitter pathways, brain networks and ten diagnoses.">
+<meta property="og:title" content="The Folded Mind · Circuitos cerebrales detrás de la psique">
+<meta property="og:description" content="Circuitos cerebrales detrás de la psique: un atlas 3D interactivo construido con datos de RM de acceso abierto, una biblioteca referenciada y un boletín semanal sobre neuropsiquiatría. 104 estructuras, sistemas emocionales, vías de neurotransmisores, redes cerebrales y diez diagnósticos.">
 <meta property="og:url" content="https://thefoldedmind.com/es/">
 <meta property="og:image" content="https://thefoldedmind.com/assets/tanitim/og-en.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Folded Mind: brain circuits behind the psyche">
+<meta property="og:image:alt" content="The Folded Mind: circuitos cerebrales detrás de la psique">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -174,6 +175,10 @@ header.top .brand::before { content: ""; display: inline-block; width: 1.16em; h
 
 /* ---------------------------------------------------------------- bölümler */
 section { padding-block: 88px; }
+#atlas, #kutuphane, #bulten, #topluluk, #hakkinda {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 700px;
+}
 /* nöron dünyası: sayfanın arkasında sabit 3B sahne (sahne.js). Yazı blokları buzlu cam panellerde: sahne arkada kalır,
    yazının içinden hiçbir şey geçmez. */
 #nb { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 0; display: block; pointer-events: none; }
@@ -627,51 +632,50 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
   <a class="brand" href="index.html" translate="no">The Folded <em>Mind</em></a>
   <nav>
     <a href="index.html#atlas"><span>Atlas</span></a>
-    <a href="es/kutuphane.html"><span>Library</span></a>
-    <a href="es/bulten.html"><span>Newsletter</span></a>
-    <a href="index.html#topluluk"><span>Community</span></a>
-    <a href="es/hakkinda.html"><span>About</span></a>
+    <a href="es/kutuphane.html"><span>Biblioteca</span></a>
+    <a href="es/bulten.html"><span>Boletín</span></a>
+    <a href="index.html#topluluk"><span>Comunidad</span></a>
+    <a href="es/hakkinda.html"><span>Acerca de</span></a>
     <a class="nav-ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">Instagram</span></a>
   </nav>
   <a class="ust-ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener" aria-label="Instagram: @thefolded.mind" title="Instagram: @thefolded.mind"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg></a>
-  <a class="btn primary go small" href="es/atlas.html"><span>Go to the atlas</span> <span class="arr">→</span></a>
+  <a class="btn primary go small" href="es/atlas.html"><span>Ir al atlas</span> <span class="arr">→</span></a>
 </header>
 
 <canvas id="nb" aria-hidden="true"></canvas>
 <main>
 <div class="wrap hero">
   <div>
-    <p class="label"><b>●</b> <span>Neuropsychiatry · neuroscience · neuropsychology</span></p>
-    <h1><span>A map of the brain, <i>in the language of the clinic.</i></span></h1>
+    <p class="label"><b>●</b> <span>Neuropsiquiatría · neurociencia · neuropsicología</span></p>
+    <h1><span>Un mapa del cerebro, <i>en el lenguaje de la clínica.</i></span></h1>
     <p class="lede">
       
-      <span>Where the brain meets the mind: an interactive 3D atlas built from open MRI data, a library on brain structures and diagnoses, and a weekly newsletter that keeps a finger on the pulse of neuropsychiatry research worldwide.</span>
+      <span>Donde el cerebro se encuentra con la mente: un atlas 3D interactivo construido con datos de RM de acceso abierto, una biblioteca sobre estructuras cerebrales y diagnósticos, y un boletín semanal que sigue el pulso de la investigación en neuropsiquiatría en todo el mundo.</span>
     </p>
     <div class="cta">
-      <a class="btn primary go big" href="es/atlas.html"><span>Go to the atlas</span> <span class="arr">→</span></a>
-      <a class="btn ghost" href="es/kutuphane.html"><span>Library</span></a>
-      <a class="btn ghost" href="es/bulten.html"><span>Newsletter</span></a>
+      <a class="btn primary go big" href="es/atlas.html"><span>Ir al atlas</span> <span class="arr">→</span></a>
+      <a class="btn ghost" href="es/kutuphane.html"><span>Biblioteca</span></a>
+      <a class="btn ghost" href="es/bulten.html"><span>Boletín</span></a>
     </div>
-    <p class="fine"><span>Free · no sign-up · runs in the browser, nothing to install</span></p>
+    <p class="fine"><span>Gratis · sin registro · funciona en el navegador, sin instalar nada</span></p>
     <div class="jump">
-      <span class="lbl"><span>Jump to</span></span>
-      <a href="es/atlas.html#amygdala"><i style="background:#e0584f"></i><span>Amygdala</span></a>
+      <span class="lbl"><span>Ir a</span></span>
+      <a href="es/atlas.html#amygdala"><i style="background:#e0584f"></i><span>Amígdala</span></a>
       <a href="es/atlas.html#sistem-seeking"><i style="background:#f2b134"></i>SEEKING</a>
-      <a href="es/atlas.html#nt-da"><i style="background:#f6c344"></i><span>Dopamine</span></a>
+      <a href="es/atlas.html#nt-da"><i style="background:#f6c344"></i><span>Dopamina</span></a>
       <a href="es/atlas.html#ag-dmn"><i style="background:#cd3e4e"></i>DMN</a>
-      <a href="es/atlas.html#yolak-hpa"><i style="background:#c9a46b"></i><span>HPA axis</span></a>
-      <a href="es/atlas.html#mr"><i style="background:#a9b3c6"></i><span>MRI slices</span></a>
+      <a href="es/atlas.html#yolak-hpa"><i style="background:#c9a46b"></i><span>Eje HPA</span></a>
+      <a href="es/atlas.html#mr"><i style="background:#a9b3c6"></i><span>Cortes de RM</span></a>
     </div>
   </div>
   <figure class="stage" style="margin:0">
     <span class="cap tl">MNI ICBM152 · 2009c</span>
-    <span class="cap tr"><span>3D model · 360°</span></span>
+    <span class="cap tr"><span>Modelo 3D · 360°</span></span>
     <div class="shot">
       <!-- video sayfa yüklendikten sonra iner (aşağıdaki betik, #spinsrc şablonu); o zamana kadar afiş görünür. Tarayıcı desteklediği ilk biçimi seçer:
            AV1 (1,06 MB), HEVC (1,39 MB; Safari), H.264 (1,70 MB). AV1 ve HEVC özgün karelere H.264'ten daha yakın (SSIM 0,9888 / 0,9886 / 0,9881; 2026-10-13) -->
       <video id="spinvid" muted loop playsinline preload="none" poster="es/assets/tanitim/beyin.jpg" width="960" height="844"
-        data-al-tr="Atlastaki 3B beyin modeli yavaşça dönüyor; korteks bölgeleri renklerle ayrılmış" data-al-en="The atlas’s 3D brain model rotating slowly; cortical regions in distinct colors"
-        aria-label="Atlastaki 3B beyin modeli yavaşça dönüyor; korteks bölgeleri renklerle ayrılmış">
+        aria-label="El modelo cerebral 3D del atlas rotando lentamente; regiones corticales en colores diferenciados">
       </video>
       <!-- kaynaklar şablonda: adressiz <source> öğeleri açılışta "yüklenemedi" olayı verir; betik videoyu bağlarken ekler -->
       <template id="spinsrc">
@@ -686,62 +690,62 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
 
 <div class="facts">
   <div class="wrap"><ul>
-    <li><span class="n">104</span><span class="t"><span>structures: 45 regions and 59 substructures</span></span></li>
-    <li><span class="n">7</span><span class="t"><span>Panksepp emotional systems with live circuits</span></span></li>
-    <li><span class="n">8</span><span class="t"><span>neurotransmitters’ pathways and 10 book pathways</span></span></li>
-    <li><span class="n">8</span><span class="t"><span>large-scale brain networks (Yeo 7 and multiple demand)</span></span></li>
-    <li><span class="n">10</span><span class="t"><span>diagnoses, with circuit, findings, symptom and treatment lenses</span></span></li>
-    <li><span class="n">13</span><span class="t"><span>medications: site of action, anatomy of side effects, children and adolescents</span></span></li>
-    <li hidden><span class="n">1<small>mm</small></span><span class="t"><span>axial, coronal and sagittal MRI slices on the MNI template</span></span></li>
+    <li><span class="n">104</span><span class="t"><span>estructuras: 45 regiones y 59 subestructuras</span></span></li>
+    <li><span class="n">7</span><span class="t"><span>sistemas emocionales de Panksepp con circuitos en vivo</span></span></li>
+    <li><span class="n">8</span><span class="t"><span>vías de neurotransmisores y 10 vías del libro</span></span></li>
+    <li><span class="n">8</span><span class="t"><span>redes cerebrales a gran escala (Yeo 7 y demanda múltiple)</span></span></li>
+    <li><span class="n">10</span><span class="t"><span>diagnósticos, con lentes de circuito, hallazgos, síntomas y tratamiento</span></span></li>
+    <li><span class="n">13</span><span class="t"><span>medicamentos: lugar de acción, anatomía de los efectos secundarios, niños y adolescentes</span></span></li>
+    <li hidden><span class="n">1<small>mm</small></span><span class="t"><span>cortes de RM axial, coronal y sagital sobre la plantilla MNI</span></span></li>
   </ul></div>
 </div>
 
 <section id="atlas">
   <div class="wrap">
     <div class="head">
-      <p class="label"><span>The atlas</span></p>
-      <h2><span>Touch a structure; everything else turns transparent and its card opens.</span></h2>
-      <p><span>An anatomically precise 3D model, literature-backed cards, live pathways, diagnosis lenses and MRI slices on one screen. It runs in the browser; no sign-up, nothing to install.</span></p>
+      <p class="label"><span>El atlas</span></p>
+      <h2><span>Toca una estructura; todo lo demás se vuelve transparente y se abre su ficha.</span></h2>
+      <p><span>Un modelo 3D anatómicamente preciso, fichas respaldadas por la literatura, vías en vivo, lentes de diagnóstico y cortes de RM en una sola pantalla. Funciona en el navegador; sin registro y sin instalar nada.</span></p>
     </div>
     <div class="avitrin">
       <a class="acard" href="es/atlas.html#tani-okb">
-        <figure class="stage"><span class="cap tl"><span>OCD · circuit</span></span>
+        <figure class="stage"><span class="cap tl"><span>TOC · circuito</span></span>
           <img src="es/assets/tanitim/tani.jpg" width="900" height="811" loading="lazy" data-alt-tr="OKB devresi: orbitofrontal ve ön singulat korteksten kaudata ve talamusa akan sinyaller" data-alt-en="The OCD circuit: signals flowing from orbitofrontal and anterior cingulate cortex to the caudate and thalamus" alt="OKB devresi: orbitofrontal ve ön singulat korteksten kaudata ve talamusa akan sinyaller"></figure>
         <div class="atext">
-          <p class="label">01 · <span>Diagnoses</span></p>
-          <h3><span>Seeing a diagnosis in the brain</span></h3>
-          <p><span>Ten diagnoses through four lenses: the circuit, findings from large studies, symptoms and where treatment acts; increased and reduced activity as a pulse.</span></p>
-          <span class="more"><span>Open in the atlas</span> <span class="arr">→</span></span>
+          <p class="label">01 · <span>Diagnósticos</span></p>
+          <h3><span>Ver un diagnóstico en el cerebro</span></h3>
+          <p><span>Diez diagnósticos a través de cuatro lentes: el circuito, los hallazgos de grandes estudios, los síntomas y dónde actúa el tratamiento; la actividad aumentada y reducida como un pulso.</span></p>
+          <span class="more"><span>Abrir en el atlas</span> <span class="arr">→</span></span>
         </div>
       </a>
       <a class="acard" href="es/atlas.html#derin">
-        <figure class="stage"><span class="cap tl"><span>Deep structures</span></span>
+        <figure class="stage"><span class="cap tl"><span>Estructuras profundas</span></span>
           <img src="es/assets/tanitim/derin.jpg" width="1100" height="974" loading="lazy" data-alt-tr="Saydam korteksin içinde bazal ganglionlar, talamus, amigdala, hipokampus ve beyin sapı" data-alt-en="Basal ganglia, thalamus, amygdala, hippocampus and brainstem inside a transparent cortex" alt="Saydam korteksin içinde bazal ganglionlar, talamus, amigdala, hipokampus ve beyin sapı"></figure>
         <div class="atext">
-          <p class="label">02 · <span>Model</span></p>
-          <h3><span>104 structures, layer by layer</span></h3>
-          <p><span>Built from the MNI template and published atlases: HCP-MMP1.0 cortical borders, brainstem nuclei, thalamic nuclei and cerebellar lobules.</span></p>
-          <span class="more"><span>Open in the atlas</span> <span class="arr">→</span></span>
+          <p class="label">02 · <span>Modelo</span></p>
+          <h3><span>104 estructuras, capa por capa</span></h3>
+          <p><span>Construido a partir de la plantilla MNI y de atlas publicados: límites corticales HCP-MMP1.0, núcleos del tronco del encéfalo, núcleos talámicos y lobulillos cerebelosos.</span></p>
+          <span class="more"><span>Abrir en el atlas</span> <span class="arr">→</span></span>
         </div>
       </a>
       <a class="acard" href="es/atlas.html#nt-da">
-        <figure class="stage"><span class="cap tl"><span>Dopamine · live</span></span>
+        <figure class="stage"><span class="cap tl"><span>Dopamina · en vivo</span></span>
           <img src="es/assets/tanitim/dopamin.jpg" width="960" height="1080" loading="lazy" data-alt-tr="Dopamin yolakları: VTA ve substantia nigradan striatum ve prefrontal kortekse akan ışıklı sinyaller" data-alt-en="Dopamine pathways: glowing signals flowing from the VTA and substantia nigra to the striatum and prefrontal cortex" alt="Dopamin yolakları: VTA ve substantia nigradan striatum ve prefrontal kortekse akan ışıklı sinyaller"></figure>
         <div class="atext">
-          <p class="label">03 · <span>Live pathways</span></p>
-          <h3><span>Emotional systems and neurotransmitters</span></h3>
-          <p><span>Panksepp's seven emotional systems, eight neurotransmitters and the large-scale brain networks; signals flow in 3D, inhibitory signals as rings.</span></p>
-          <span class="more"><span>Open in the atlas</span> <span class="arr">→</span></span>
+          <p class="label">03 · <span>Vías en vivo</span></p>
+          <h3><span>Sistemas emocionales y neurotransmisores</span></h3>
+          <p><span>Los siete sistemas emocionales de Panksepp, ocho neurotransmisores y las redes cerebrales a gran escala; las señales fluyen en 3D y las señales inhibidoras se muestran como anillos.</span></p>
+          <span class="more"><span>Abrir en el atlas</span> <span class="arr">→</span></span>
         </div>
       </a>
       <a class="acard" href="es/atlas.html#mr">
         <figure class="stage"><span class="cap tl"><span>Axial · z = +8 mm</span></span>
           <img src="es/assets/tanitim/kesit.jpg" width="990" height="637" loading="lazy" data-alt-tr="3B modelin aksiyel düzlemde kesilmiş hâli; kesit yüzünde T1 MR görüntüsü ve bölge renkleri" data-alt-en="The 3D model cut in an axial plane, with the T1 MRI and region colors on the cut surface" alt="3B modelin aksiyel düzlemde kesilmiş hâli; kesit yüzünde T1 MR görüntüsü ve bölge renkleri"></figure>
         <div class="atext">
-          <p class="label">04 · <span>MRI slices</span></p>
-          <h3><span>The same structure, in 3D and on MRI</span></h3>
-          <p><span>Axial, coronal and sagittal slices of the template T1 image; region borders in color, and the slice plane cuts the 3D model too.</span></p>
-          <span class="more"><span>Open in the atlas</span> <span class="arr">→</span></span>
+          <p class="label">04 · <span>Cortes de RM</span></p>
+          <h3><span>La misma estructura, en 3D y en RM</span></h3>
+          <p><span>Cortes axial, coronal y sagital de la imagen T1 de la plantilla; los bordes de las regiones en color, y el plano de corte también secciona el modelo 3D.</span></p>
+          <span class="more"><span>Abrir en el atlas</span> <span class="arr">→</span></span>
         </div>
       </a>
     </div>
@@ -751,47 +755,47 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
 <section id="kutuphane">
   <div class="wrap">
     <div class="head">
-      <p class="label"><span>Library</span></p>
-      <h2><span>For those looking for the theory</span></h2>
-      <p><span>The atlas's knowledge as readable pages: every structure on its own page, every diagnosis with its circuits; emotional systems, neurotransmitter pathways and brain networks. Every item is referenced and marked with its level of evidence.</span></p>
+      <p class="label"><span>Biblioteca</span></p>
+      <h2><span>Para quienes buscan la teoría</span></h2>
+      <p><span>El conocimiento del atlas en páginas legibles: cada estructura en su propia página, cada diagnóstico con sus circuitos; sistemas emocionales, vías de neurotransmisores y redes cerebrales. Cada entrada está referenciada y marcada con su nivel de evidencia.</span></p>
     </div>
     <div class="kgrid">
       <div class="kleft">
       <div class="klinks">
-        <a class="vcard" href="es/bolgeler.html"><h3><span>Brain regions</span></h3><p><span>Each of 104 structures on its own page: anatomy, functions, development, clinical relevance, treatment.</span></p>
-          <span class="more"><span>Open the index</span> <span class="arr">→</span></span></a>
-        <a class="vcard" href="es/psikopatoloji.html"><h3><span>Psychopathology</span></h3><p><span>Ten diagnoses, each with its circuits, networks, neurotransmitters and treatment.</span></p>
-          <span class="more"><span>Open the diagnoses</span> <span class="arr">→</span></span></a>
-        <a class="vcard" href="es/kutuphane.html#sistemler"><h3><span>Emotional systems and pathways</span></h3><p><span>Panksepp's seven systems, eight neurotransmitters and the book's main pathways.</span></p>
-          <span class="more"><span>Open in the library</span> <span class="arr">→</span></span></a>
-        <a class="vcard" href="es/kutuphane.html#aglar"><h3><span>Brain networks</span></h3><p><span>Default mode, salience, executive control and the rest; what changes in which diagnosis.</span></p>
-          <span class="more"><span>Open in the library</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="es/bolgeler.html"><h3><span>Regiones cerebrales</span></h3><p><span>Cada una de las 104 estructuras en su propia página: anatomía, funciones, desarrollo, relevancia clínica y tratamiento.</span></p>
+          <span class="more"><span>Abrir el índice</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="es/psikopatoloji.html"><h3><span>Psicopatología</span></h3><p><span>Diez diagnósticos, cada uno con sus circuitos, redes, neurotransmisores y tratamiento.</span></p>
+          <span class="more"><span>Abrir los diagnósticos</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="es/kutuphane.html#sistemler"><h3><span>Sistemas emocionales y vías</span></h3><p><span>Los siete sistemas de Panksepp, ocho neurotransmisores y las principales vías del libro.</span></p>
+          <span class="more"><span>Abrir en la biblioteca</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="es/kutuphane.html#aglar"><h3><span>Redes cerebrales</span></h3><p><span>Red neuronal por defecto, saliencia, control ejecutivo y las demás; qué cambia en cada diagnóstico.</span></p>
+          <span class="more"><span>Abrir en la biblioteca</span> <span class="arr">→</span></span></a>
       </div>
-      <p class="kall"><a class="btn ghost" href="es/kutuphane.html"><span>The full library, with search</span> <span class="arr">→</span></a></p>
+      <p class="kall"><a class="btn ghost" href="es/kutuphane.html"><span>La biblioteca completa, con búsqueda</span> <span class="arr">→</span></a></p>
       </div>
       <div class="ksample">
         <div class="card" aria-hidden="true">
-        <div class="eyebrow"><i></i><span>Limbic structures · AMY · deep structure</span></div>
-        <h4><span>Amygdala</span></h4>
+        <div class="eyebrow"><i></i><span>Estructuras límbicas · AMY · estructura profunda</span></div>
+        <h4><span>Amígdala</span></h4>
         <div class="latin">Corpus amygdaloideum</div>
         <div class="tabs">
-          <span>Functions</span>
-          <span>Anatomy</span>
-          <span>Development</span>
-          <span class="on">Clinical</span>
-          <span>Treatment</span>
-          <span>In the book</span>
+          <span>Funciones</span>
+          <span>Anatomía</span>
+          <span>Desarrollo</span>
+          <span class="on">Clínica</span>
+          <span>Tratamiento</span>
+          <span>En el libro</span>
         </div>
         <ul>
-          <li><span>Anxiety disorders: a child and adolescent fMRI meta-analysis (48 studies) found bilateral amygdala hyperactivation in internalizing disorders (Ashworth et al., 2021).</span> <span class="ev">A</span></li>
-          <li><span>ASD: large amygdala in boys aged 7–12, with the difference gone by adolescence; avoid the generalization “the amygdala is enlarged in ASD”.</span> <span class="ev">A/B</span></li>
-          <li><span>Williams syndrome: reduced response to social threat, increased response to nonsocial threat (Meyer-Lindenberg et al., 2005).</span> <span class="ev">B</span></li>
+          <li><span>Trastornos de ansiedad: un metaanálisis de fMRI en niños y adolescentes (48 estudios) encontró hiperactivación bilateral de la amígdala en los trastornos internalizantes (Ashworth et al., 2021).</span> <span class="ev">A</span></li>
+          <li><span>TEA: amígdala grande en niños de 7–12 años, con la diferencia desaparecida en la adolescencia; evitar la generalización “la amígdala está agrandada en el TEA”.</span> <span class="ev">A/B</span></li>
+          <li><span>Síndrome de Williams: respuesta reducida a la amenaza social y aumentada a la amenaza no social (Meyer-Lindenberg et al., 2005).</span> <span class="ev">B</span></li>
         </ul>
       </div>
         <div class="legend">
-          <div><span class="ev">A</span><span>large consortium, meta-analysis or regulatory decision</span></div>
-          <div><span class="ev">B</span><span>replicated studies or a classic case</span></div>
-          <div><span class="ev">C</span><span>a single or pioneering study, experimental use</span></div>
+          <div><span class="ev">A</span><span>gran consorcio, metaanálisis o decisión regulatoria</span></div>
+          <div><span class="ev">B</span><span>estudios replicados o un caso clásico</span></div>
+          <div><span class="ev">C</span><span>un estudio único o pionero, uso experimental</span></div>
         </div>
       </div>
     </div>
@@ -801,9 +805,9 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
 <section id="bulten">
   <div class="wrap">
     <div class="head">
-      <p class="label"><span>Newsletter · weekly</span></p>
-      <h2><span>Once a week: what is happening in brain and mind research?</span></h2>
-      <p><span>Every week, four studies from the field's leading journals: three clinical, one from neuroscience. Each one short and clear, with its level of evidence and a link to the article.</span></p>
+      <p class="label"><span>Boletín · semanal</span></p>
+      <h2><span>Una vez a la semana: ¿qué está pasando en la investigación del cerebro y la mente?</span></h2>
+      <p><span>Cada semana, cuatro estudios de las revistas líderes del campo: tres clínicos y uno de neurociencia. Cada uno breve y claro, con su nivel de evidencia y un enlace al artículo.</span></p>
     </div>
     <div class="bgrid">
     <div class="bmain">
@@ -811,23 +815,23 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
       <div class="bson" id="bson" hidden></div>
       <div class="btanit" id="btanit">
         <ul class="ticks">
-          <li><span>Psychiatry, child and adolescent mental health, neuroscience and neuropsychology</span></li>
-          <li><span>Preprints that are not peer reviewed are clearly marked</span></li>
-          <li><span>In Turkish and English</span></li>
+          <li><span>Psiquiatría, salud mental infantil y adolescente, neurociencia y neuropsicología</span></li>
+          <li><span>Los preprints que no han pasado revisión por pares se señalan claramente</span></li>
+          <li><span>En turco y en inglés</span></li>
         </ul>
       </div>
     </div>
     <div class="bside">
       <aside class="haftanin" id="haftanin" aria-live="polite">
-        <p class="label"><span>Structure of the week</span></p>
+        <p class="label"><span>Estructura de la semana</span></p>
         <div class="hbody"></div>
-        <p class="hnote"><span>Every week, one structure from the atlas.</span></p>
+        <p class="hnote"><span>Cada semana, una estructura del atlas.</span></p>
       </aside>
       <div class="bkayit">
-        <p class="label"><span>Subscribe</span></p>
-        <p class="bnote"><span>Four studies in your inbox every Friday. Free; unsubscribe anytime with one click.</span></p>
-        <p><a class="btn go" href="https://thefoldedmind.substack.com/subscribe" target="_blank" rel="noopener"><span>Subscribe on Substack</span> <span class="arr">→</span></a></p>
-        <p class="bnote" style="font-size:13px"><span>Subscriptions are handled by Substack; how your email address is processed is on the <a href="es/yasal.html#kvkk">legal page</a>.</span></p>
+        <p class="label"><span>Suscribirse</span></p>
+        <p class="bnote"><span>Cuatro estudios en tu correo cada viernes. Gratis; puedes darte de baja en cualquier momento con un clic.</span></p>
+        <p><a class="btn go" href="https://thefoldedmind.substack.com/subscribe" target="_blank" rel="noopener"><span>Suscribirse en Substack</span> <span class="arr">→</span></a></p>
+        <p class="bnote" style="font-size:13px"><span>Las suscripciones se gestionan en Substack; cómo se tratan tus datos de correo electrónico se explica en la <a href="es/yasal.html#kvkk">página legal</a>.</span></p>
       </div>
     </div>
     </div>
@@ -837,50 +841,50 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
 <section id="topluluk" style="padding-top:40px">
   <div class="wrap">
     <div class="head">
-      <p class="label"><span>Community</span></p>
-      <h2><span>For everyone curious about both brain and mind</span></h2>
-      <p><span>A meeting place for people who love neuropsychiatry, neuroscience and neuropsychology: read, discuss, write.</span></p>
+      <p class="label"><span>Comunidad</span></p>
+      <h2><span>Para todas las personas curiosas por el cerebro y por la mente</span></h2>
+      <p><span>Un punto de encuentro para quienes aman la neuropsiquiatría, la neurociencia y la neuropsicología: leer, debatir, escribir.</span></p>
     </div>
     <div class="who">
       <div>
-        <h3><span>Medical students</span></h3>
-        <p><span>Neuroanatomy in three dimensions, together with function and the clinic; a quick review before exams.</span></p>
+        <h3><span>Estudiantes de medicina</span></h3>
+        <p><span>Neuroanatomía en tres dimensiones, junto con la función y la clínica; un repaso rápido antes de los exámenes.</span></p>
       </div>
       <div>
-        <h3><span>Residents</span></h3>
-        <p><span>In psychiatry, child psychiatry and neurology; the circuits targeted by medication and neuromodulation.</span></p>
+        <h3><span>Residentes</span></h3>
+        <p><span>De psiquiatría, psiquiatría infantil y neurología; los circuitos diana de la medicación y la neuromodulación.</span></p>
       </div>
       <div>
-        <h3><span>Psychologists and therapists</span></h3>
-        <p><span>The neural counterparts of emotional systems, attachment and trauma; visuals for explaining them to clients.</span></p>
+        <h3><span>Psicólogos y terapeutas</span></h3>
+        <p><span>Las contrapartes neurales de los sistemas emocionales, el apego y el trauma; material visual para explicarlos a los pacientes.</span></p>
       </div>
       <div>
-        <h3><span>Curious readers</span></h3>
-        <p><span>A look at where and how emotions such as curiosity, fear, play and grief work in the brain.</span></p>
+        <h3><span>Lectores curiosos</span></h3>
+        <p><span>Una mirada a dónde y cómo funcionan en el cerebro emociones como la curiosidad, el miedo, el juego y el duelo.</span></p>
       </div>
     </div>
     <div class="plan">
-      <p class="label"><span>What we are planning</span></p>
+      <p class="label"><span>Lo que estamos planeando</span></p>
       <div class="plan-grid">
         <div>
-          <h3><span>Writing</span></h3>
-          <p><span>Clinical notes, one structure through the atlas, and guest articles; every structure mentioned will open in the 3D atlas.</span></p>
+          <h3><span>Escritura</span></h3>
+          <p><span>Notas clínicas, una estructura a través del atlas y artículos invitados; cada estructura mencionada se abrirá en el atlas 3D.</span></p>
         </div>
         <div>
-          <h3><span>Academic</span></h3>
-          <p><span>Publications, talks and posters; studies made with the atlas and its use in teaching.</span></p>
+          <h3><span>Académico</span></h3>
+          <p><span>Publicaciones, charlas y pósteres; estudios realizados con el atlas y su uso en la docencia.</span></p>
         </div>
       </div>
     </div>
     <div class="yaz">
       <div>
-        <p class="label"><span>Write with us</span></p>
-        <h3><span>We welcome guest writers</span></h3>
-        <p><span>Teachers, colleagues and anyone curious about the field: send us your idea for a short, referenced article or a summary of a new study. Every structure mentioned in a piece opens in the atlas with one click.</span></p>
+        <p class="label"><span>Escribe con nosotros</span></p>
+        <h3><span>Damos la bienvenida a autores invitados</span></h3>
+        <p><span>Docentes, colegas y cualquier persona interesada en el campo: envíanos tu idea para un artículo breve y referenciado o un resumen de un estudio nuevo. Cada estructura mencionada en un texto se abre en el atlas con un clic.</span></p>
       </div>
       <div class="contact">
-        <span class="mail" id="mail3"><a href="https://thefoldedmind.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93fbf6fffffcd3e7fbf6f5fcfff7f6f7fefafdf7bdf0fcfe">[email&#160;protected]</a></span>
-        <button class="copy" type="button" data-copy="#mail3"><span>Copy</span></button>
+        <span class="mail" id="mail3"><a href="mailto:hello@thefoldedmind.com">hello@thefoldedmind.com</a></span>
+        <button class="copy" type="button" data-copy="#mail3"><span>Copiar</span></button>
       </div>
     </div>
   </div>
@@ -892,12 +896,12 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
     <div class="hz">
       <img class="hz-foto" src="es/assets/tanitim/foto.jpg" width="640" height="800" loading="lazy" alt="" aria-hidden="true">
       <div class="hz-metin">
-        <p class="label"><span>Created by</span></p>
+        <p class="label"><span>Creado por</span></p>
         <h3 translate="no"><span>Alperen Mert Çetin, MD</span></h3>
-        <p class="role"><span>Resident in child and adolescent psychiatry</span></p>
+        <p class="role"><span>Residente de psiquiatría infantil y adolescente</span></p>
       </div>
       <div class="hz-dugme">
-        <a class="btn ghost" href="es/hakkinda.html"><span>About and the book</span> <span class="arr">→</span></a>
+        <a class="btn ghost" href="es/hakkinda.html"><span>Acerca de y el libro</span> <span class="arr">→</span></a>
         <a class="btn ghost hz-ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">@thefolded.mind</span></a>
       </div>
     </div>
@@ -907,10 +911,10 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
 <section class="final">
   <div class="wrap">
     <div class="fglass">
-    <h2><span>Start exploring the brain</span></h2>
-    <p><span>Works best in a desktop or tablet browser. The model downloads about 9 MB on first load.</span></p>
+    <h2><span>Empieza a explorar el cerebro</span></h2>
+    <p><span>Funciona mejor en un navegador de escritorio o tableta. El modelo descarga unos 9 MB en la primera carga.</span></p>
     </div>
-    <span id="syn"><a class="btn primary go big" href="es/atlas.html"><span>Go to the atlas</span> <span class="arr">→</span></a></span>
+    <span id="syn"><a class="btn primary go big" href="es/atlas.html"><span>Ir al atlas</span> <span class="arr">→</span></a></span>
   </div>
 </section>
 </main>
@@ -918,21 +922,21 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
 <footer>
   <div class="wrap">
     <span class="brand" translate="no">The Folded <em>Mind</em></span>
-    <span><span>Brain circuits behind the psyche</span></span>
+    <span><span>Circuitos cerebrales detrás de la psique</span></span>
     <span>© 2026 Alperen Mert Çetin</span>
-    <span><span>For education · free</span></span>
-    <a href="es/kutuphane.html"><span>Library</span></a>
-    <a href="es/bulten.html"><span>Newsletter</span></a>
+    <span><span>Para educación · gratis</span></span>
+    <a href="es/kutuphane.html"><span>Biblioteca</span></a>
+    <a href="es/bulten.html"><span>Boletín</span></a>
     <a href="es/atlas.html"><span>Atlas</span></a>
     <a href="es/yasal.html"><span>Legal</span></a>
-    <a href="es/kutuphane.html#veriler"><span>Data sources</span></a>
-    <a href="es/hakkinda.html#iletisim"><span>Contact</span></a>
+    <a href="es/kutuphane.html#veriler"><span>Fuentes de datos</span></a>
+    <a href="es/hakkinda.html#iletisim"><span>Contacto</span></a>
     <a class="ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener" aria-label="Instagram: @thefolded.mind"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">@thefolded.mind</span></a>
-    <span style="flex-basis:100%"><span>Privacy: no cookies; your language and theme choice stays in your browser; visits may be counted without collecting any personal data.</span></span>
+    <span style="flex-basis:100%"><span>Privacidad: sin cookies; tu elección de idioma y tema permanece en tu navegador; las visitas pueden contarse sin recopilar ningún dato personal.</span></span>
   </div>
 </footer>
 
-<script data-cfasync="false" src="https://thefoldedmind.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="es/data/ozet.js"></script>
+<script src="es/data/ozet.js"></script>
 <script src="es/data/bulten.js"></script>
 <script src="es/gezinme.js"></script>
 <script>
@@ -950,8 +954,8 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
   var r = list[week % list.length];
   box.innerHTML = '<div class="hhead"><i style="background:' + r.c + ';color:' + r.c + '"></i><span class="hsub">' + esc(en ? r.ge : r.g) + ' · ' + esc(r.s) + '</span></div>' +
     '<h3>' + esc(en ? r.ne : r.n) + '</h3><p class="hsum">' + esc(en ? r.de : r.d) + '</p>' +
-    '<div class="hbtn"><a class="btn primary" href="es/atlas.html#' + r.id + '">' + (en ? 'Open in the atlas' : 'Atlasta aç') + ' <span class="arr">→</span></a>' +
-    '<a class="btn ghost" href="https://thefoldedmind.com/es/bolge/'&#32;+&#32;r.id&#32;+&#32;'">' + (en ? 'Read its page' : 'Sayfasını oku') + '</a></div>';
+    '<div class="hbtn"><a class="btn primary" href="es/atlas.html#' + r.id + '">' + 'Abrir en el atlas' + ' <span class="arr">→</span></a>' +
+    '<a class="btn ghost" href="es/bolge/' + r.id + '.html">' + 'Leer su página' + '</a></div>';
 })();
 </script>
 <script>
@@ -966,17 +970,17 @@ html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)
     B: ['Kanıt B: tekrarlanmış çalışmalar ya da klasik vaka', 'Evidence B: replicated studies or classic case'],
     C: ['Kanıt C: tek ya da öncü çalışma', 'Evidence C: single or pioneering study'] };
   var rows = s.calismalar.map(function (c, i) {
-    var img = c.gorsel ? '<span class="bsat-gorsel' + (c.makale ? ' makale' : '') + '"><img src="https://thefoldedmind.com/es/'&#32;+&#32;esc(c.gorsel)&#32;+&#32;'" alt="" loading="lazy" decoding="async"></span>' : '';
+    var img = c.gorsel ? '<span class="bsat-gorsel' + (c.makale ? ' makale' : '') + '"><img src="es/'&#32;+&#32;esc(c.gorsel)&#32;+&#32;'" alt="" loading="lazy" decoding="async"></span>' : '';
     var ust = (EV[c.kanit] ? '<span class="ev" title="' + esc(EV[c.kanit][en ? 1 : 0]) + '">' + c.kanit + '</span>' : '') +
-      esc(c.tasarim[d]) + ' · ' + esc(c.dergi) + (c.on_baski ? '<span class="onb">' + (en ? 'Preprint' : 'Ön baskı') + '</span>' : '');
-    return '<li><a class="bsat' + (img ? '' : ' gorselsiz') + '" href="https://thefoldedmind.com/es/'&#32;+&#32;url&#32;+&#32;'#c' + (i + 1) + '"><span class="bsat-metin"><span class="bsat-ust">' + ust +
+      esc(c.tasarim[d]) + ' · ' + esc(c.dergi) + (c.on_baski ? '<span class="onb">' + (en ? 'Preimpresión' : 'Preimpresión') + '</span>' : '');
+    return '<li><a class="bsat' + (img ? '' : ' gorselsiz') + '" href="es/'&#32;+&#32;url&#32;+&#32;'#c' + (i + 1) + '"><span class="bsat-metin"><span class="bsat-ust">' + ust +
       '</span><b>' + esc(c.baslik[d]) + '</b></span>' + img + '</a></li>';
   }).join('');
-  box.innerHTML = '<div class="bson-bas"><p class="label"><span>' + (en ? 'Latest issue' : 'Son sayı') + ' · ' + esc(s.ad[d]) + ' · ' + esc(s.tarih[d]) + '</span>' +
-    (s.deneme ? '<span class="rozet">' + (en ? 'SAMPLE' : 'ÖRNEK') + '</span>' : '') + '</p>' +
-    '<h3><a href="https://thefoldedmind.com/es/'&#32;+&#32;url&#32;+&#32;'">' + esc(s.baslik[d]) + '</a></h3></div><ol class="bson-liste">' + rows + '</ol>' +
-    '<div class="bson-eylem"><a class="btn primary" href="https://thefoldedmind.com/es/'&#32;+&#32;url&#32;+&#32;'">' + (en ? 'Read the issue' : 'Sayıyı oku') + ' <span class="arr">→</span></a>' +
-    '<a class="btn ghost" href="es/bulten.html">' + (en ? 'Archive' : 'Arşiv') + '</a></div>';
+  box.innerHTML = '<div class="bson-bas"><p class="label"><span>' + (en ? 'Último número' : 'Último número') + ' · ' + esc(s.ad[d]) + ' · ' + esc(s.tarih[d]) + '</span>' +
+    (s.deneme ? '<span class="rozet">' + (en ? 'MUESTRA' : 'MUESTRA') + '</span>' : '') + '</p>' +
+    '<h3><a href="es/'&#32;+&#32;url&#32;+&#32;'">' + esc(s.baslik[d]) + '</a></h3></div><ol class="bson-liste">' + rows + '</ol>' +
+    '<div class="bson-eylem"><a class="btn primary" href="es/'&#32;+&#32;url&#32;+&#32;'">' + 'Leer la edición' + ' <span class="arr">→</span></a>' +
+    '<a class="btn ghost" href="es/bulten.html">' + 'Archivo' + '</a></div>';
   box.hidden = false;
   var t = document.getElementById('btanit');
   if (t) t.hidden = true;

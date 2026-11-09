@@ -178,7 +178,7 @@ footer .ig .nokta { fill: currentColor; stroke: none; }
 .ara input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .sayac { font: 500 12px var(--f-mono); color: var(--fg-3); min-width: 4em; }
 .bos { text-align: center; color: var(--fg-2); padding: 24px 0; }
-.grup { padding: 26px 32px 30px; display: grid; gap: 14px; }
+.grup { padding: 26px 32px 30px; display: grid; gap: 14px; content-visibility: auto; contain-intrinsic-size: auto none auto 600px; }
 .grup h2 { font-size: 26px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .agac, .agac ul { list-style: none; margin: 0; padding: 0; }
 .agac { columns: 2 24em; column-gap: 40px; }
@@ -326,7 +326,7 @@ details.lic p { margin-top: 10px; }
   text-transform: uppercase; color: var(--accent-ink); background: var(--accent); vertical-align: 1px; }
 .bulten .rozet.deneme { color: var(--sig-ink); background: var(--sig); }
 /* sayı: başlık ve çalışma satırları */
-.sayi { padding: 24px 28px 22px; display: grid; gap: 16px; }
+.sayi { padding: 24px 28px 22px; display: grid; gap: 16px; content-visibility: auto; contain-intrinsic-size: auto none auto 800px; }
 .sayi-bas { display: grid; gap: 8px; }
 .sayi-bas h2 { font-size: clamp(1.4rem, 2.5vw, 1.85rem); }
 .sayi-bas h2 a { text-decoration: none; }
