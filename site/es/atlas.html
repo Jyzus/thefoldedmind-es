@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Atlas 3D del Cerebro · La Mente Doblada</title>
+<meta name="description" content="Un atlas cerebral 3D interactivo gratuito construido con datos de MRI abiertos: 104 estructuras, circuitos, vías de neurotransmisores, diez diagnósticos y cortes de MRI. Sin registro.">
+<link rel="canonical" href="atlas.html">
+<link rel="alternate" hreflang="es" href="atlas.html">
+<link rel="alternate" hreflang="x-default" href="atlas.html">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/logo/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="../assets/logo/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../assets/logo/simge-180.png">
+<meta name="theme-color" content="#0c1018">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Mente Doblada">
+<meta property="og:title" content="Atlas Cerebral 3D Gratuito · La Mente Doblada">
+<meta property="og:description" content="Un atlas cerebral 3D interactivo gratuito construido con datos de MRI abiertos: 104 estructuras, circuitos, vías de neurotransmisores, diez diagnósticos y cortes de MRI. Sin registro.">
+<meta property="og:url" content="https://thefoldedmind.com/es/atlas">
+<meta property="og:image" content="https://thefoldedmind.com/assets/tanitim/og-es.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La Mente Doblada: circuitos cerebrales detrás de la psique">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;display=swap">
+<style>
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+/* Düzen: tam ekran 3B sahne; solda bölge dizini, sağda bilgi paneli, altta görünüm araç çubuğu.
+   Renk: Nissl boyası (kresil viyole) vurgusu, mavi-gri nötrler. */
+:root {
+  --bg: #e9edf2;
+  --bg-deep: #d6dde7;
+  --surface: rgba(250, 251, 253, 0.86);
+  --surface-solid: #f8f9fb;
+  --line: rgba(30, 40, 60, 0.12);
+  --fg: #141b26;
+  --fg-2: #4a5568;
+  --fg-3: #7a8597;
+  --accent: #6a3fb0;
+  --accent-soft: rgba(106, 63, 176, 0.12);
+  --ghost: #3d4f6e;
+  --chip: rgba(20, 27, 38, 0.06);
+  --shadow: 0 10px 30px rgba(20, 30, 50, 0.12);
+  --f-display: "Spectral", Georgia, "Times New Roman", serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1018; --bg-deep: #05070c;
+    --surface: rgba(18, 23, 34, 0.84); --surface-solid: #121722;
+    --line: rgba(190, 205, 235, 0.12);
+    --fg: #e8ecf4; --fg-2: #a9b3c6; --fg-3: #707b90;
+    --accent: #ae8cff; --accent-soft: rgba(174, 140, 255, 0.14);
+    --ghost: #9fb6e0; --chip: rgba(232, 236, 244, 0.07);
+    --shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1018; --bg-deep: #05070c;
+  --surface: rgba(18, 23, 34, 0.84); --surface-solid: #121722;
+  --line: rgba(190, 205, 235, 0.12);
+  --fg: #e8ecf4; --fg-2: #a9b3c6; --fg-3: #707b90;
+  --accent: #ae8cff; --accent-soft: rgba(174, 140, 255, 0.14);
+  --ghost: #9fb6e0; --chip: rgba(232, 236, 244, 0.07);
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 42%, var(--bg) 0%, var(--bg-deep) 100%);
+  background-color: var(--bg);
+  color: var(--fg); font: 14px/1.5 var(--f-body);
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+#stage { position: fixed; inset: 0; }
+#stage canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#stage canvas.pointer { cursor: pointer; }
+#stage canvas:active { cursor: grabbing; }
+/* yön harfleri (nörogörüntüleme konvansiyonu) */
+.orient { position: fixed; font: 500 11px var(--f-mono); color: var(--fg-3); pointer-events: none;
+  transform: translate(-50%, -50%); letter-spacing: 0.08em; transition: opacity .2s; }
+
+.panel {
+  position: fixed; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: var(--shadow);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+/* başlık satırı: Geri, ad ve arama aynı hizada, aynı boyda */
+.brand { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: 16px; z-index: 6;
+  display: flex; align-items: center; gap: 10px; pointer-events: none; }
+.brand h1 { margin: 0; font: 600 21px/1.1 var(--f-display); letter-spacing: -0.01em; }
+.brand h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.brand h1 a { color: inherit; text-decoration: none; }
+.brand h1 a::before { content: ""; display: inline-block; width: 1.16em; height: 1.05em; margin-right: 0.34em; vertical-align: -0.2em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='12.5 12.5 42 38'%3E%3Cg stroke='%235a3399' stroke-width='0.8' stroke-linejoin='round'%3E%3Cpath d='M14 34L18 20L30 28Z' fill='%23ffffff'/%3E%3Cpath d='M18 20L30 14L30 28Z' fill='%23e2d4fb'/%3E%3Cpath d='M30 14L44 15L42 29L30 28Z' fill='%23f4eefe'/%3E%3Cpath d='M44 15L53 25L42 29Z' fill='%23cdb6f7'/%3E%3Cpath d='M53 25L50 40L42 29Z' fill='%23e2d4fb'/%3E%3Cpath d='M50 40L40 43L42 29Z' fill='%23b597f0'/%3E%3Cpath d='M14 34L30 28L18 42Z' fill='%23cdb6f7'/%3E%3Cpath d='M18 42L30 28L33 44Z' fill='%23f4eefe'/%3E%3Cpath d='M30 28L42 29L40 43L33 44Z' fill='%23e2d4fb'/%3E%3Cpath d='M40 43L36 49L33 44Z' fill='%23b597f0'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; }   /* logo: origami beyin (assets/logo/isaret.svg, 2026-10-14) */
+.brand h1 a:hover em { text-decoration: underline; }
+.brand a { pointer-events: auto; }
+.tohome { align-self: center; font: 500 12px/1 var(--f-body); color: var(--fg-2); text-decoration: none; padding: 6px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); backdrop-filter: blur(8px); white-space: nowrap; }
+.tohome:hover { color: var(--fg); border-color: var(--accent); }
+/* sol: bölüm rayı ve çekmece dizin.
+   Ray hep görünür (bölümler, MR, kısayollar, dil ve tema); bir bölüme tıklayınca dizin rayın yanında açılır, aynı bölüme
+   yeniden tıklayınca kapanır. Geniş ekranda (≥ 1180 px) dizin yanda durur ve beyin ona göre ortalanır; daha dar ekranda
+   beynin üstünde açılır ve bir seçim yapılınca kapanır. */
+:root { --rail-w: 64px; --drawer-w: 304px; --info-w: 430px; --gap: 12px; --top: 60px; }
+html[lang="en"] { --drawer-w: 318px; }
+#rail { top: calc(var(--top) + env(safe-area-inset-top, 0px)); left: var(--gap); bottom: var(--gap); width: var(--rail-w); z-index: 6;
+  display: flex; flex-direction: column; align-items: stretch; gap: 2px; padding: 8px 6px; box-sizing: border-box; border-radius: 16px; }
+.rbtn { position: relative; display: grid; justify-items: center; gap: 3px; padding: 8px 2px 7px; border: 0; border-radius: 11px; background: none;
+  color: var(--fg-2); cursor: pointer; font: 500 10px/1.15 var(--f-body); letter-spacing: 0.01em; }
+.rbtn .ico { display: block; width: 22px; height: 22px; }
+.rbtn span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rbtn:hover { background: var(--chip); color: var(--fg); }
+.rbtn[aria-selected="true"] { color: var(--fg); }
+.rbtn[aria-selected="true"]::before { content: ''; position: absolute; left: -6px; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0;
+  background: var(--accent); opacity: 0.45; }
+body.drawer-on .rbtn[aria-selected="true"] { background: var(--accent-soft); color: var(--accent); }
+body.drawer-on .rbtn[aria-selected="true"]::before { opacity: 1; }
+.rbtn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.rsep { height: 1px; margin: 6px 8px; background: var(--line); flex: none; }
+.rgrow { flex: 1 1 auto; min-height: 4px; }
+.rprefs { display: grid; justify-items: center; padding-top: 4px; border-top: 1px solid var(--line); margin-top: 2px; }
+.rprefs > span { font: 500 10.5px var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-3); }
+.rprefs #prefs { position: static; box-shadow: none; justify-self: start; }
+/* ----------------- bilgi paneli ----------------- */
+#info { z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr; padding: 16px; border-radius: 8px; overflow: hidden; }

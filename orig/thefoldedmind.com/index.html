@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en" data-sabit-dil="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Folded Mind · Brain circuits behind the psyche</title>
+<meta name="description" content="Brain circuits behind the psyche: an interactive 3D atlas built on open MRI data, a referenced library and a weekly newsletter on neuropsychiatry. 104 structures, emotional systems, neurotransmitter pathways, brain networks and ten diagnoses.">
+<link rel="canonical" href="index.html">
+<link rel="alternate" hreflang="tr" href="index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="assets/logo/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/logo/simge-180.png">
+<meta name="theme-color" content="#0c1018">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Folded Mind">
+<meta property="og:title" content="The Folded Mind · Brain circuits behind the psyche">
+<meta property="og:description" content="Brain circuits behind the psyche: an interactive 3D atlas built on open MRI data, a referenced library and a weekly newsletter on neuropsychiatry. 104 structures, emotional systems, neurotransmitter pathways, brain networks and ten diagnoses.">
+<meta property="og:url" content="https://thefoldedmind.com/en/">
+<meta property="og:image" content="https://thefoldedmind.com/assets/tanitim/og-en.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Folded Mind: brain circuits behind the psyche">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<!-- Tanıtım sayfası (ana sayfa). Atlas ayrı sayfadır: atlas.html. Dil ve tema i18n.js'ten (sağ alttaki kutu); iki dilli
+     metinler data-l="tr" / data-l="en" ile yan yana yazılır, etkin olmayan dil gizlenir. Görseller assets/tanitim/ içinde,
+     atlasın kendisinden alınmış görüntülerdir (tools/goruntu.js).
+     Ziyaretçi istatistiği: Claude artifact barındırması dış betiklere izin vermez. Site kendi alan adına taşınınca buraya
+     gizlilik dostu bir analitik betiği (ör. Cloudflare Web Analytics, Plausible ya da Umami) eklenir. -->
+<script src="en/i18n.js"></script>
+<style>
+/* Atlasla aynı kimlik: Nissl boyası (kresil viyole) vurgusu, mavi-gri nötrler; başlıklar Spectral, metin IBM Plex Sans,
+   etiketler IBM Plex Mono. Görüntüler her iki temada da koyu bir "ışıklı kutu" içinde durur (atlasın koyu sahnesi). */
+:root {
+  /* Tanıtım sayfası hep koyu: arkasında 3B nöron dünyası (sahne.js). Gündüz/gece seçimi yalnızca atlası etkiler. */
+  --bg: #040915;
+  --bg-2: transparent;
+  --surface: rgba(9, 15, 34, 0.66);
+  --surface-solid: #0b1229;
+  --line: rgba(160, 185, 255, 0.14);
+  --fg: #ecf1ff;
+  --fg-2: #b5c0d9;
+  --fg-3: #8290ad;
+  --accent: #ae8cff;
+  --accent-ink: #120c1f;
+  --accent-soft: rgba(174, 140, 255, 0.16);
+  --accent-2: #d2bcff;
+  --accent-glow: rgba(174, 140, 255, 0.42);
+  --sig: #ffab4a;              /* sinyal rengi: sahnedeki turuncu parıltı ve son "Atlasa git" */
+  --sig-2: #ff7a2e;
+  --sig-hi: #ffd27a;
+  --sig-ink: #2a1406;
+  --sig-glow: rgba(255, 150, 60, 0.5);
+  --glass: linear-gradient(180deg, rgba(16, 28, 62, 0.5), rgba(5, 10, 26, 0.46));
+  --glass-solid: rgba(6, 11, 27, 0.84);
+  --glass-line: rgba(150, 178, 255, 0.16);
+  --chip: rgba(232, 236, 244, 0.07);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  --stage: #0c1018;
+  --stage-line: rgba(190, 205, 235, 0.14);
+  --stage-fg: #a9b3c6;
+  --paper: #f7f2e8;
+  --paper-edge: #e6dccb;
+  --paper-line: rgba(60, 40, 20, 0.14);
+  --ink: #2a2118;
+  --ink-3: #8a7b68;
+  --ink-accent: #6a3fb0;
+  --f-display: "Spectral", Georgia, "Times New Roman", serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --r: 14px;
+  color-scheme: dark;
+}
+
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+html[lang="en"] [data-l="tr"], html:not([lang="en"]) [data-l="en"] { display: none !important; }
+
+body { background: var(--bg); color: var(--fg); font: 400 16.5px/1.65 var(--f-body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.label { font: 500 11.5px/1.4 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-3); }
+.label b { color: var(--accent); font-weight: 500; }
+
+/* ---------------------------------------------------------------- üst şerit */
+.top { padding-block: 20px; display: flex; align-items: center; gap: 24px; }
+.brand { font: 600 21px/1 var(--f-display); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.brand em { font-style: italic; font-weight: 500; color: var(--accent); }
+header.top .brand::before { content: ""; display: inline-block; width: 1.16em; height: 1.05em; margin-right: 0.34em; vertical-align: -0.2em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='12.5 12.5 42 38'%3E%3Cg stroke='%235a3399' stroke-width='0.8' stroke-linejoin='round'%3E%3Cpath d='M14 34L18 20L30 28Z' fill='%23ffffff'/%3E%3Cpath d='M18 20L30 14L30 28Z' fill='%23e2d4fb'/%3E%3Cpath d='M30 14L44 15L42 29L30 28Z' fill='%23f4eefe'/%3E%3Cpath d='M44 15L53 25L42 29Z' fill='%23cdb6f7'/%3E%3Cpath d='M53 25L50 40L42 29Z' fill='%23e2d4fb'/%3E%3Cpath d='M50 40L40 43L42 29Z' fill='%23b597f0'/%3E%3Cpath d='M14 34L30 28L18 42Z' fill='%23cdb6f7'/%3E%3Cpath d='M18 42L30 28L33 44Z' fill='%23f4eefe'/%3E%3Cpath d='M30 28L42 29L40 43L33 44Z' fill='%23e2d4fb'/%3E%3Cpath d='M40 43L36 49L33 44Z' fill='%23b597f0'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; }   /* logo: origami beyin (assets/logo/isaret.svg, 2026-10-14) */
+.top nav { display: flex; gap: 22px; margin-left: auto; font-size: 14.5px; color: var(--fg-2); }
+.top nav a { text-decoration: none; white-space: nowrap; }
+.top nav a:hover { color: var(--fg); }
+.btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 11px 20px; font: 500 15px/1 var(--f-body);
+  text-decoration: none; border: 1px solid transparent; white-space: nowrap; transition: transform 0.15s ease, background 0.15s ease; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { transform: translateY(-1px); }
+.btn.ghost { border-color: var(--line); color: var(--fg); }
+.btn.ghost:hover { background: var(--chip); }
+.btn.small { padding: 8px 15px; font-size: 14px; }
+.btn .arr { font-family: var(--f-mono); }
+/* "Atlasa git": sayfanın ana çağrısı, parlak ve hareketli */
+.btn.go { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-ink);
+  font-weight: 600; box-shadow: 0 8px 26px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+.btn.go.big { padding: 17px 32px; font-size: 17.5px; gap: 12px; }
+.btn.go .arr { transition: transform 0.2s ease; }
+.btn.go:hover { transform: translateY(-2px); box-shadow: 0 14px 34px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+.btn.go:hover .arr { transform: translateX(5px); }
+.btn.go::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.4) 50%, transparent 65%); transform: translateX(-130%);
+  animation: sheen 5s ease-in-out 1.2s infinite; }
+@keyframes sheen { 0%, 62% { transform: translateX(-130%); } 88%, 100% { transform: translateX(130%); } }
+.btn.go:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .btn.go::after { animation: none; display: none; } }
+
+/* ---------------------------------------------------------------- giriş */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 96px; align-items: center; padding-block: 40px 88px; }
+.hero h1 { font-size: clamp(2.5rem, 5.2vw, 4.1rem); margin-top: 18px; }
+.hero h1 i { font-weight: 500; color: var(--accent); }
+.hero .lede { font-size: 18.5px; color: var(--fg-2); margin-top: 22px; max-width: 34em; }
+.hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero .fine { margin-top: 16px; font-size: 13.5px; color: var(--fg-3); }
+
+.stage { position: relative; background: var(--stage); border: 1px solid var(--stage-line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+  color: var(--stage-fg); }
+.stage img { display: block; width: 100%; height: auto; }
+.stage .cap { position: absolute; font: 500 10.5px/1.3 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--stage-fg); opacity: 0.85; }
+.stage .tl { top: 16px; left: 18px; } .stage .tr { top: 16px; right: 18px; text-align: right; }
+.stage .bl { bottom: 14px; left: 18px; } .stage .br { bottom: 14px; right: 18px; text-align: right; }
+.hero .shot { position: relative; margin: 34px 22px 26px; }
+.hero .shot img, .hero .shot video { display: block; width: 100%; height: auto; }
+.vctl { position: absolute; right: 16px; bottom: 12px; z-index: 2; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--stage-line);
+  background: rgba(12, 16, 24, 0.7); color: var(--stage-fg); cursor: pointer; display: grid; place-items: center; padding: 0; }
+.vctl:hover { color: #fff; border-color: var(--accent); }
+.vctl svg { width: 12px; height: 12px; fill: currentColor; }
+/* atlasa doğrudan bağlantılar */
+.jump { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 26px; }
+.jump .lbl { font: 500 11px var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-3); margin-right: 4px; }
+.jump a { font-size: 13.5px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); text-decoration: none; color: var(--fg-2);
+  display: inline-flex; align-items: center; gap: 7px; transition: border-color 0.15s ease, color 0.15s ease; }
+.jump a { background: var(--bg); }
+.jump a:hover { border-color: var(--accent); color: var(--fg); }
+.jump a i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.feature .stage > img { padding: 34px 14px 14px; box-sizing: border-box; transition: transform 0.4s ease; }
+/* özellik görselleri atlası o durumda açar */
+.stage .open { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.stage .open:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.stage .go { position: absolute; right: 14px; bottom: 12px; z-index: 2; pointer-events: none; font: 500 12.5px/1 var(--f-body); color: var(--stage-fg);
+  padding: 7px 11px; border-radius: 999px; border: 1px solid var(--stage-line); background: rgba(12, 16, 24, 0.7); transition: color 0.15s ease, border-color 0.15s ease; }
+.stage:hover .go { color: #fff; border-color: var(--accent); }
+.pair .stage .go { right: auto; left: 14px; }
+.stage:hover > img { transform: scale(1.02); }
+
+/* ---------------------------------------------------------------- sayılar */
+.facts { border-block: 1px solid var(--line); }
+.facts + section { padding-top: 64px; }   /* sayılar şeridi Atlas bölümüne yakın: şerit boşlukta yüzmesin (kullanıcı 2026-10-11) */
+.facts ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.facts li { padding: 22px 18px; border-left: 1px solid var(--line); display: grid; gap: 4px; align-content: start; }
+.facts li:first-child { border-left: 0; padding-left: 0; }
+.facts .n { font: 600 30px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.facts .n small { font: 500 15px var(--f-body); color: var(--fg-3); margin-left: 3px; }
+.facts .t { font-size: 14px; color: var(--fg-2); line-height: 1.4; }
+
+/* ---------------------------------------------------------------- bölümler */
+section { padding-block: 88px; }
+/* nöron dünyası: sayfanın arkasında sabit 3B sahne (sahne.js). Yazı blokları buzlu cam panellerde: sahne arkada kalır,
+   yazının içinden hiçbir şey geçmez. */
+#nb { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 0; display: block; pointer-events: none; }
+main, header.top, footer { position: relative; z-index: 1; }
+#prefs .th, #prefs .sep { display: none !important; }   /* tema düğmesi yalnızca atlasta */
+.hero > div:first-child, .head, .feature .text, .who, .book .text, .trust > div:first-child, .person, .about .text, .final .fglass,
+.facts, footer, .keys, .card, .note, .tkart, .acard, .bmain, .haftanin, .bkayit, .yaz, .plan {
+  background: var(--glass); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--glass-line); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(190, 210, 255, 0.08);
+}
+.hero > div:first-child, .head, .feature .text, .who, .book .text, .trust > div:first-child, .person, .about .text { border-radius: 22px; }
+.hero > div:first-child { padding: 30px 34px 32px; }
+.head { padding: 26px 32px 28px; }
+.feature .text { padding: 30px 32px; }
+.who { padding: 4px 30px 26px; }
+.book .text { padding: 32px 34px; }
+.trust > div:first-child { padding: 18px 28px 22px; }
+.person { padding: 28px; align-content: start; }
+.about .text { padding: 30px 32px; }
+.facts { border-inline: 0; box-shadow: none; }
+footer { border-inline: 0; border-bottom: 0; box-shadow: none; }
+.note { border-left: 3px solid var(--accent); }
+/* vitrin (#kesfet): ayrı sayfalara giden kartlar; kartın tamamı bağlantıdır. Rozet: "Yeni" mor, "Yakında" kehribar;
+   henüz dolmamış sayfaların kartı kesik çizgili. */
+.soon { display: inline-block; margin-left: 10px; padding: 2px 9px; border-radius: 999px; font: 600 10px/1.6 var(--f-mono); letter-spacing: 0.12em;
+  color: var(--sig-ink); background: var(--sig); vertical-align: 1px; }
+.soon.new { color: var(--accent-ink); background: var(--accent); }
+#kesfet .head { margin-bottom: 22px; }
+.vitrin { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.vcard { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 22px 24px 20px; border-radius: 18px;
+  text-decoration: none; color: var(--fg); border: 1px solid var(--glass-line);
+  background: var(--glass); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(190, 210, 255, 0.08);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.vcard.yakinda { border-style: dashed; }
+.vcard .soon { margin-left: 0; text-transform: uppercase; }
+.vcard h3 { font-size: 22px; }
+.vcard p { color: var(--fg-2); font-size: 15px; line-height: 1.55; }
+.vcard .more { margin-top: auto; padding-top: 4px; font: 500 12.5px/1.4 var(--f-mono); letter-spacing: 0.04em; color: var(--accent); }
+.vcard .more .arr { display: inline-block; transition: transform 0.2s ease; }
+.vcard:hover { transform: translateY(-3px); border-color: rgba(174, 140, 255, 0.55);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.34), 0 0 28px rgba(174, 140, 255, 0.14), inset 0 1px 0 rgba(190, 210, 255, 0.12); }
+.vcard:hover .more { color: var(--accent-2); }
+.vcard:hover .more .arr { transform: translateX(4px); }
+.vcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .vcard, .vcard .more .arr { transition: none; } .vcard:hover, .vcard:hover .more .arr { transform: none; } }
+@media (max-width: 1100px) { .vitrin { grid-template-columns: repeat(2, minmax(0, 1fr)); } }   /* 960 px altında tek sütun (dar ekran) */
+/* son çağrı: sinyalin ulaştığı nöronun önünde, sinyalin renginde (kehribar) */
+#syn { position: relative; z-index: 4; display: inline-block; border-radius: 999px; }
+#syn .btn.go { background: linear-gradient(135deg, var(--sig-hi) 0%, var(--sig) 48%, var(--sig-2) 100%); color: var(--sig-ink);
+  padding: 20px 40px; font-size: 19px; font-weight: 600; letter-spacing: 0.01em;
+  box-shadow: 0 0 0 1px rgba(255, 214, 150, 0.75), 0 12px 36px var(--sig-glow), 0 0 70px rgba(255, 160, 70, 0.38); }
+#syn .btn.go:hover { box-shadow: 0 0 0 1px rgba(255, 226, 175, 0.95), 0 16px 44px var(--sig-glow), 0 0 96px rgba(255, 170, 80, 0.55); }
+#syn .btn.go:focus-visible { outline: 2px solid var(--sig-hi); outline-offset: 4px; }
+#syn.fired .btn.go { animation: synPulse 2.6s ease-out infinite; }
+@keyframes synPulse {
+  0% { box-shadow: 0 0 0 1px rgba(255, 214, 150, 0.8), 0 0 0 0 rgba(255, 170, 80, 0.6), 0 12px 36px var(--sig-glow), 0 0 70px rgba(255, 160, 70, 0.4); }
+  70% { box-shadow: 0 0 0 1px rgba(255, 214, 150, 0.8), 0 0 0 26px rgba(255, 170, 80, 0), 0 12px 36px var(--sig-glow), 0 0 110px rgba(255, 160, 70, 0.6); }
+  100% { box-shadow: 0 0 0 1px rgba(255, 214, 150, 0.8), 0 0 0 0 rgba(255, 170, 80, 0), 0 12px 36px var(--sig-glow), 0 0 70px rgba(255, 160, 70, 0.4); }
+}
+@media (prefers-reduced-motion: reduce) { #syn.fired .btn.go { animation: none; } }
+.head { max-width: 46em; display: grid; gap: 14px; margin-bottom: 48px; }
+.head h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+.head p { color: var(--fg-2); font-size: 17.5px; }
+
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 96px; align-items: center; }
+.feature + .feature { margin-top: 96px; }
+.feature.flip .media { order: 2; }
+.feature .text { display: grid; gap: 16px; max-width: 32em; }
+.feature h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.feature .text > p { color: var(--fg-2); }
+.feature ul.ticks { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 9px; font-size: 15.5px; }
+.feature ul.ticks li { padding-left: 22px; position: relative; }
+.feature ul.ticks li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); opacity: 0.75; }
+.pair { position: relative; }
+.pair .inset { position: absolute; width: 38%; right: -14px; bottom: -26px; border-radius: 14px; border: 1px solid var(--stage-line);
+  box-shadow: var(--shadow); background: var(--stage); overflow: hidden; }
+.pair .inset img { display: block; width: 100%; height: auto; }
+
+/* örnek kart: atlasın bilgi paneline benzer */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 24px 24px 20px; display: grid; gap: 14px; }
+.card .eyebrow { display: flex; align-items: center; gap: 8px; font: 500 10.5px/1.3 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-3); }
+.card .eyebrow i { width: 9px; height: 9px; border-radius: 50%; background: #e0584f; flex: none; }
+.card h4 { margin: 0; font: 600 27px/1.1 var(--f-display); }
+.card .latin { font: italic 400 15px var(--f-display); color: var(--fg-3); margin-top: -8px; }
+.card .tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.card .tabs span { font-size: 12.5px; padding: 4px 10px; border-radius: 999px; color: var(--fg-2); }
+.card .tabs span.on { background: var(--accent); color: var(--accent-ink); }
+.card ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 10px; font-size: 14.5px; line-height: 1.55; }
+.card li::marker { color: #e0584f; }
+.ev { font: 600 10.5px var(--f-mono); padding: 1px 5px; border-radius: 4px; color: var(--accent); background: var(--accent-soft); white-space: nowrap; }
+.legend { display: grid; gap: 8px; font-size: 14.5px; color: var(--fg-2); }
+.legend div { display: flex; gap: 10px; align-items: baseline; }
+
+/* ---------------------------------------------------------------- kimler için */
+.who { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.who div { padding: 24px 22px 6px 0; display: grid; gap: 8px; align-content: start; }
+.who div + div { padding-left: 22px; border-left: 1px solid var(--line); }
+.who h3 { font-size: 21px; }
+
+/* ---------------------------------------------------------------- kısayollar */
+.keys { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: start; margin-top: 96px;
+  padding: 32px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+.keys h3 { font-size: clamp(1.4rem, 2.4vw, 1.8rem); }
+.keys .text { display: grid; gap: 12px; color: var(--fg-2); }
+.keys dl { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 28px; font-size: 14.5px; color: var(--fg-2); }
+.keys dl div { display: flex; gap: 12px; align-items: baseline; }
+.keys dt { flex: none; min-width: 64px; }
+.keys dd { margin: 0; }
+kbd { font: 500 12px var(--f-mono); padding: 2px 7px; border-radius: 5px; border: 1px solid var(--line); border-bottom-width: 2px; background: var(--bg); color: var(--fg); }
+
+/* ---------------------------------------------------------------- hakkında */
+/* ana sayfada kısa "Hazırlayan" şeridi (2026-10-29; kişi, iletişim ve kitap hakkinda.html'de) */
+.hazirlayan { padding-block: 40px; }
+.hz { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 20px 24px; border-radius: 22px;
+  background: var(--glass); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--glass-line); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(190, 210, 255, 0.08); }
+.hz-foto { width: 76px; height: 76px; object-fit: cover; object-position: center 20%; border-radius: 50%; box-shadow: var(--shadow); }
+.hz-metin { display: grid; gap: 4px; }
+.hz-metin h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
+.hz-metin .role { color: var(--fg-2); font-size: 15px; }
+.hz-dugme { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+.hz-ig svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+.hz-ig .nokta { fill: currentColor; stroke: none; }
+@media (max-width: 760px) {
+  .hz { grid-template-columns: auto minmax(0, 1fr); -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--glass-solid); padding: 18px; }
+  .hz-dugme { grid-column: 1 / -1; justify-content: flex-start; }
+}
+.about { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 84px; align-items: start; }
+.person { display: grid; gap: 10px; }
+.person .photo { display: block; width: 100%; max-width: 180px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; box-shadow: var(--shadow); margin-bottom: 10px; }
+.person h3 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); margin-top: 8px; }
+.person .role { color: var(--fg-2); font-size: 15.5px; }
+.about .text { display: grid; gap: 16px; color: var(--fg-2); max-width: 38em; }
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 16px 18px; border-radius: 12px; background: var(--surface);
+  border: 1px solid var(--line); margin-top: 6px; }
+.contact .label { flex: 1 1 100%; }
+.contact .mail { font: 500 15.5px var(--f-mono); color: var(--fg); user-select: all; overflow-wrap: anywhere;
+  display: inline-block; padding: 7px 13px; border-radius: 10px; background: rgba(4, 8, 20, 0.55); border: 1px solid var(--glass-line, var(--line)); }   /* kutu: zeminden ayrışsın (2026-10-13) */
+.copy { font: 500 13px var(--f-body); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: none; color: var(--fg-2); cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--fg); }
+
+/* kitap: içindekiler */
+details.toc { margin-top: 6px; border-top: 1px solid var(--line); padding-top: 14px; }
+details.toc summary { cursor: pointer; color: var(--accent); font-size: 15px; }
+details.toc ol { margin: 14px 0 0; padding-left: 26px; columns: 2; column-gap: 32px; font-size: 14px; color: var(--fg-2); }
+details.toc li { break-inside: avoid; margin-bottom: 5px; }
+details.toc li.hl { color: var(--fg); font-weight: 500; }
+
+/* kitap: örnek sayfalar (Bölüm 20'den, kitaptan birebir) */
+/* 20. bölüm: içindekilerden örnek sayfaları açar */
+details.toc summary small { color: var(--fg-3); font-size: 13px; margin-left: 6px; }
+.ch20 { font: inherit; color: var(--fg); font-weight: 600; background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
+  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.ch20 small { font: 500 11.5px var(--f-body); color: var(--accent); padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); white-space: nowrap; }
+.ch20:hover small, .ch20[aria-expanded="true"] small { background: var(--accent); color: var(--accent-ink); }
+.samples { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.pages { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 18px 2px 22px; margin-top: 4px; scrollbar-width: thin; }
+.pg { flex: 0 0 min(400px, 86%); scroll-snap-align: start; background: var(--paper); color: var(--ink); border-radius: 4px 10px 10px 4px;
+  box-shadow: var(--shadow), inset 5px 0 0 var(--paper-edge); padding: 28px 30px 22px; box-sizing: border-box; display: flex; flex-direction: column;
+  font: 400 14.5px/1.62 var(--f-display); }
+.pg header { display: flex; justify-content: space-between; font: 500 9.5px var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  border-bottom: 1px solid var(--paper-line); padding-bottom: 8px; margin-bottom: 18px; }
+.pg .part { font: 500 10px var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-accent); }
+.pg h5 { margin: 6px 0 2px; font: 600 21px/1.2 var(--f-display); color: var(--ink); }
+.pg .chain { font-style: italic; color: var(--ink-3); margin-bottom: 6px; }
+.pg h6 { margin: 12px 0 2px; font: 500 10px var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.book .text .pg p { margin: 0; text-wrap: pretty; color: var(--ink); }
+.book .text .pg .part { color: var(--ink-accent); }
+.book .text .pg .chain { color: var(--ink-3); }
+.pg blockquote { margin: 14px 0 0; padding: 10px 0 0 14px; border-left: 2px solid var(--ink-accent); font-style: italic; color: var(--ink); }
+.pg footer { margin-top: auto; padding-top: 16px; font: 500 9.5px var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); text-align: center; }
+.sample-note { font-size: 13.5px; color: var(--fg-3); }
+
+/* hakkında ve kitap: kapanış cümlesi */
+.imza { font-style: italic; }
+.about .text .imza, .book .text .imza { color: var(--fg); }
+.who p { color: var(--fg-2); font-size: 15px; }
+
+/* ---------------------------------------------------------------- kitap */
+.book { background: var(--bg-2); }
+.book .wrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 84px; align-items: start; }
+.cover-img { display: block; width: 100%; max-width: 320px; height: auto; border-radius: 4px 10px 10px 4px; box-shadow: var(--shadow); }
+.book .text { display: grid; gap: 16px; max-width: 36em; }
+.book .text p { color: var(--fg-2); }
+.book .text .lead { font-size: 18px; color: var(--fg); }
+.book .text > * { min-width: 0; }   /* yana kayan örnek sayfalar sütunu genişletmesin */
+.book .text .booktitle { display: grid; gap: 2px; padding-left: 14px; border-left: 3px solid var(--accent); }
+.booktitle b { font: italic 600 22px/1.2 var(--f-display); color: var(--fg); }
+.booktitle span { font-size: 14.5px; color: var(--fg-2); }
+.booktitle .durum { margin-top: 6px; font: 500 12px var(--f-mono); letter-spacing: 0.04em; color: var(--fg-3); }
+
+/* ---------------------------------------------------------------- veriler, uyarı */
+.trust { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 84px; align-items: start; }
+.sources { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.sources li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.sources li span:last-child { font: 500 12px var(--f-mono); color: var(--fg-3); white-space: nowrap; }
+.sources small { display: block; color: var(--fg-3); font-size: 13px; }
+details.lic { margin-top: 18px; font-size: 13.5px; color: var(--fg-2); }
+details.lic summary { cursor: pointer; color: var(--accent); }
+details.lic p { margin-top: 10px; }
+.note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 10px; padding: 20px 22px; display: grid; gap: 10px; font-size: 15px; color: var(--fg-2); }
+.note h3 { font: 600 19px var(--f-display); color: var(--fg); }
+
+/* ---------------------------------------------------------------- son çağrı ve alt bilgi */
+.final { text-align: center; padding-block: 120px 200px; position: relative; }
+.final h2 { font-size: clamp(2rem, 4vw, 3rem); }
+.final p { color: var(--fg-2); margin: 14px auto 0; max-width: 34em; }
+.final .fglass { display: block; width: fit-content; max-width: min(640px, 100%); box-sizing: border-box; padding: 22px 36px 26px;
+  border-radius: 26px; margin: 0 auto 150px; }
+footer { border-top: 1px solid var(--line); padding-block: 28px 88px; font-size: 13.5px; color: var(--fg-3); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
+footer .brand { font-size: 17px; color: var(--fg); }
+.ig { display: inline-flex; align-items: center; gap: 7px; }   /* Instagram: alt bilgi ve Hakkında iletişim kutusu (kullanıcı 2026-10-16) */
+.contact .ig { margin-left: auto; color: var(--fg-2); font-size: 14.5px; }
+.contact .ig:hover { color: var(--fg); }
+.ig svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; }
+.ig .nokta { fill: currentColor; stroke: none; }
+
+/* ---------------------------------------------------------------- dar ekran */
+@media (max-width: 1100px) { .top { gap: 16px; } .top nav { gap: 15px; } }   /* yedi bağlantılı menü 961–1100 px arasında (İngilizcede de) tek satıra sığsın */
+@media (max-width: 960px) {
+  .hero { padding-block: 16px 150px; }
+  .hero, .feature, .book .wrap, .trust, .keys, .about { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .keys { padding: 24px 20px; }
+  .feature.flip .media { order: 0; }
+  .facts ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts li, .facts li:first-child { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+  .facts li:nth-child(-n+2) { border-top: 0; }
+  .who { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vitrin { grid-template-columns: minmax(0, 1fr); }
+  .who div, .who div + div { padding: 22px 18px 6px 0; border-left: 0; }
+  .top nav { display: none; }
+  .top .btn { margin-left: auto; }
+  .pair .inset { right: 10px; bottom: -20px; }
+  section { padding-block: 64px; }
+}
+@media (max-width: 760px) {
+  .hero > div:first-child, .head, .feature .text, .who, .book .text, .trust > div:first-child, .person, .about .text, .final .fglass,
+  .facts, footer, .keys, .card, .note, .vcard { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--glass-solid); }
+  .hero > div:first-child, .head, .feature .text, .book .text, .about .text { padding: 22px 20px; }
+  .who { padding: 4px 20px 20px; }
+  .final .fglass { padding: 20px 22px; }
+}
+@media (max-width: 820px) { body #prefs { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); } }   /* atlasın araç çubuğu burada yok */
+@media (max-width: 560px) {
+  .wrap { padding-inline: 16px; }
+  .who { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 16px 130px; }
+  .hero .lede { font-size: 17px; }
+  .facts .n { font-size: 26px; }
+  .sources li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .keys dl { grid-template-columns: minmax(0, 1fr); }
+  details.toc ol { columns: 1; }
+}
+/* yakında sitede: psikopatoloji, yazılar, akademik tanıtımı (kısayol kutusunun yerinde) */
+.tanitim { margin-top: 96px; display: grid; gap: 22px; }
+.tanitim-bas { display: grid; gap: 8px; }
+.tanitim-bas h3 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+.tanitim-izgara { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tkart { display: grid; gap: 12px; align-content: start; padding: 26px 26px 22px; border-radius: 22px; text-decoration: none; color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease; }
+.tkart:hover { border-color: rgba(174, 140, 255, 0.45); transform: translateY(-2px); }
+.tkart > .soon { justify-self: start; margin-left: 0; }
+/* Topluluk: planlanan bölümler (2026-10-13; boş "Yakında" sayfaları kaldırıldı, yalnızca plan bilgisi) */
+.plan { margin-top: 24px; padding: 22px 26px 26px; border-radius: 22px; }
+.plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 10px; }
+.plan-grid > div { padding: 16px 18px; border-radius: 14px; border: 1px dashed var(--line); }
+.plan-grid h3 { margin: 0 0 6px; font-size: 18px; }
+.plan-grid p { margin: 0; color: var(--fg-2); font-size: 15px; }
+.tkart h4 { margin: 0; font: 600 22px/1.2 var(--f-display); }
+.tkart > p:not(.label) { color: var(--fg-2); font-size: 15px; }
+.tkart .etiket { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tkart .etiket li { font-size: 12.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--fg-2); }
+.tkart .ornek { display: grid; gap: 4px; padding: 12px 14px; border-radius: 12px; border: 1px dashed var(--glass-line); background: rgba(255, 255, 255, 0.03); }
+.tkart .ornek b { font: 600 16px/1.3 var(--f-display); }
+.tkart .ornek span:last-child { font-size: 13px; color: var(--fg-3); }
+.tkart .more { color: var(--accent); font-size: 14.5px; margin-top: 4px; }
+@media (max-width: 960px) { .tanitim-izgara { grid-template-columns: minmax(0, 1fr); } .tanitim { margin-top: 64px; } }
+
+/* ---------------------------------------------------------------- yeni akış (2026-10-11): atlas vitrini, kütüphane, bülten, topluluk */
+/* atlas vitrini: dört kutu, her biri atlasın ilgili yerini açar */
+.avitrin { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.acard { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; text-decoration: none; color: var(--fg);
+  transition: transform 0.18s ease, border-color 0.18s ease; }
+.acard .stage { margin: 0; border: 0; border-radius: 0; box-shadow: none; aspect-ratio: 1 / 0.86; max-width: 100%; }
+.acard .stage img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.acard:hover .stage img { transform: scale(1.04); }
+.acard .atext { display: grid; gap: 8px; padding: 18px 20px 18px; align-content: start; flex: 1; }
+.acard h3 { font-size: 21px; }
+.acard .atext > p:not(.label) { color: var(--fg-2); font-size: 14.5px; line-height: 1.55; }
+.acard .more { margin-top: auto; padding-top: 4px; font: 500 12.5px/1.4 var(--f-mono); letter-spacing: 0.04em; color: var(--accent); }
+.acard:hover { transform: translateY(-3px); border-color: rgba(174, 140, 255, 0.55); }
+.acard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* kütüphane: sayfalara giden kartlar ve örnek bölge kartı */
+#kutuphane { padding-top: 40px; }
+.kgrid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.klinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.tlinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }   /* Topluluk: Yazılar ve Akademik sayfaları */
+.klinks .vcard h3 { font-size: 20px; }
+.ksample { display: grid; gap: 18px; }
+.ksample .legend { padding: 16px 20px; border-radius: 16px; background: var(--glass-solid); border: 1px solid var(--glass-line); }
+.kleft { display: grid; gap: 20px; align-content: start; }   /* kartlar ve altında "Kütüphanenin tamamı" (sağdaki örnek kartın yanında boşluk kalmasın) */
+.kall { margin: 0; }
+/* bülten ve haftanın yapısı */
+#bulten { padding-top: 40px; }
+.bgrid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.bside .haftanin { background: var(--glass-solid); }   /* opak zemin: arkadaki 3B sahne yazıyı bastırmasın (2026-10-13) */
+.bmain, .haftanin, .yaz { border-radius: 22px; }
+.bmain { display: grid; gap: 14px; padding: 30px 32px; align-content: start; }
+.bmain > p { color: var(--fg-2); }
+.bmain ul.ticks { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 8px; font-size: 15.5px; }
+.bmain ul.ticks li { padding-left: 22px; position: relative; }
+.bmain ul.ticks li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 8px; height: 8px; border-radius: 2px; background: var(--sig); opacity: 0.85; }
+.bside { display: grid; gap: 24px; align-content: start; }   /* sağ sütun: Haftanın yapısı ve kayıt (sol sütun uzunken boşluk kalmasın) */
+.bkayit { display: grid; gap: 12px; padding: 24px 28px; border-radius: 22px; }
+.bkayit .bnote { font-size: 15px; color: var(--fg-2); }
+.bkayit .contact { margin-top: 2px; }
+.btanit { display: grid; gap: 14px; }
+.btanit > p { color: var(--fg-2); }
+/* son sayının vitrini (data/bulten.js; tools/bulten_sayfalari.py): alt alta satırlar, solda başlık ve dergi, sağda görsel; basınca sayı sayfasında
+   o çalışma açık gelir. Sayı yokken gizli, yerinde tanıtım yazısı (.btanit) durur. */
+.bson { display: grid; gap: 14px; margin-top: 4px; }
+.bson-bas { display: grid; gap: 8px; }
+.bson-bas .label { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 12.5px; }
+.bson-bas .rozet { padding: 1px 9px; border-radius: 999px; font: 600 10px/1.6 var(--f-mono); letter-spacing: 0.1em; color: var(--sig-ink); background: var(--sig); }
+.bson-bas h3 { font-size: clamp(1.5rem, 2.5vw, 1.95rem); }
+.bson-bas h3 a { text-decoration: none; }
+.bson-bas h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.bson-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.bsat { display: grid; grid-template-columns: minmax(0, 1fr) 148px; gap: 20px; align-items: center; padding: 12px 12px 12px 20px; border-radius: 16px;
+  border: 1px solid var(--line); background: var(--chip); color: var(--fg); text-decoration: none; transition: border-color 0.15s ease, transform 0.15s ease; }
+.bsat.gorselsiz { grid-template-columns: minmax(0, 1fr); padding: 16px 20px; }
+.bsat:hover { border-color: rgba(174, 140, 255, 0.5); transform: translateY(-1px); }
+.bsat:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bsat-metin { display: grid; gap: 6px; min-width: 0; }
+.bsat-ust { font: 500 12.5px/1.6 var(--f-mono); letter-spacing: 0.02em; color: var(--fg-3); }
+.bsat-ust .ev { display: inline-block; margin-right: 8px; font-size: 12px; padding: 1px 6px; cursor: help; }
+.bsat-ust .onb { margin-left: 8px; padding: 0 7px; border-radius: 999px; border: 1px solid rgba(255, 171, 74, 0.6); color: var(--sig);
+  font: 600 9.5px/1.6 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.bsat b { font: 600 19.5px/1.3 var(--f-display); }
+.bsat-gorsel { display: block; aspect-ratio: 16 / 10; border-radius: 11px; overflow: hidden; background: #070c1b; box-shadow: inset 0 0 0 1px rgba(150, 178, 255, 0.12); }
+.bsat-gorsel img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.bsat:hover .bsat-gorsel img { transform: scale(1.05); }
+.bsat-gorsel.makale { background: #fff; }
+.bsat-gorsel.makale img { object-fit: contain; padding: 4px; box-sizing: border-box; }
+.bson-eylem { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+@media (max-width: 560px) {
+  .bsat { grid-template-columns: minmax(0, 1fr) 76px; gap: 12px; padding: 12px 10px 12px 14px; }
+  .bsat-gorsel { aspect-ratio: 1; }
+  .bsat-ust { font-size: 11.5px; }
+  .bsat b { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { .bsat, .bsat-gorsel img { transition: none; } .bsat:hover { transform: none; } }
+.haftanin { display: grid; gap: 12px; padding: 26px 28px; align-content: start; }
+.haftanin .hhead { display: flex; align-items: center; gap: 10px; }
+.haftanin .hhead i { width: 12px; height: 12px; border-radius: 50%; flex: none; box-shadow: 0 0 14px currentColor; }
+.haftanin h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); }
+.haftanin .hsub { font: 500 11.5px/1.4 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); }
+.haftanin .hsum { color: var(--fg-2); font-size: 15.5px; }
+.haftanin .hbtn { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.haftanin .hnote { font-size: 13px; color: var(--fg-3); }
+/* topluluk: bizimle yaz */
+.yaz { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: center; margin-top: 24px; padding: 26px 30px; }
+.yaz > div:first-child { display: grid; gap: 10px; }
+.yaz h3 { font-size: clamp(1.4rem, 2.4vw, 1.8rem); }
+.yaz p:not(.label) { color: var(--fg-2); }
+@media (max-width: 1100px) { .avitrin { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kgrid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 960px) { .bgrid, .yaz { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) {
+  .acard, .bmain, .haftanin, .bkayit, .yaz, .plan { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--glass-solid); }
+  .bmain, .haftanin, .bkayit, .yaz { padding: 22px 20px; }
+}
+@media (max-width: 560px) { .avitrin, .klinks, .tlinks { grid-template-columns: minmax(0, 1fr); } }
+/* sabit üst şerit ve başa dön oku */
+html { scroll-padding-top: 84px; }
+header.top { position: sticky; top: 0; z-index: 20; padding-block: 14px; background: rgba(4, 9, 21, 0.84);
+  box-shadow: 0 0 0 100vmax rgba(4, 9, 21, 0.84), 0 1px 0 100vmax rgba(150, 178, 255, 0.10); clip-path: inset(0 -100vmax -1px);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+#yukari { position: fixed; right: 16px; bottom: calc(60px + env(safe-area-inset-bottom, 0px)); z-index: 30; width: 40px; height: 40px;
+  border-radius: 50%; border: 1px solid var(--line); background: var(--surface-solid); color: var(--fg); font: 600 18px/1 var(--f-body);
+  cursor: pointer; box-shadow: var(--shadow); display: grid; place-items: center; padding: 0;
+  opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.15s ease; }
+#yukari.on { opacity: 1; transform: none; pointer-events: auto; }
+#yukari:hover { border-color: var(--accent); }
+#yukari:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* dar ekranda üst menü (gezinme.js → .menu-ac): ☰ düğmesiyle açılan liste */
+.menu-ac { display: none; align-items: center; gap: 7px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; background: none;
+  color: var(--fg); font: 500 14px var(--f-body); cursor: pointer; flex: none; }
+.menu-ac svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.menu-ac[aria-expanded="true"] { border-color: var(--accent); }
+@media (max-width: 960px) {
+  header.top { flex-wrap: nowrap; }
+  .menu-ac { display: inline-flex; }
+  header.top.menu-acik { clip-path: none; }
+  header.top nav { display: none !important; }
+  header.top.menu-acik nav { display: grid !important; position: absolute; top: calc(100% + 6px); left: 16px; right: 16px; margin: 0; gap: 2px;
+    padding: 8px; overflow: visible; order: 0; z-index: 30; background: rgba(10, 14, 28, 0.97); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); font-size: 16px; }
+  header.top.menu-acik nav a { padding: 12px 14px; border-radius: 10px; border-bottom: 0; color: var(--fg); }
+  header.top.menu-acik nav a:hover, header.top.menu-acik nav a[aria-current] { background: rgba(174, 140, 255, 0.12); }
+}
+header.top .btn { flex: none; white-space: nowrap; }
+@media (max-width: 440px) {
+  header.top { gap: 10px; }
+  header.top .brand { font-size: 19px; }
+  .menu-ac { padding: 8px 10px; }
+  .menu-ac span { display: none; }
+  header.top .btn { padding-inline: 14px; gap: 6px; }
+}
+@media (max-width: 390px) { header.top .btn .arr { display: none; } }   /* İngilizce "Go to the atlas" 375 px'te ☰ düğmesini dışarı itmesin */
+@media (max-width: 359px) { header.top .btn { display: none; } }   /* 320 px telefonda başlığa sığmıyor: atlas düğmesi menüde ve sayfa içinde */
+/* üst şeritte Instagram (kullanıcı 2026-10-29: "instamız bi tık daha görünür olsun"): Instagram renklerinde halkalı simge, atlas düğmesinin
+   solunda; dar ekranda (≤ 440 px) yer yok, ☰ menüsünün sonunda adıyla (.nav-ig, yalnızca menüde görünür) */
+.ust-ig { flex: none; display: inline-grid; place-items: center; width: 36px; height: 36px; box-sizing: border-box; border-radius: 50%; color: var(--fg);
+  border: 1.5px solid transparent; background: linear-gradient(var(--surface-solid), var(--surface-solid)) padding-box,
+  linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7) border-box; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.ust-ig svg, .nav-ig svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+.ust-ig .nokta, .nav-ig .nokta { fill: currentColor; stroke: none; }
+.ust-ig:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(238, 42, 123, 0.35); }
+.top nav .nav-ig { display: none; }
+@media (max-width: 960px) { header.top.menu-acik nav .nav-ig { display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--line); border-radius: 0 0 10px 10px; } }
+@media (max-width: 440px) { .ust-ig { display: none; } }
+@media (min-width: 441px) and (max-width: 960px) { header.top .ust-ig { margin-left: auto; } header.top .ust-ig + .btn { margin-left: 0; } }   /* menü gizliyken sağda dursun */
+@media (prefers-reduced-motion: reduce) { .ust-ig { transition: none; } .ust-ig:hover { transform: none; } }
+/* dar ekranda dil seçimi ☰ menüsünün içinde (gezinme.js → placePrefs); ↑ oku sağ alta iner */
+header.top nav #prefs { position: static; box-shadow: none; background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0;
+  margin-top: 6px; padding: 10px 8px 4px 14px; display: flex; align-items: center; gap: 6px; font-size: 13px; }
+header.top nav #prefs::before { content: "Dil"; margin-right: auto; font: 500 12px var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-3); }
+html[lang="en"] header.top nav #prefs::before { content: "Language"; }
+header.top nav #prefs button { height: 40px; min-width: 54px; }
+html.prefs-menude #yukari { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+/* dokunmatik ekranda küçük bağlantılar ve düğmeler için daha geniş dokunma alanı */
+@media (pointer: coarse) {
+  footer .wrap a { padding-block: 8px; }
+  body #prefs button { height: 36px; min-width: 40px; }
+  .copy { min-height: 38px; padding-inline: 14px; }
+}
+/* kitap kapağı telefonda daha küçük, ortada; tablette Hakkında kartında fotoğraf ve ad yan yana (kullanıcı 2026-10-11) */
+@media (max-width: 560px) { .cover-img { max-width: 190px; margin-inline: auto; } }
+@media (min-width: 561px) and (max-width: 960px) {
+  .person { grid-template-columns: 160px minmax(0, 1fr); grid-template-rows: 1fr auto auto auto 1fr; column-gap: 28px; row-gap: 6px; }
+  .person .photo { grid-row: 1 / 6; margin-bottom: 0; }
+  .person > :not(.photo) { grid-column: 2; }
+  .person .label { grid-row: 2; } .person h3 { grid-row: 3; margin-top: 0; } .person .role { grid-row: 4; }
+}
+</style>
+
+<header class="wrap top">
+  <a class="brand" href="index.html" translate="no">The Folded <em>Mind</em></a>
+  <nav>
+    <a href="index.html#atlas"><span data-l="en">Atlas</span></a>
+    <a href="en/kutuphane.html"><span data-l="en">Library</span></a>
+    <a href="en/bulten.html"><span data-l="en">Newsletter</span></a>
+    <a href="index.html#topluluk"><span data-l="en">Community</span></a>
+    <a href="en/hakkinda.html"><span data-l="en">About</span></a>
+    <a class="nav-ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">Instagram</span></a>
+  </nav>
+  <a class="ust-ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener" aria-label="Instagram: @thefolded.mind" title="Instagram: @thefolded.mind"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg></a>
+  <a class="btn primary go small" href="en/atlas.html"><span data-l="en">Go to the atlas</span> <span class="arr">→</span></a>
+</header>
+
+<canvas id="nb" aria-hidden="true"></canvas>
+<main>
+<div class="wrap hero">
+  <div>
+    <p class="label"><b>●</b> <span data-l="en">Neuropsychiatry · neuroscience · neuropsychology</span></p>
+    <h1><span data-l="en">A map of the brain, <i>in the language of the clinic.</i></span></h1>
+    <p class="lede">
+      
+      <span data-l="en">Where the brain meets the mind: an interactive 3D atlas built from open MRI data, a library on brain structures and diagnoses, and a weekly newsletter that keeps a finger on the pulse of neuropsychiatry research worldwide.</span>
+    </p>
+    <div class="cta">
+      <a class="btn primary go big" href="en/atlas.html"><span data-l="en">Go to the atlas</span> <span class="arr">→</span></a>
+      <a class="btn ghost" href="en/kutuphane.html"><span data-l="en">Library</span></a>
+      <a class="btn ghost" href="en/bulten.html"><span data-l="en">Newsletter</span></a>
+    </div>
+    <p class="fine"><span data-l="en">Free · no sign-up · runs in the browser, nothing to install</span></p>
+    <div class="jump">
+      <span class="lbl"><span data-l="en">Jump to</span></span>
+      <a href="en/atlas.html#amygdala"><i style="background:#e0584f"></i><span data-l="en">Amygdala</span></a>
+      <a href="en/atlas.html#sistem-seeking"><i style="background:#f2b134"></i>SEEKING</a>
+      <a href="en/atlas.html#nt-da"><i style="background:#f6c344"></i><span data-l="en">Dopamine</span></a>
+      <a href="en/atlas.html#ag-dmn"><i style="background:#cd3e4e"></i>DMN</a>
+      <a href="en/atlas.html#yolak-hpa"><i style="background:#c9a46b"></i><span data-l="en">HPA axis</span></a>
+      <a href="en/atlas.html#mr"><i style="background:#a9b3c6"></i><span data-l="en">MRI slices</span></a>
+    </div>
+  </div>
+  <figure class="stage" style="margin:0">
+    <span class="cap tl">MNI ICBM152 · 2009c</span>
+    <span class="cap tr"><span data-l="en">3D model · 360°</span></span>
+    <div class="shot">
+      <!-- video sayfa yüklendikten sonra iner (aşağıdaki betik, #spinsrc şablonu); o zamana kadar afiş görünür. Tarayıcı desteklediği ilk biçimi seçer:
+           AV1 (1,06 MB), HEVC (1,39 MB; Safari), H.264 (1,70 MB). AV1 ve HEVC özgün karelere H.264'ten daha yakın (SSIM 0,9888 / 0,9886 / 0,9881; 2026-10-13) -->
+      <video id="spinvid" muted loop playsinline preload="none" poster="en/assets/tanitim/beyin.jpg" width="960" height="844"
+        data-al-tr="Atlastaki 3B beyin modeli yavaşça dönüyor; korteks bölgeleri renklerle ayrılmış" data-al-en="The atlas’s 3D brain model rotating slowly; cortical regions in distinct colors"
+        aria-label="Atlastaki 3B beyin modeli yavaşça dönüyor; korteks bölgeleri renklerle ayrılmış">
+      </video>
+      <!-- kaynaklar şablonda: adressiz <source> öğeleri açılışta "yüklenemedi" olayı verir; betik videoyu bağlarken ekler -->
+      <template id="spinsrc">
+        <source src="en/assets/tanitim/beyin-donus-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"'>
+        <source src="en/assets/tanitim/beyin-donus-hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L93.B0"'>
+        <source src="en/assets/tanitim/beyin-donus.mp4" type="video/mp4">
+      </template>
+    </div>
+    <button class="vctl" type="button" id="vctl" data-al-tr="Dönüşü durdur" data-al-en="Pause the rotation" aria-label="Dönüşü durdur"><svg viewBox="0 0 12 12"><rect x="2" y="1.5" width="2.6" height="9" rx="0.6"/><rect x="7.4" y="1.5" width="2.6" height="9" rx="0.6"/></svg></button>
+  </figure>
+</div>
+
+<div class="facts">
+  <div class="wrap"><ul>
+    <li><span class="n">104</span><span class="t"><span data-l="en">structures: 45 regions and 59 substructures</span></span></li>
+    <li><span class="n">7</span><span class="t"><span data-l="en">Panksepp emotional systems with live circuits</span></span></li>
+    <li><span class="n">8</span><span class="t"><span data-l="en">neurotransmitters’ pathways and 10 book pathways</span></span></li>
+    <li><span class="n">8</span><span class="t"><span data-l="en">large-scale brain networks (Yeo 7 and multiple demand)</span></span></li>
+    <li><span class="n">10</span><span class="t"><span data-l="en">diagnoses, with circuit, findings, symptom and treatment lenses</span></span></li>
+    <li><span class="n">13</span><span class="t"><span data-l="en">medications: site of action, anatomy of side effects, children and adolescents</span></span></li>
+    <li hidden><span class="n">1<small>mm</small></span><span class="t"><span data-l="en">axial, coronal and sagittal MRI slices on the MNI template</span></span></li>
+  </ul></div>
+</div>
+
+<section id="atlas">
+  <div class="wrap">
+    <div class="head">
+      <p class="label"><span data-l="en">The atlas</span></p>
+      <h2><span data-l="en">Touch a structure; everything else turns transparent and its card opens.</span></h2>
+      <p><span data-l="en">An anatomically precise 3D model, literature-backed cards, live pathways, diagnosis lenses and MRI slices on one screen. It runs in the browser; no sign-up, nothing to install.</span></p>
+    </div>
+    <div class="avitrin">
+      <a class="acard" href="en/atlas.html#tani-okb">
+        <figure class="stage"><span class="cap tl"><span data-l="en">OCD · circuit</span></span>
+          <img src="en/assets/tanitim/tani.jpg" width="900" height="811" loading="lazy" data-alt-tr="OKB devresi: orbitofrontal ve ön singulat korteksten kaudata ve talamusa akan sinyaller" data-alt-en="The OCD circuit: signals flowing from orbitofrontal and anterior cingulate cortex to the caudate and thalamus" alt="OKB devresi: orbitofrontal ve ön singulat korteksten kaudata ve talamusa akan sinyaller"></figure>
+        <div class="atext">
+          <p class="label">01 · <span data-l="en">Diagnoses</span></p>
+          <h3><span data-l="en">Seeing a diagnosis in the brain</span></h3>
+          <p><span data-l="en">Ten diagnoses through four lenses: the circuit, findings from large studies, symptoms and where treatment acts; increased and reduced activity as a pulse.</span></p>
+          <span class="more"><span data-l="en">Open in the atlas</span> <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="acard" href="en/atlas.html#derin">
+        <figure class="stage"><span class="cap tl"><span data-l="en">Deep structures</span></span>
+          <img src="en/assets/tanitim/derin.jpg" width="1100" height="974" loading="lazy" data-alt-tr="Saydam korteksin içinde bazal ganglionlar, talamus, amigdala, hipokampus ve beyin sapı" data-alt-en="Basal ganglia, thalamus, amygdala, hippocampus and brainstem inside a transparent cortex" alt="Saydam korteksin içinde bazal ganglionlar, talamus, amigdala, hipokampus ve beyin sapı"></figure>
+        <div class="atext">
+          <p class="label">02 · <span data-l="en">Model</span></p>
+          <h3><span data-l="en">104 structures, layer by layer</span></h3>
+          <p><span data-l="en">Built from the MNI template and published atlases: HCP-MMP1.0 cortical borders, brainstem nuclei, thalamic nuclei and cerebellar lobules.</span></p>
+          <span class="more"><span data-l="en">Open in the atlas</span> <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="acard" href="en/atlas.html#nt-da">
+        <figure class="stage"><span class="cap tl"><span data-l="en">Dopamine · live</span></span>
+          <img src="en/assets/tanitim/dopamin.jpg" width="960" height="1080" loading="lazy" data-alt-tr="Dopamin yolakları: VTA ve substantia nigradan striatum ve prefrontal kortekse akan ışıklı sinyaller" data-alt-en="Dopamine pathways: glowing signals flowing from the VTA and substantia nigra to the striatum and prefrontal cortex" alt="Dopamin yolakları: VTA ve substantia nigradan striatum ve prefrontal kortekse akan ışıklı sinyaller"></figure>
+        <div class="atext">
+          <p class="label">03 · <span data-l="en">Live pathways</span></p>
+          <h3><span data-l="en">Emotional systems and neurotransmitters</span></h3>
+          <p><span data-l="en">Panksepp's seven emotional systems, eight neurotransmitters and the large-scale brain networks; signals flow in 3D, inhibitory signals as rings.</span></p>
+          <span class="more"><span data-l="en">Open in the atlas</span> <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="acard" href="en/atlas.html#mr">
+        <figure class="stage"><span class="cap tl"><span data-l="en">Axial · z = +8 mm</span></span>
+          <img src="en/assets/tanitim/kesit.jpg" width="990" height="637" loading="lazy" data-alt-tr="3B modelin aksiyel düzlemde kesilmiş hâli; kesit yüzünde T1 MR görüntüsü ve bölge renkleri" data-alt-en="The 3D model cut in an axial plane, with the T1 MRI and region colors on the cut surface" alt="3B modelin aksiyel düzlemde kesilmiş hâli; kesit yüzünde T1 MR görüntüsü ve bölge renkleri"></figure>
+        <div class="atext">
+          <p class="label">04 · <span data-l="en">MRI slices</span></p>
+          <h3><span data-l="en">The same structure, in 3D and on MRI</span></h3>
+          <p><span data-l="en">Axial, coronal and sagittal slices of the template T1 image; region borders in color, and the slice plane cuts the 3D model too.</span></p>
+          <span class="more"><span data-l="en">Open in the atlas</span> <span class="arr">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="kutuphane">
+  <div class="wrap">
+    <div class="head">
+      <p class="label"><span data-l="en">Library</span></p>
+      <h2><span data-l="en">For those looking for the theory</span></h2>
+      <p><span data-l="en">The atlas's knowledge as readable pages: every structure on its own page, every diagnosis with its circuits; emotional systems, neurotransmitter pathways and brain networks. Every item is referenced and marked with its level of evidence.</span></p>
+    </div>
+    <div class="kgrid">
+      <div class="kleft">
+      <div class="klinks">
+        <a class="vcard" href="en/bolgeler.html"><h3><span data-l="en">Brain regions</span></h3><p><span data-l="en">Each of 104 structures on its own page: anatomy, functions, development, clinical relevance, treatment.</span></p>
+          <span class="more"><span data-l="en">Open the index</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="en/psikopatoloji.html"><h3><span data-l="en">Psychopathology</span></h3><p><span data-l="en">Ten diagnoses, each with its circuits, networks, neurotransmitters and treatment.</span></p>
+          <span class="more"><span data-l="en">Open the diagnoses</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="en/kutuphane.html#sistemler"><h3><span data-l="en">Emotional systems and pathways</span></h3><p><span data-l="en">Panksepp's seven systems, eight neurotransmitters and the book's main pathways.</span></p>
+          <span class="more"><span data-l="en">Open in the library</span> <span class="arr">→</span></span></a>
+        <a class="vcard" href="en/kutuphane.html#aglar"><h3><span data-l="en">Brain networks</span></h3><p><span data-l="en">Default mode, salience, executive control and the rest; what changes in which diagnosis.</span></p>
+          <span class="more"><span data-l="en">Open in the library</span> <span class="arr">→</span></span></a>
+      </div>
+      <p class="kall"><a class="btn ghost" href="en/kutuphane.html"><span data-l="en">The full library, with search</span> <span class="arr">→</span></a></p>
+      </div>
+      <div class="ksample">
+        <div class="card" aria-hidden="true">
+        <div class="eyebrow"><i></i><span data-l="en">Limbic structures · AMY · deep structure</span></div>
+        <h4><span data-l="en">Amygdala</span></h4>
+        <div class="latin">Corpus amygdaloideum</div>
+        <div class="tabs">
+          <span data-l="en">Functions</span>
+          <span data-l="en">Anatomy</span>
+          <span data-l="en">Development</span>
+          <span class="on" data-l="en">Clinical</span>
+          <span data-l="en">Treatment</span>
+          <span data-l="en">In the book</span>
+        </div>
+        <ul>
+          <li><span data-l="en">Anxiety disorders: a child and adolescent fMRI meta-analysis (48 studies) found bilateral amygdala hyperactivation in internalizing disorders (Ashworth et al., 2021).</span> <span class="ev">A</span></li>
+          <li><span data-l="en">ASD: large amygdala in boys aged 7–12, with the difference gone by adolescence; avoid the generalization “the amygdala is enlarged in ASD”.</span> <span class="ev">A/B</span></li>
+          <li><span data-l="en">Williams syndrome: reduced response to social threat, increased response to nonsocial threat (Meyer-Lindenberg et al., 2005).</span> <span class="ev">B</span></li>
+        </ul>
+      </div>
+        <div class="legend">
+          <div><span class="ev">A</span><span data-l="en">large consortium, meta-analysis or regulatory decision</span></div>
+          <div><span class="ev">B</span><span data-l="en">replicated studies or a classic case</span></div>
+          <div><span class="ev">C</span><span data-l="en">a single or pioneering study, experimental use</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bulten">
+  <div class="wrap">
+    <div class="head">
+      <p class="label"><span data-l="en">Newsletter · weekly</span></p>
+      <h2><span data-l="en">Once a week: what is happening in brain and mind research?</span></h2>
+      <p><span data-l="en">Every week, four studies from the field's leading journals: three clinical, one from neuroscience. Each one short and clear, with its level of evidence and a link to the article.</span></p>
+    </div>
+    <div class="bgrid">
+    <div class="bmain">
+      <!-- son sayının vitrini: data/bulten.js'ten çizilir (aşağıdaki betik); sayı yoksa gizli kalır ve tanıtım maddeleri görünür -->
+      <div class="bson" id="bson" hidden></div>
+      <div class="btanit" id="btanit">
+        <ul class="ticks">
+          <li><span data-l="en">Psychiatry, child and adolescent mental health, neuroscience and neuropsychology</span></li>
+          <li><span data-l="en">Preprints that are not peer reviewed are clearly marked</span></li>
+          <li><span data-l="en">In Turkish and English</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bside">
+      <aside class="haftanin" id="haftanin" aria-live="polite">
+        <p class="label"><span data-l="en">Structure of the week</span></p>
+        <div class="hbody"></div>
+        <p class="hnote"><span data-l="en">Every week, one structure from the atlas.</span></p>
+      </aside>
+      <div class="bkayit">
+        <p class="label"><span data-l="en">Subscribe</span></p>
+        <p class="bnote"><span data-l="en">Four studies in your inbox every Friday. Free; unsubscribe anytime with one click.</span></p>
+        <p><a class="btn go" href="https://thefoldedmind.substack.com/subscribe" target="_blank" rel="noopener"><span data-l="en">Subscribe on Substack</span> <span class="arr">→</span></a></p>
+        <p class="bnote" style="font-size:13px"><span data-l="en">Subscriptions are handled by Substack; how your email address is processed is on the <a href="en/yasal.html#kvkk">legal page</a>.</span></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="topluluk" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head">
+      <p class="label"><span data-l="en">Community</span></p>
+      <h2><span data-l="en">For everyone curious about both brain and mind</span></h2>
+      <p><span data-l="en">A meeting place for people who love neuropsychiatry, neuroscience and neuropsychology: read, discuss, write.</span></p>
+    </div>
+    <div class="who">
+      <div>
+        <h3><span data-l="en">Medical students</span></h3>
+        <p><span data-l="en">Neuroanatomy in three dimensions, together with function and the clinic; a quick review before exams.</span></p>
+      </div>
+      <div>
+        <h3><span data-l="en">Residents</span></h3>
+        <p><span data-l="en">In psychiatry, child psychiatry and neurology; the circuits targeted by medication and neuromodulation.</span></p>
+      </div>
+      <div>
+        <h3><span data-l="en">Psychologists and therapists</span></h3>
+        <p><span data-l="en">The neural counterparts of emotional systems, attachment and trauma; visuals for explaining them to clients.</span></p>
+      </div>
+      <div>
+        <h3><span data-l="en">Curious readers</span></h3>
+        <p><span data-l="en">A look at where and how emotions such as curiosity, fear, play and grief work in the brain.</span></p>
+      </div>
+    </div>
+    <div class="plan">
+      <p class="label"><span data-l="en">What we are planning</span></p>
+      <div class="plan-grid">
+        <div>
+          <h3><span data-l="en">Writing</span></h3>
+          <p><span data-l="en">Clinical notes, one structure through the atlas, and guest articles; every structure mentioned will open in the 3D atlas.</span></p>
+        </div>
+        <div>
+          <h3><span data-l="en">Academic</span></h3>
+          <p><span data-l="en">Publications, talks and posters; studies made with the atlas and its use in teaching.</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="yaz">
+      <div>
+        <p class="label"><span data-l="en">Write with us</span></p>
+        <h3><span data-l="en">We welcome guest writers</span></h3>
+        <p><span data-l="en">Teachers, colleagues and anyone curious about the field: send us your idea for a short, referenced article or a summary of a new study. Every structure mentioned in a piece opens in the atlas with one click.</span></p>
+      </div>
+      <div class="contact">
+        <span class="mail" id="mail3"><a href="https://thefoldedmind.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93fbf6fffffcd3e7fbf6f5fcfff7f6f7fefafdf7bdf0fcfe">[email&#160;protected]</a></span>
+        <button class="copy" type="button" data-copy="#mail3"><span data-l="en">Copy</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hazırlayan: kişi, iletişim ve kitap 2026-10-29'dan beri ayrı sayfada (hakkinda.html, tools/hakkinda_sayfasi.py); burada kısa şerit -->
+<section id="hakkinda" class="hazirlayan">
+  <div class="wrap">
+    <div class="hz">
+      <img class="hz-foto" src="en/assets/tanitim/foto.jpg" width="640" height="800" loading="lazy" alt="" aria-hidden="true">
+      <div class="hz-metin">
+        <p class="label"><span data-l="en">Created by</span></p>
+        <h3 translate="no"><span data-l="en">Alperen Mert Çetin, MD</span></h3>
+        <p class="role"><span data-l="en">Resident in child and adolescent psychiatry</span></p>
+      </div>
+      <div class="hz-dugme">
+        <a class="btn ghost" href="en/hakkinda.html"><span data-l="en">About and the book</span> <span class="arr">→</span></a>
+        <a class="btn ghost hz-ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">@thefolded.mind</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="fglass">
+    <h2><span data-l="en">Start exploring the brain</span></h2>
+    <p><span data-l="en">Works best in a desktop or tablet browser. The model downloads about 9 MB on first load.</span></p>
+    </div>
+    <span id="syn"><a class="btn primary go big" href="en/atlas.html"><span data-l="en">Go to the atlas</span> <span class="arr">→</span></a></span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand" translate="no">The Folded <em>Mind</em></span>
+    <span><span data-l="en">Brain circuits behind the psyche</span></span>
+    <span>© 2026 Alperen Mert Çetin</span>
+    <span><span data-l="en">For education · free</span></span>
+    <a href="en/kutuphane.html"><span data-l="en">Library</span></a>
+    <a href="en/bulten.html"><span data-l="en">Newsletter</span></a>
+    <a href="en/atlas.html"><span data-l="en">Atlas</span></a>
+    <a href="en/yasal.html"><span data-l="en">Legal</span></a>
+    <a href="en/kutuphane.html#veriler"><span data-l="en">Data sources</span></a>
+    <a href="en/hakkinda.html#iletisim"><span data-l="en">Contact</span></a>
+    <a class="ig" href="https://www.instagram.com/thefolded.mind/" target="_blank" rel="noopener" aria-label="Instagram: @thefolded.mind"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="nokta" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">@thefolded.mind</span></a>
+    <span style="flex-basis:100%"><span data-l="en">Privacy: no cookies; your language and theme choice stays in your browser; visits may be counted without collecting any personal data.</span></span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="https://thefoldedmind.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="en/data/ozet.js"></script>
+<script src="en/data/bulten.js"></script>
+<script src="en/gezinme.js"></script>
+<script>
+// Haftanın yapısı: her hafta atlastan sırayla bir ana bölge (data/ozet.js; tools/ozet_veri.py üretir)
+(function () {
+  'use strict';
+  var box = document.querySelector('#haftanin .hbody');
+  if (!box || !window.OZET) { var h = document.getElementById('haftanin'); if (h) h.hidden = true; return; }
+  var en = window.I18N && I18N.lang === 'en';
+  var esc = function (x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var byId = {};
+  OZET.regions.forEach(function (r) { byId[r.id] = r; });
+  var list = OZET.hafta ? OZET.hafta.map(function (id) { return byId[id]; }) : OZET.regions.filter(function (r) { return !r.p; });   // ozet_veri.py → HAFTA_DISI
+  var week = Math.floor((Date.now() / 864e5 + 3) / 7);      // pazartesiden başlayan hafta sayısı
+  var r = list[week % list.length];
+  box.innerHTML = '<div class="hhead"><i style="background:' + r.c + ';color:' + r.c + '"></i><span class="hsub">' + esc(en ? r.ge : r.g) + ' · ' + esc(r.s) + '</span></div>' +
+    '<h3>' + esc(en ? r.ne : r.n) + '</h3><p class="hsum">' + esc(en ? r.de : r.d) + '</p>' +
+    '<div class="hbtn"><a class="btn primary" href="en/atlas.html#' + r.id + '">' + (en ? 'Open in the atlas' : 'Atlasta aç') + ' <span class="arr">→</span></a>' +
+    '<a class="btn ghost" href="https://thefoldedmind.com/en/bolge/'&#32;+&#32;r.id&#32;+&#32;'">' + (en ? 'Read its page' : 'Sayfasını oku') + '</a></div>';
+})();
+</script>
+<script>
+// Bülten: son sayının vitrini (data/bulten.js; tools/bulten_sayfalari.py üretir). Satıra basınca sayı sayfasında o çalışma açık gelir (#c2).
+(function () {
+  'use strict';
+  var B = window.BULTEN, box = document.getElementById('bson');
+  if (!box || !B || !B.son) return;
+  var en = window.I18N && I18N.lang === 'en', d = en ? 'en' : 'tr', s = B.son, url = 'bulten/' + s.kimlik + '.html';
+  var esc = function (x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var EV = { A: ['Kanıt A: büyük konsorsiyum, meta-analiz ya da düzenleyici karar', 'Evidence A: large consortium, meta-analysis or regulatory decision'],
+    B: ['Kanıt B: tekrarlanmış çalışmalar ya da klasik vaka', 'Evidence B: replicated studies or classic case'],
+    C: ['Kanıt C: tek ya da öncü çalışma', 'Evidence C: single or pioneering study'] };
+  var rows = s.calismalar.map(function (c, i) {
+    var img = c.gorsel ? '<span class="bsat-gorsel' + (c.makale ? ' makale' : '') + '"><img src="https://thefoldedmind.com/en/'&#32;+&#32;esc(c.gorsel)&#32;+&#32;'" alt="" loading="lazy" decoding="async"></span>' : '';
+    var ust = (EV[c.kanit] ? '<span class="ev" title="' + esc(EV[c.kanit][en ? 1 : 0]) + '">' + c.kanit + '</span>' : '') +
+      esc(c.tasarim[d]) + ' · ' + esc(c.dergi) + (c.on_baski ? '<span class="onb">' + (en ? 'Preprint' : 'Ön baskı') + '</span>' : '');
+    return '<li><a class="bsat' + (img ? '' : ' gorselsiz') + '" href="https://thefoldedmind.com/en/'&#32;+&#32;url&#32;+&#32;'#c' + (i + 1) + '"><span class="bsat-metin"><span class="bsat-ust">' + ust +
+      '</span><b>' + esc(c.baslik[d]) + '</b></span>' + img + '</a></li>';
+  }).join('');
+  box.innerHTML = '<div class="bson-bas"><p class="label"><span>' + (en ? 'Latest issue' : 'Son sayı') + ' · ' + esc(s.ad[d]) + ' · ' + esc(s.tarih[d]) + '</span>' +
+    (s.deneme ? '<span class="rozet">' + (en ? 'SAMPLE' : 'ÖRNEK') + '</span>' : '') + '</p>' +
+    '<h3><a href="https://thefoldedmind.com/en/'&#32;+&#32;url&#32;+&#32;'">' + esc(s.baslik[d]) + '</a></h3></div><ol class="bson-liste">' + rows + '</ol>' +
+    '<div class="bson-eylem"><a class="btn primary" href="https://thefoldedmind.com/en/'&#32;+&#32;url&#32;+&#32;'">' + (en ? 'Read the issue' : 'Sayıyı oku') + ' <span class="arr">→</span></a>' +
+    '<a class="btn ghost" href="en/bulten.html">' + (en ? 'Archive' : 'Arşiv') + '</a></div>';
+  box.hidden = false;
+  var t = document.getElementById('btanit');
+  if (t) t.hidden = true;
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var en = window.I18N && I18N.lang === 'en';
+  document.querySelectorAll('[data-alt-tr]').forEach(function (img) { img.alt = img.getAttribute(en ? 'data-alt-en' : 'data-alt-tr'); });
+  if (en) document.title = 'The Folded Mind · Brain circuits behind the psyche';
+  if (en) document.querySelectorAll('[data-aria-en]').forEach(function (el) { el.setAttribute('aria-label', el.getAttribute('data-aria-en')); });
+  document.querySelectorAll('[data-al-tr]').forEach(function (a) { a.setAttribute('aria-label', a.getAttribute(en ? 'data-al-en' : 'data-al-tr')); });
+  if (window.I18N) I18N.mountBox();
+  // dönen beyin: hareket azaltma tercihinde durur; görünmezken oynamaz; düğmeyle durdurulur
+  var vid = document.getElementById('spinvid'), vb = document.getElementById('vctl');
+  if (vid && vb) {
+    var PAUSE = '<svg viewBox="0 0 12 12"><rect x="2" y="1.5" width="2.6" height="9" rx="0.6"/><rect x="7.4" y="1.5" width="2.6" height="9" rx="0.6"/></svg>';
+    var PLAY = '<svg viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg>';
+    var user = false, seen = true, ready = false;
+    // video dosyası sayfa yüklendikten sonra (ya da oynatılmak istenince) bağlanır; hareket azaltma tercihinde hiç inmez
+    var attach = function () {
+      if (ready) return;
+      ready = true;
+      var tpl = document.getElementById('spinsrc');
+      if (tpl) vid.appendChild(tpl.content.cloneNode(true));
+      vid.preload = 'auto';
+      vid.load();
+    };
+    var sync = function () {
+      var run = !user && seen;
+      if (run) { attach(); var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else vid.pause();
+      vb.innerHTML = user ? PLAY : PAUSE;
+      vb.setAttribute('aria-label', user ? (en ? 'Play the rotation' : 'Dönüşü başlat') : (en ? 'Pause the rotation' : 'Dönüşü durdur'));
+    };
+    try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) user = true; } catch (e) { /* eski tarayıcı */ }
+    vb.addEventListener('click', function () { user = !user; sync(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; sync(); }).observe(vid);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) sync(); });
+    var start = function () { setTimeout(sync, 0); };
+    if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+  }
+  // içindekilerde 20. bölüm örnek sayfaları açar
+  document.querySelectorAll('.ch20').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var box = document.getElementById(b.getAttribute('aria-controls')), open = box.hidden;
+      box.hidden = !open;
+      b.setAttribute('aria-expanded', String(open));
+      if (open) box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+  // atlastaki "Ana sayfa" düğmesi bu adrese döner (yayında sayfanın adresi barındırmaya göre değişebilir)
+  try { sessionStorage.setItem('atlas.ana', location.href.split('#')[0]); } catch (e) { /* depolama kapalı */ }
+  // e-postayı kopyala; pano izin vermezse metni seç
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var el = document.querySelector(b.getAttribute('data-copy')), txt = el.textContent.trim();
+      var done = function () { var s = b.querySelector(en ? '[data-l="en"]' : '[data-l="tr"]'); var old = s.textContent; s.textContent = en ? 'Copied' : 'Kopyalandı'; setTimeout(function () { s.textContent = old; }, 1600); };
+      var select = function () { var r = document.createRange(); r.selectNodeContents(el); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); };
+      try { navigator.clipboard.writeText(txt).then(done, select); } catch (e) { select(); }
+    });
+  });
+  // başa dön oku (TR/EN kutusunun üstünde)
+  (function () {
+    var en2 = window.I18N && window.I18N.lang === 'en', up = document.createElement('button');
+    up.id = 'yukari'; up.type = 'button'; up.textContent = '↑';
+    up.title = en2 ? 'Back to top' : 'Başa dön'; up.setAttribute('aria-label', up.title);
+    document.body.appendChild(up);
+    var tick = function () { up.classList.toggle('on', scrollY > 500); };
+    addEventListener('scroll', tick, { passive: true }); tick();
+    up.addEventListener('click', function () {
+      var still = false; try { still = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { /* eski tarayıcı */ }
+      scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+    });
+  })();
+  // kısayollar: A atlas, L dil (tema yalnızca atlasta)
+  window.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+    var k = e.key.toLowerCase();
+    if (k === 'a') location.href = 'atlas.html';
+    else if (k === 'l' && window.I18N) I18N.setLang(I18N.lang === 'en' ? 'tr' : 'en');
+  });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js" integrity="sha256-a12k/jtBAoaXRZCIX4L+SkRvJcco99bIiOKiozEzOUk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js" integrity="sha256-AO0GguYcogfZxiKYJpRy1tTu3Z0zUoQA58vGM9qFRNo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/FXAAShader.js" integrity="sha256-DqHTewtFaP0mqthumr1cb8dwIcBKfP9TJlF66BnJbkE=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js" integrity="sha256-T8Mg+jGFhHeXMyvCsBJbGjm5z1/EFwovGAz6VPsFeis=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js" integrity="sha256-V6VJstapR83fA4WoBNxww7LRVWY9kI6Z411CJ0s4eL4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js" integrity="sha256-LmSJC45MTa/P15bVyEh38q02oQHIMmMhHFAOxA6vEkA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js" integrity="sha256-HtNCsnPpsHej6S5cruzUUEPwMHEwbGllZNW1PwVi3O0=" crossorigin="anonymous"></script>
+<script src="en/sahne.js"></script>
+
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fb83a2d021a74f8baabfab9e1ddfd2ac"}'></script><!-- Cloudflare Pages Analytics --></body>
+</html>
